@@ -1,0 +1,10 @@
+{
+  "name": "digital-blueprint-lab",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node -e \"require('fs').mkdirSync('dist',{recursive:true}); for (const f of ['index.html','styles.css','script.js']) require('fs').copyFileSync(f, 'dist/' + f);\"",
+    "start": "node server.js"
+  },
+  "devDependencies": {}
+}
