@@ -1,0 +1,106 @@
+{
+  "nav": {
+    "brand": "Digital Blueprint Lab",
+    "lab": "Lab",
+    "guide": "Guide",
+    "simulation": "Simulation",
+    "systems": "Systems",
+    "enterLab": "Enter Lab"
+  },
+  "hero": {
+    "eyebrow": "AI systems for digital builders",
+    "title": "Build Smarter Digital Systems.",
+    "description": "Digital Blueprint Lab helps creators, freelancers, and digital builders develop practical systems, AI workflows, and modern digital products.",
+    "exploreBtn": "Explore The Lab",
+    "blueprintBtn": "Get The Blueprint"
+  },
+  "workflow": {
+    "title": "DBL Workflow Core",
+    "idea": "Idea",
+    "system": "System",
+    "asset": "Asset",
+    "launch": "Launch",
+    "aiWorkflow": "AI Workflow",
+    "aiWorkflowBenefit": "42% faster delivery",
+    "clientSystem": "Client System",
+    "clientSystemBenefit": "Scope clarity locked",
+    "productMap": "Product Map",
+    "productMapBenefit": "3 launch paths"
+  },
+  "about": {
+    "eyebrow": "Practical execution",
+    "title": "Inside The Lab",
+    "description1": "Digital Blueprint Lab is a modern digital lab focused on practical execution, freelancing systems, AI-assisted workflows, and digital product building.",
+    "description2": "We believe success online is built through systems, execution, and clarity - not fake hype or unrealistic promises.",
+    "step1": "Map the offer",
+    "step2": "Build the workflow",
+    "step3": "Ship the asset"
+  },
+  "product": {
+    "eyebrow": "Featured Product",
+    "title": "The Digital Blueprint Guide",
+    "subtitle": "Systems. AI. Freelance execution.",
+    "description": "A practical operating guide for creators and freelancers who want cleaner execution, sharper client communication, and better digital systems.",
+    "features": [
+      "Practical systems",
+      "Client communication training",
+      "AI workflow integration",
+      "Freelancing execution roadmap"
+    ],
+    "previewBtn": "Preview Pages",
+    "getBtn": "Get The Guide"
+  },
+  "simulation": {
+    "eyebrow": "Live Scenario",
+    "title": "Client Simulation Lab",
+    "description": "Train your communication with client simulations that model negotiation, revision requests, expectation-setting, pricing friction, and delivery updates.",
+    "clientLabel": "Client",
+    "builderLabel": "Builder",
+    "clientMessage": "Can you do the full launch page by Friday and keep it inside the original scope?",
+    "builderMessage": "I can meet Friday for the core page. The extra launch assets would be a phase two add-on.",
+    "scopeControl": "Scope Control",
+    "negotiation": "Negotiation",
+    "deadlineFraming": "Deadline Framing",
+    "communicationTraining": "Communication training",
+    "scenarioTypes": "18",
+    "skillTracks": "4",
+    "scenarioTypesLabel": "Scenario types",
+    "skillTracksLabel": "Skill tracks"
+  },
+  "systems": {
+    "title": "Digital Systems",
+    "subtitle": "Blueprints for modern execution.",
+    "ai": "AI",
+    "aiTitle": "AI Workflows",
+    "aiDescription": "Prompt chains, automation maps, and repeatable delivery systems.",
+    "fs": "FS",
+    "fsTitle": "Freelancing Systems",
+    "fsDescription": "Offer clarity, client onboarding, scope control, and execution loops.",
+    "tp": "TP",
+    "tpTitle": "Templates",
+    "tpDescription": "Reusable assets for proposals, briefs, product maps, and delivery.",
+    "dt": "DT",
+    "dtTitle": "Digital Tools",
+    "dtDescription": "Lean tool stacks built for speed, clarity, and measurable output.",
+    "pb": "PB",
+    "pbTitle": "Productivity Blueprints",
+    "pbDescription": "Execution frameworks for staying focused from idea to launch."
+  },
+  "quote": "Stop consuming. Start building.",
+  "cta": {
+    "eyebrow": "Launch Protocol",
+    "title": "Start Building Your Digital Blueprint Today.",
+    "bookBtn": "Get The Book",
+    "labBtn": "Enter The Lab"
+  },
+  "footer": {
+    "brand": "Digital Blueprint Lab",
+    "about": "About",
+    "refundPolicy": "Refund Policy",
+    "contact": "Contact",
+    "terms": "Terms",
+    "socialX": "X",
+    "socialLinkedIn": "in",
+    "socialYouTube": "YT"
+  }
+}

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Blueprint Lab | Build Smarter Digital Systems</title>
   <meta name="description" content="Digital Blueprint Lab helps creators, freelancers, and digital builders develop practical systems, AI workflows, and modern digital products.">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-bilingual.css">
 </head>
 <body>
   <div class="site-shell">
@@ -15,41 +15,48 @@
     <header class="nav">
       <a class="brand" href="#top" aria-label="Digital Blueprint Lab home">
         <span class="brand-mark">DBL</span>
-        <span class="brand-name">Digital Blueprint Lab</span>
+        <span class="brand-name" data-i18n="nav.brand">Digital Blueprint Lab</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#about">Lab</a>
-        <a href="#guide">Guide</a>
-        <a href="#simulation">Simulation</a>
-        <a href="#systems">Systems</a>
+        <a href="#about" data-i18n="nav.lab">Lab</a>
+        <a href="#guide" data-i18n="nav.guide">Guide</a>
+        <a href="#simulation" data-i18n="nav.simulation">Simulation</a>
+        <a href="#systems" data-i18n="nav.systems">Systems</a>
       </nav>
-      <a class="nav-cta" href="#cta">Enter Lab</a>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button class="lang-btn lang-en active" data-lang="en">EN</button>
+          <span class="lang-divider">|</span>
+          <button class="lang-btn lang-ar" data-lang="ar">AR</button>
+        </div>
+        <a class="nav-cta" href="#cta" data-i18n="nav.enterLab">Enter Lab</a>
+      </div>
     </header>
 
     <main id="top">
       <section class="hero section-grid">
-        <div class="hero-copy reveal">
-          <span class="eyebrow">AI systems for digital builders</span>
-          <h1>Build Smarter Digital Systems.</h1>
-          <p>Digital Blueprint Lab helps creators, freelancers, and digital builders develop practical systems, AI workflows, and modern digital products.</p>
+        <div class="hero-copy reveal in-view">
+          <span class="eyebrow" data-i18n="hero.eyebrow">AI systems for digital builders</span>
+          <h1 data-i18n="hero.title">Build Smarter Digital Systems.</h1>
+          <p data-i18n="hero.description">Digital Blueprint Lab helps creators, freelancers, and digital builders develop practical systems, AI workflows, and modern digital products.</p>
           <div class="button-row">
-            <a class="btn btn-primary" href="#about">Explore The Lab</a>
-            <a class="btn btn-secondary" href="#guide">Get The Blueprint</a>
+            <a class="btn btn-primary" href="#about" data-i18n="hero.exploreBtn">Explore The Lab</a>
+            <a class="btn btn-secondary" href="#guide" data-i18n="hero.blueprintBtn">Get The Blueprint</a>
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-label="Digital workflow visual">
+        <div class="hero-visual reveal in-view" aria-label="Digital workflow visual">
           <div class="orbital-ring"></div>
           <div class="lab-console">
             <div class="console-top">
               <span></span><span></span><span></span>
-              <strong>DBL Workflow Core</strong>
+              <strong data-i18n="workflow.title">DBL Workflow Core</strong>
             </div>
             <div class="pipeline">
-              <div class="node active">Idea</div>
-              <div class="node">System</div>
-              <div class="node">Asset</div>
-              <div class="node">Launch</div>
+              <div class="node active" data-i18n="workflow.idea">Idea</div>
+              <div class="node" data-i18n="workflow.system">System</div>
+              <div class="node" data-i18n="workflow.asset">Asset</div>
+              <div class="node" data-i18n="workflow.launch">Launch</div>
             </div>
             <div class="signal-board">
               <div class="signal-line w80"></div>
@@ -58,39 +65,39 @@
             </div>
           </div>
           <div class="float-card card-a">
-            <span>AI Workflow</span>
-            <strong>42% faster delivery</strong>
+            <span data-i18n="workflow.aiWorkflow">AI Workflow</span>
+            <strong data-i18n="workflow.aiWorkflowBenefit">42% faster delivery</strong>
           </div>
           <div class="float-card card-b">
-            <span>Client System</span>
-            <strong>Scope clarity locked</strong>
+            <span data-i18n="workflow.clientSystem">Client System</span>
+            <strong data-i18n="workflow.clientSystemBenefit">Scope clarity locked</strong>
           </div>
           <div class="float-card card-c">
-            <span>Product Map</span>
-            <strong>3 launch paths</strong>
+            <span data-i18n="workflow.productMap">Product Map</span>
+            <strong data-i18n="workflow.productMapBenefit">3 launch paths</strong>
           </div>
         </div>
       </section>
 
       <section id="about" class="about section-grid">
-        <div class="section-copy reveal">
-          <span class="eyebrow">Practical execution</span>
-          <h2>Inside The Lab</h2>
-          <p>Digital Blueprint Lab is a modern digital lab focused on practical execution, freelancing systems, AI-assisted workflows, and digital product building.</p>
-          <p>We believe success online is built through systems, execution, and clarity - not fake hype or unrealistic promises.</p>
+        <div class="section-copy reveal in-view">
+          <span class="eyebrow" data-i18n="about.eyebrow">Practical execution</span>
+          <h2 data-i18n="about.title">Inside The Lab</h2>
+          <p data-i18n="about.description1">Digital Blueprint Lab is a modern digital lab focused on practical execution, freelancing systems, AI-assisted workflows, and digital product building.</p>
+          <p data-i18n="about.description2">We believe success online is built through systems, execution, and clarity - not fake hype or unrealistic promises.</p>
         </div>
-        <div class="blueprint-panel reveal">
+        <div class="blueprint-panel reveal in-view">
           <div class="blueprint-card wide">
             <span>01</span>
-            <strong>Map the offer</strong>
+            <strong data-i18n="about.step1">Map the offer</strong>
           </div>
           <div class="blueprint-card">
             <span>02</span>
-            <strong>Build the workflow</strong>
+            <strong data-i18n="about.step2">Build the workflow</strong>
           </div>
           <div class="blueprint-card">
             <span>03</span>
-            <strong>Ship the asset</strong>
+            <strong data-i18n="about.step3">Ship the asset</strong>
           </div>
           <div class="diagram-line line-one"></div>
           <div class="diagram-line line-two"></div>
@@ -99,109 +106,121 @@
 
       <section id="guide" class="product">
         <div class="section-heading reveal">
-          <span class="eyebrow">Featured Product</span>
-          <h2>The Digital Blueprint Guide</h2>
+          <span class="eyebrow" data-i18n="product.eyebrow">Featured Product</span>
+          <h2 data-i18n="product.title">The Digital Blueprint Guide</h2>
         </div>
+
         <div class="product-stage reveal">
-          <div class="book-mockup" aria-label="Premium 3D mockup of The Digital Blueprint Guide">
+          <div class="book-mockup">
             <div class="book-cover">
-              <span>DBL</span>
-              <h3>The Digital Blueprint Guide</h3>
-              <p>Systems. AI. Freelance execution.</p>
+              <div>
+                <span data-i18n="product.eyebrow">Featured Product</span>
+                <h3 data-i18n="product.title">The Digital Blueprint Guide</h3>
+              </div>
+              <p data-i18n="product.subtitle">Systems. AI. Freelance execution.</p>
             </div>
             <div class="book-spine"></div>
           </div>
+
           <div class="product-card">
-            <p>A practical operating guide for creators and freelancers who want cleaner execution, sharper client communication, and better digital systems.</p>
+            <span class="eyebrow" data-i18n="product.eyebrow">Featured Product</span>
+            <h3 data-i18n="product.title">The Digital Blueprint Guide</h3>
+            <p data-i18n="product.subtitle">Systems. AI. Freelance execution.</p>
+            <p data-i18n="product.description">A practical operating guide for creators and freelancers who want cleaner execution, sharper client communication, and better digital systems.</p>
             <ul class="feature-list">
-              <li>Practical systems</li>
-              <li>Client communication training</li>
-              <li>AI workflow integration</li>
-              <li>Freelancing execution roadmap</li>
+              <li data-i18n="product.features.0">Practical systems</li>
+              <li data-i18n="product.features.1">Client communication training</li>
+              <li data-i18n="product.features.2">AI workflow integration</li>
+              <li data-i18n="product.features.3">Freelancing execution roadmap</li>
             </ul>
             <div class="button-row">
-              <a class="btn btn-secondary" href="#guide">Preview Pages</a>
-              <a class="btn btn-primary" href="#cta">Get The Guide</a>
+              <a class="btn btn-secondary" href="#guide" data-i18n="product.previewBtn">Preview Pages</a>
+              <a class="btn btn-primary" href="#guide" data-i18n="product.getBtn">Get The Guide</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="simulation" class="simulation section-grid">
+      <section id="simulation" class="simulation">
+        <div class="section-heading reveal">
+          <span class="eyebrow" data-i18n="simulation.eyebrow">Live Scenario</span>
+          <h2 data-i18n="simulation.title">Client Simulation Lab</h2>
+          <p data-i18n="simulation.description">Train your communication with client simulations that model negotiation, revision requests, expectation-setting, pricing friction, and delivery updates.</p>
+        </div>
+
         <div class="chat-lab reveal">
           <div class="chat-header">
-            <span>Client Simulation Lab</span>
-            <strong>Live Scenario</strong>
+            <span data-i18n="simulation.clientLabel">Client</span>
+            <strong data-i18n="simulation.clientLabel">Live Scenario</strong>
           </div>
-          <div class="chat-message client">
-            <span>Client</span>
-            <p>Can you do the full launch page by Friday and keep it inside the original scope?</p>
+          <div class="chat-message">
+            <span data-i18n="simulation.clientLabel">Client</span>
+            <p data-i18n="simulation.clientMessage">Can you do the full launch page by Friday and keep it inside the original scope?</p>
           </div>
           <div class="chat-message builder">
-            <span>Builder</span>
-            <p>I can meet Friday for the core page. The extra launch assets would be a phase two add-on.</p>
-          </div>
-          <div class="scenario-grid">
-            <div>Scope Control</div>
-            <div>Negotiation</div>
-            <div>Deadline Framing</div>
+            <span data-i18n="simulation.builderLabel">Builder</span>
+            <p data-i18n="simulation.builderMessage">I can meet Friday for the core page. The extra launch assets would be a phase two add-on.</p>
           </div>
         </div>
-        <div class="section-copy reveal">
-          <span class="eyebrow">Communication training</span>
-          <h2>Client Simulation Lab</h2>
-          <p>Train your communication with client simulations that model negotiation, revision requests, expectation-setting, pricing friction, and delivery updates.</p>
-          <div class="metric-strip">
-            <span><strong>18</strong> Scenario types</span>
-            <span><strong>4</strong> Skill tracks</span>
-          </div>
+
+        <div class="scenario-grid reveal">
+          <div data-i18n="simulation.scopeControl">Scope Control</div>
+          <div data-i18n="simulation.negotiation">Negotiation</div>
+          <div data-i18n="simulation.deadlineFraming">Deadline Framing</div>
+          <div data-i18n="simulation.communicationTraining">Communication training</div>
+        </div>
+
+        <div class="metric-strip reveal">
+          <span><strong data-i18n="simulation.scenarioTypes">18</strong> <span data-i18n="simulation.scenarioTypesLabel">Scenario types</span></span>
+          <span><strong data-i18n="simulation.skillTracks">4</strong> <span data-i18n="simulation.skillTracksLabel">Skill tracks</span></span>
         </div>
       </section>
 
       <section id="systems" class="systems">
         <div class="section-heading reveal">
-          <span class="eyebrow">Digital Systems</span>
-          <h2>Blueprints for modern execution.</h2>
+          <h2 data-i18n="systems.title">Digital Systems</h2>
+          <p data-i18n="systems.subtitle">Blueprints for modern execution.</p>
         </div>
+
         <div class="system-grid">
           <article class="system-card reveal">
-            <span class="icon">AI</span>
-            <h3>AI Workflows</h3>
-            <p>Prompt chains, automation maps, and repeatable delivery systems.</p>
+            <span class="icon" data-i18n="systems.ai">AI</span>
+            <h3 data-i18n="systems.aiTitle">AI Workflows</h3>
+            <p data-i18n="systems.aiDescription">Prompt chains, automation maps, and repeatable delivery systems.</p>
           </article>
           <article class="system-card reveal">
-            <span class="icon">FS</span>
-            <h3>Freelancing Systems</h3>
-            <p>Offer clarity, client onboarding, scope control, and execution loops.</p>
+            <span class="icon" data-i18n="systems.fs">FS</span>
+            <h3 data-i18n="systems.fsTitle">Freelancing Systems</h3>
+            <p data-i18n="systems.fsDescription">Offer clarity, client onboarding, scope control, and execution loops.</p>
           </article>
           <article class="system-card reveal">
-            <span class="icon">TP</span>
-            <h3>Templates</h3>
-            <p>Reusable assets for proposals, briefs, product maps, and delivery.</p>
+            <span class="icon" data-i18n="systems.tp">TP</span>
+            <h3 data-i18n="systems.tpTitle">Templates</h3>
+            <p data-i18n="systems.tpDescription">Reusable assets for proposals, briefs, product maps, and delivery.</p>
           </article>
           <article class="system-card reveal">
-            <span class="icon">DT</span>
-            <h3>Digital Tools</h3>
-            <p>Lean tool stacks built for speed, clarity, and measurable output.</p>
+            <span class="icon" data-i18n="systems.dt">DT</span>
+            <h3 data-i18n="systems.dtTitle">Digital Tools</h3>
+            <p data-i18n="systems.dtDescription">Lean tool stacks built for speed, clarity, and measurable output.</p>
           </article>
           <article class="system-card reveal">
-            <span class="icon">PB</span>
-            <h3>Productivity Blueprints</h3>
-            <p>Execution frameworks for staying focused from idea to launch.</p>
+            <span class="icon" data-i18n="systems.pb">PB</span>
+            <h3 data-i18n="systems.pbTitle">Productivity Blueprints</h3>
+            <p data-i18n="systems.pbDescription">Execution frameworks for staying focused from idea to launch.</p>
           </article>
         </div>
       </section>
 
       <section class="quote reveal">
-        <p>"Stop consuming. Start building."</p>
+        <p data-i18n="quote">Stop consuming. Start building.</p>
       </section>
 
       <section id="cta" class="final-cta reveal">
-        <span class="eyebrow">Launch Protocol</span>
-        <h2>Start Building Your Digital Blueprint Today.</h2>
+        <span class="eyebrow" data-i18n="cta.eyebrow">Launch Protocol</span>
+        <h2 data-i18n="cta.title">Start Building Your Digital Blueprint Today.</h2>
         <div class="button-row">
-          <a class="btn btn-primary" href="#guide">Get The Book</a>
-          <a class="btn btn-secondary" href="#top">Enter The Lab</a>
+          <a class="btn btn-primary" href="#guide" data-i18n="cta.bookBtn">Get The Book</a>
+          <a class="btn btn-secondary" href="#top" data-i18n="cta.labBtn">Enter The Lab</a>
         </div>
       </section>
     </main>
@@ -209,21 +228,21 @@
     <footer class="footer">
       <a class="brand" href="#top" aria-label="Digital Blueprint Lab home">
         <span class="brand-mark">DBL</span>
-        <span class="brand-name">Digital Blueprint Lab</span>
+        <span class="brand-name" data-i18n="footer.brand">Digital Blueprint Lab</span>
       </a>
       <nav aria-label="Footer navigation">
-        <a href="#about">About</a>
-        <a href="#">Refund Policy</a>
-        <a href="#">Contact</a>
-        <a href="#">Terms</a>
+        <a href="#about" data-i18n="footer.about">About</a>
+        <a href="#" data-i18n="footer.refundPolicy">Refund Policy</a>
+        <a href="#" data-i18n="footer.contact">Contact</a>
+        <a href="#" data-i18n="footer.terms">Terms</a>
       </nav>
       <div class="socials">
-        <a href="#" aria-label="X">X</a>
-        <a href="#" aria-label="LinkedIn">in</a>
-        <a href="#" aria-label="YouTube">YT</a>
+        <a href="#" aria-label="X" data-i18n="footer.socialX">X</a>
+        <a href="#" aria-label="LinkedIn" data-i18n="footer.socialLinkedIn">in</a>
+        <a href="#" aria-label="YouTube" data-i18n="footer.socialYouTube">YT</a>
       </div>
     </footer>
   </div>
-  <script src="script.js"></script>
+  <script src="script-bilingual.js"></script>
 </body>
 </html>
