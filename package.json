@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node -e \"require('fs').mkdirSync('dist',{recursive:true}); for (const f of ['index.html','styles.css','script.js']) require('fs').copyFileSync(f, 'dist/' + f);\"",
+    "build": "node -e \"const fs = require('fs'); const path = require('path'); fs.mkdirSync('dist',{recursive:true}); fs.mkdirSync('dist/i18n',{recursive:true}); for (const f of ['index.html','styles.css','script.js']) fs.copyFileSync(f, 'dist/' + f); for (const f of ['en.json','ar.json']) fs.copyFileSync(path.join('i18n',f), path.join('dist/i18n',f));\"",
     "start": "node server.js"
   },
   "devDependencies": {}
