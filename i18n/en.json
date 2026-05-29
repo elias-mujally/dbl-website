@@ -39,17 +39,19 @@
   },
   "product": {
     "eyebrow": "Featured Product",
-    "title": "The Digital Blueprint Guide",
-    "subtitle": "Systems. AI. Freelance execution.",
-    "description": "A practical operating guide for creators and freelancers who want cleaner execution, sharper client communication, and better digital systems.",
+    "title": "Digital Launch Bundle",
+    "subtitle": "A practical digital starter bundle.",
+    "description": "A practical digital starter bundle designed to help beginners understand online work, digital products, client communication, freelancing systems, and modern digital execution.",
+    "coverAlt": "Digital Launch Bundle cover",
     "features": [
-      "Practical systems",
-      "Client communication training",
-      "AI workflow integration",
-      "Freelancing execution roadmap"
+      "Digital Launch Guide (PDF)",
+      "DBL Starter Kit (PDF)",
+      "Client communication resources",
+      "Practical digital systems",
+      "Freelancing foundations"
     ],
-    "previewBtn": "Preview Pages",
-    "getBtn": "Get The Guide"
+    "previewBtn": "View Product",
+    "getBtn": "Get The Bundle"
   },
   "simulation": {
     "eyebrow": "Live Scenario",
@@ -154,6 +156,31 @@
       "protectionTitle": "Data protection",
       "protectionBody": "DBL is committed to handling information responsibly and keeping data collection simple, limited, and relevant."
     }
+  },
+  "productPage": {
+    "eyebrow": "Official DBL Product",
+    "downloadBtn": "Download The Bundle",
+    "learnTitle": "What Will You Learn?",
+    "learn": [
+      "How online work and digital products fit together",
+      "How to communicate with clients more clearly",
+      "How to structure practical freelance systems",
+      "How to start executing with organized digital steps"
+    ],
+    "whoTitle": "Who Is This For?",
+    "who": [
+      "Beginners exploring online work",
+      "Creators building their first digital product",
+      "Freelancers who need clearer systems",
+      "Digital builders who want practical direction"
+    ],
+    "contentsTitle": "Bundle Contents",
+    "bonusTitle": "DBL Starter Kit Bonus",
+    "bonusBody": "The starter kit gives you a simple operating base for organizing ideas, client communication, and early digital execution without unnecessary complexity.",
+    "aboutTitle": "About Digital Blueprint Lab",
+    "aboutBody": "Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.",
+    "finalTitle": "Start With A Practical Blueprint",
+    "finalBody": "Download the bundle and begin building with clearer steps, stronger systems, and a more organized digital direction."
   },
   "footer": {
     "brand": "Digital Blueprint Lab",

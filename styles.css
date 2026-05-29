@@ -763,6 +763,47 @@ html[dir="rtl"] .book-spine {
   padding: clamp(24px, 4vw, 42px);
 }
 
+.product-cover-showcase {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+  width: min(360px, 82vw);
+}
+
+.product-cover-showcase::before {
+  position: absolute;
+  inset: 8% -8% -8% 8%;
+  z-index: -1;
+  content: "";
+  border-radius: 8px;
+  background: linear-gradient(145deg, rgba(54, 183, 255, 0.18), rgba(117, 245, 255, 0.05));
+  filter: blur(18px);
+}
+
+.product-cover-showcase img {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(117, 245, 255, 0.28);
+  border-radius: 8px;
+  box-shadow: 32px 36px 80px rgba(0, 0, 0, 0.42), 0 0 52px rgba(54, 183, 255, 0.22);
+}
+
+html[dir="rtl"] .product-cover-showcase img {
+  box-shadow: -32px 36px 80px rgba(0, 0, 0, 0.42), 0 0 52px rgba(54, 183, 255, 0.22);
+}
+
+.product-page-hero {
+  padding: clamp(54px, 9vw, 112px) 0 76px;
+}
+
+.product-page-cover {
+  width: min(390px, 82vw);
+}
+
+.product-detail-grid {
+  padding-top: 0;
+}
+
 .feature-list {
   display: grid;
   gap: 14px;

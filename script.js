@@ -61,6 +61,12 @@ function updatePageTranslations() {
       element.textContent = translation;
     }
   });
+
+  document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+    const key = element.getAttribute('data-i18n-alt');
+    const translation = getTranslation(key);
+    element.setAttribute('alt', translation);
+  });
 }
 
 // Set language and update UI
