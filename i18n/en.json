@@ -159,7 +159,7 @@
   },
   "productPage": {
     "eyebrow": "Official DBL Product",
-    "downloadBtn": "Download The Bundle",
+    "priceLabel": "Launch Price",
     "learnTitle": "What Will You Learn?",
     "learn": [
       "How online work and digital products fit together",
@@ -177,10 +177,23 @@
     "contentsTitle": "Bundle Contents",
     "bonusTitle": "DBL Starter Kit Bonus",
     "bonusBody": "The starter kit gives you a simple operating base for organizing ideas, client communication, and early digital execution without unnecessary complexity.",
+    "paymentEyebrow": "Secure Payment",
+    "paymentTitle": "Choose Your Payment Method",
+    "paymentLead": "Complete payment using one of the options below, then send your payment confirmation to receive access.",
+    "recommended": "Recommended",
+    "paypalTitle": "PayPal",
+    "paypalBody": "Primary payment method. Send payment to the official DBL PayPal email.",
+    "binanceTitle": "Binance Pay",
+    "binanceBody": "Use the Binance Pay ID below to complete payment.",
+    "usdtTitle": "USDT",
+    "usdtBody": "Send USDT using the BEP20 network only.",
+    "networkLabel": "Network: BEP20",
+    "copyBtn": "Copy",
+    "copiedBtn": "Copied",
     "aboutTitle": "About Digital Blueprint Lab",
     "aboutBody": "Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.",
     "finalTitle": "Start With A Practical Blueprint",
-    "finalBody": "Download the bundle and begin building with clearer steps, stronger systems, and a more organized digital direction."
+    "finalBody": "After completing payment, please send your payment confirmation to the official DBL email or WhatsApp. You will then receive access to the Digital Launch Bundle."
   },
   "footer": {
     "brand": "Digital Blueprint Lab",

@@ -95,9 +95,52 @@ function setLanguage(lang) {
   document.querySelector(`[data-lang="${lang}"]`)?.classList.add('active');
 }
 
+async function copyTextToClipboard(value) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(value);
+    return;
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = value;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  textarea.remove();
+}
+
+async function handleCopyButton(button) {
+  const value = button.getAttribute('data-copy');
+  if (!value) return;
+
+  try {
+    await copyTextToClipboard(value);
+  } catch (error) {
+    console.warn('Copy action could not access the clipboard:', error);
+  }
+
+  const originalKey = button.getAttribute('data-i18n');
+  button.textContent = getTranslation('productPage.copiedBtn');
+
+  window.setTimeout(() => {
+    button.textContent = originalKey ? getTranslation(originalKey) : getTranslation('productPage.copyBtn');
+  }, 1500);
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
-  document.addEventListener('click', (event) => {
+  document.addEventListener('click', async (event) => {
+    const copyButton = event.target.closest('.copy-btn');
+    if (copyButton) {
+      event.preventDefault();
+      event.stopPropagation();
+      await handleCopyButton(copyButton);
+      return;
+    }
+
     const button = event.target.closest('.lang-btn');
     if (!button) return;
 
