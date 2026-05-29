@@ -183,6 +183,7 @@
     "recommended": "موصى به",
     "paypalTitle": "PayPal",
     "paypalBody": "طريقة الدفع الأساسية. أرسل الدفع إلى بريد PayPal الرسمي الخاص بـ DBL.",
+    "paypalButton": "الدفع عبر PayPal",
     "binanceTitle": "Binance Pay",
     "binanceBody": "استخدم رقم Binance Pay أدناه لإكمال الدفع.",
     "usdtTitle": "USDT",

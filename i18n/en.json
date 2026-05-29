@@ -183,6 +183,7 @@
     "recommended": "Recommended",
     "paypalTitle": "PayPal",
     "paypalBody": "Primary payment method. Send payment to the official DBL PayPal email.",
+    "paypalButton": "Pay with PayPal",
     "binanceTitle": "Binance Pay",
     "binanceBody": "Use the Binance Pay ID below to complete payment.",
     "usdtTitle": "USDT",
