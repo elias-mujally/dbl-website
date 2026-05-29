@@ -2,6 +2,22 @@
 let currentLanguage = 'en';
 let translations = {};
 
+function getSavedLanguage() {
+  try {
+    return localStorage.getItem('language') || 'en';
+  } catch (error) {
+    return 'en';
+  }
+}
+
+function saveLanguage(lang) {
+  try {
+    localStorage.setItem('language', lang);
+  } catch (error) {
+    // Language switching should still work when storage is unavailable.
+  }
+}
+
 // Load translations
 async function loadTranslations(lang) {
   try {
@@ -50,7 +66,7 @@ function updatePageTranslations() {
 // Set language and update UI
 function setLanguage(lang) {
   currentLanguage = lang;
-  localStorage.setItem('language', lang);
+  saveLanguage(lang);
   
   // Update HTML attributes
   document.documentElement.lang = lang;
@@ -64,21 +80,31 @@ function setLanguage(lang) {
   }
   
   // Load translations and update page
-  loadTranslations(lang).then(() => {
-    updatePageTranslations();
-  });
+  loadTranslations(lang).then(updatePageTranslations);
   
   // Update active button
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.remove('active');
   });
-  document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+  document.querySelector(`[data-lang="${lang}"]`)?.classList.add('active');
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
-  // Get saved language or default to English
-  const savedLanguage = localStorage.getItem('language') || 'en';
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('.lang-btn');
+    if (!button) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const lang = button.getAttribute('data-lang');
+    if (lang) {
+      setLanguage(lang);
+    }
+  });
+
+  const savedLanguage = getSavedLanguage();
   
   // Load translations
   await loadTranslations(savedLanguage);
@@ -86,13 +112,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Set initial language
   setLanguage(savedLanguage);
   
-  // Attach language switcher listeners
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.getAttribute('data-lang');
-      setLanguage(lang);
-    });
-  });
 });
 
 // Reveal animation on scroll
