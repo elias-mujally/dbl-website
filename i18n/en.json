@@ -4,6 +4,8 @@
     "about": "About",
     "lab": "Lab",
     "guide": "Guide",
+    "books": "Books",
+    "tools": "Tools",
     "simulation": "Simulation",
     "systems": "Systems",
     "enterLab": "Enter Lab"
@@ -69,6 +71,22 @@
     ],
     "previewBtn": "View Product",
     "getBtn": "Get The Kit"
+  },
+  "catalog": {
+    "eyebrow": "Product Catalog",
+    "lead": "Choose a category and find the right DBL resource for your next step.",
+    "booksEyebrow": "Guides & Books",
+    "booksTitle": "Books",
+    "booksBody": "Practical digital guides for building skills, systems, and a clearer online direction.",
+    "exploreBooks": "Explore Books",
+    "booksPageTitle": "Books",
+    "booksPageLead": "Practical guides built to turn digital ideas into organized action.",
+    "toolsEyebrow": "Ready-To-Use Resources",
+    "toolsTitle": "Tools / Templates",
+    "toolsBody": "Kits, templates, and practical resources designed for cleaner execution.",
+    "exploreTools": "Explore Tools",
+    "toolsPageTitle": "Tools / Templates",
+    "toolsPageLead": "Practical kits and templates designed for cleaner, more professional digital execution."
   },
   "simulation": {
     "eyebrow": "Live Scenario",
@@ -177,6 +195,7 @@
   "productPage": {
     "eyebrow": "Official DBL Product",
     "priceLabel": "Launch Price",
+    "buyNow": "Buy Now",
     "learnTitle": "What Will You Learn?",
     "learn": [
       "How online work and digital products fit together",
@@ -216,6 +235,7 @@
   "clientKitPage": {
     "eyebrow": "Official DBL Product",
     "priceLabel": "Launch Price",
+    "buyNow": "Buy Now",
     "contentsTitle": "What Is Included?",
     "contents": [
       "25 ready-to-use client messages",
@@ -264,6 +284,8 @@
   },
   "footer": {
     "brand": "Digital Blueprint Lab",
+    "books": "Books",
+    "tools": "Tools",
     "about": "About",
     "refundPolicy": "Refund Policy",
     "contact": "Contact",
