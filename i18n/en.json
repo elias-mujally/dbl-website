@@ -39,6 +39,7 @@
   },
   "product": {
     "eyebrow": "Featured Product",
+    "sectionTitle": "Digital Products",
     "title": "Digital Launch Bundle",
     "subtitle": "A practical digital starter bundle.",
     "description": "A practical digital starter bundle designed to help beginners understand online work, digital products, client communication, freelancing systems, and modern digital execution.",
@@ -52,6 +53,22 @@
     ],
     "previewBtn": "View Product",
     "getBtn": "Get The Bundle"
+  },
+  "clientKit": {
+    "eyebrow": "Client System",
+    "title": "DBL Client Kit",
+    "subtitle": "A practical client management system.",
+    "description": "DBL Client Kit is a practical client management system for freelancers and digital service providers. It includes ready-to-use client messages, DBL rules, client handling tools, checklists, and real-world examples.",
+    "coverAlt": "DBL Client Kit cover",
+    "features": [
+      "25 ready-to-use client messages",
+      "15 DBL client management rules",
+      "9 DBL tools",
+      "3 professional checklists",
+      "Pricing, revision, delivery, and follow-up templates"
+    ],
+    "previewBtn": "View Product",
+    "getBtn": "Get The Kit"
   },
   "simulation": {
     "eyebrow": "Live Scenario",
@@ -195,6 +212,55 @@
     "aboutBody": "Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.",
     "finalTitle": "Start With A Practical Blueprint",
     "finalBody": "After completing payment, please send your payment confirmation to the official DBL email or WhatsApp. You will then receive access to the Digital Launch Bundle."
+  },
+  "clientKitPage": {
+    "eyebrow": "Official DBL Product",
+    "priceLabel": "Launch Price",
+    "contentsTitle": "What Is Included?",
+    "contents": [
+      "25 ready-to-use client messages",
+      "15 DBL client management rules",
+      "10 common client relationship mistakes",
+      "10 practical real-world examples",
+      "9 DBL tools",
+      "3 professional checklists",
+      "Communication, pricing, revision, delivery, and follow-up templates"
+    ],
+    "whoTitle": "Who Is This For?",
+    "who": [
+      "Freelancers",
+      "Designers",
+      "Marketers",
+      "Digital service providers",
+      "Beginners in online work",
+      "People who want to manage clients more professionally"
+    ],
+    "benefitsTitle": "Benefits",
+    "benefits": [
+      "Communicate with clients more clearly",
+      "Handle pricing and revisions with confidence",
+      "Deliver work with a professional process",
+      "Respond to difficult client situations more effectively"
+    ],
+    "systemTitle": "A Practical Client System",
+    "systemBody": "Use the kit as a working reference for everyday freelance conversations, revisions, pricing decisions, delivery steps, follow-ups, and client boundaries.",
+    "paymentEyebrow": "Secure Payment",
+    "paymentTitle": "Choose Your Payment Method",
+    "paymentLead": "Complete payment using one of the options below, then send your payment confirmation to receive access.",
+    "recommended": "Recommended",
+    "paypalTitle": "PayPal",
+    "paypalBody": "Primary payment method. Open the secure PayPal payment page to complete your purchase.",
+    "paypalButton": "Pay with PayPal",
+    "binanceTitle": "Binance Pay",
+    "binanceBody": "Use the Binance Pay ID below to complete payment.",
+    "usdtTitle": "USDT",
+    "usdtBody": "Send USDT using the BEP20 network only.",
+    "networkLabel": "Network: BEP20",
+    "copyBtn": "Copy",
+    "aboutTitle": "About Digital Blueprint Lab",
+    "aboutBody": "Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.",
+    "finalTitle": "Get Access To DBL Client Kit",
+    "finalBody": "After completing payment, please send your payment confirmation to the official DBL email or WhatsApp. You will then receive access to DBL Client Kit."
   },
   "footer": {
     "brand": "Digital Blueprint Lab",

@@ -679,6 +679,10 @@ html[dir="rtl"] .section-heading {
   overflow: hidden;
 }
 
+.product-stage + .product-stage {
+  margin-top: 28px;
+}
+
 html[dir="rtl"] .product-stage {
   direction: rtl;
 }
