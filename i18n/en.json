@@ -282,6 +282,20 @@
     "finalTitle": "Get Access To DBL Client Kit",
     "finalBody": "After completing payment, please send your payment confirmation to the official DBL email or WhatsApp. You will then receive access to DBL Client Kit."
   },
+  "downloadPages": {
+    "privateAccess": "Private Customer Access",
+    "title": "Thank you for your trust in DBL",
+    "launchBundle": {
+      "message": "Your purchase has been completed successfully. You can download your product using the button below.",
+      "button": "Download The Book"
+    },
+    "clientKit": {
+      "message": "Your purchase has been completed successfully. We hope DBL Client Kit helps you manage clients more professionally.",
+      "button": "Download DBL Client Kit"
+    },
+    "support": "If you face any issue, contact us:",
+    "whatsapp": "WhatsApp: +967736747842"
+  },
   "footer": {
     "brand": "Digital Blueprint Lab",
     "books": "Books",
