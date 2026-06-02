@@ -1,12 +1,12 @@
 // Language and Translation Management
-let currentLanguage = 'en';
+let currentLanguage = 'ar';
 let translations = {};
 
 function getSavedLanguage() {
   try {
-    return localStorage.getItem('language') || 'en';
+    return localStorage.getItem('language') || 'ar';
   } catch (error) {
-    return 'en';
+    return 'ar';
   }
 }
 
