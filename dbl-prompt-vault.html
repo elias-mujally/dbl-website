@@ -35,14 +35,8 @@
 
     <main>
       <section class="product-page-hero section-grid reveal in-view">
-        <div class="product-cover-showcase product-page-cover prompt-vault-cover" aria-label="DBL Prompt Vault product cover">
-          <div class="prompt-vault-cover-art">
-            <span class="prompt-vault-cover-brand">DBL</span>
-            <span class="prompt-vault-cover-kicker">AI SYSTEMS</span>
-            <strong>DBL<br>PROMPT<br>VAULT</strong>
-            <span class="prompt-vault-cover-count">100 PROFESSIONAL AI PROMPTS</span>
-            <span class="prompt-vault-cover-tracks">7 BUSINESS TRACKS</span>
-          </div>
+        <div class="product-cover-showcase product-page-cover">
+          <img src="/assets/dbl-prompt-vault-cover.jpeg" alt="DBL Prompt Vault cover" data-i18n-alt="promptVaultPage.coverAlt">
         </div>
         <div class="section-copy">
           <span class="eyebrow" data-i18n="promptVaultPage.eyebrow">Premium AI Resource</span>
@@ -120,17 +114,50 @@
       </section>
 
       <section id="payment-methods" class="page-section payment-section">
-        <div class="prompt-vault-payment page-panel reveal in-view">
+        <div class="section-heading reveal in-view">
           <span class="eyebrow" data-i18n="promptVaultPage.paymentEyebrow">Secure PayPal Checkout</span>
-          <h2 data-i18n="promptVaultPage.paymentTitle">Get Instant Access To DBL Prompt Vault</h2>
-          <p data-i18n="promptVaultPage.paymentLead">Complete your purchase through PayPal and receive immediate access to the Prompt Vault PDF and Prompt Tracker Excel template.</p>
-          <div class="prompt-vault-payment-price">
-            <span data-i18n="promptVaultPage.priceLabel">Launch Price</span>
-            <strong>$14.99</strong>
-            <del>$19.99</del>
-          </div>
-          <a class="btn btn-primary prompt-vault-payment-btn" href="https://www.paypal.com/ncp/payment/DRJC74DETGJ5S" target="_blank" rel="noopener" data-i18n="promptVaultPage.cta">Get Instant Access</a>
+          <h2 data-i18n="promptVaultPage.paymentTitle">Choose Your Payment Method</h2>
+          <p data-i18n="promptVaultPage.paymentLead">PayPal provides instant access after payment. For Binance Pay or USDT, send your payment confirmation to receive access.</p>
         </div>
+
+        <div class="payment-grid">
+          <article class="payment-card recommended reveal in-view">
+            <span class="payment-tag" data-i18n="promptVaultPage.recommended">Recommended</span>
+            <h3 data-i18n="promptVaultPage.paypalTitle">PayPal</h3>
+            <p data-i18n="promptVaultPage.paypalBody">Complete your secure PayPal checkout and receive instant access after payment.</p>
+            <a class="payment-value" href="https://www.paypal.com/ncp/payment/DRJC74DETGJ5S" target="_blank" rel="noopener" data-i18n="promptVaultPage.paypalButton">Pay with PayPal</a>
+          </article>
+
+          <article class="payment-card reveal in-view">
+            <h3 data-i18n="promptVaultPage.binanceTitle">Binance Pay</h3>
+            <p data-i18n="promptVaultPage.binanceBody">Use the Binance Pay ID below to complete payment.</p>
+            <div class="copy-row">
+              <code>968899983</code>
+              <button type="button" class="copy-btn" data-copy="968899983" data-i18n="promptVaultPage.copyBtn">Copy</button>
+            </div>
+          </article>
+
+          <article class="payment-card reveal in-view">
+            <h3 data-i18n="promptVaultPage.usdtTitle">USDT</h3>
+            <p data-i18n="promptVaultPage.usdtBody">Send USDT using the BEP20 network only.</p>
+            <span class="network-label" data-i18n="promptVaultPage.networkLabel">Network: BEP20</span>
+            <div class="copy-row">
+              <code>0xa12d5b70317d50fed3ea1e19b7f21ff0a97f9a14</code>
+              <button type="button" class="copy-btn" data-copy="0xa12d5b70317d50fed3ea1e19b7f21ff0a97f9a14" data-i18n="promptVaultPage.copyBtn">Copy</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-section page-grid">
+        <article class="page-panel reveal in-view">
+          <h2 data-i18n="promptVaultPage.manualTitle">Binance Pay &amp; USDT Confirmation</h2>
+          <p data-i18n="promptVaultPage.manualBody">After completing payment with Binance Pay or USDT, please send your payment confirmation to the official DBL email or WhatsApp. You will then receive access to DBL Prompt Vault.</p>
+          <ul class="page-list">
+            <li><a href="mailto:dblueprintlab@gmail.com">dblueprintlab@gmail.com</a></li>
+            <li><a href="https://wa.me/967736747842">WhatsApp: +967736747842</a></li>
+          </ul>
+        </article>
       </section>
     </main>
 

@@ -761,6 +761,34 @@ html[dir="rtl"] .section-heading {
   margin-top: 22px;
 }
 
+.category-product-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.category-product-price strong {
+  color: var(--cyan);
+  font-family: var(--font-en);
+  font-size: 1.35rem;
+}
+
+.category-product-price del {
+  color: var(--muted);
+  font-family: var(--font-en);
+}
+
+.category-product-price span {
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: var(--green);
+  background: rgba(105, 255, 190, 0.1);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
 html[dir="rtl"] .product-stage {
   direction: rtl;
 }
@@ -908,70 +936,6 @@ html[dir="rtl"] .product-cover-showcase img {
   line-height: 1;
 }
 
-.prompt-vault-cover {
-  aspect-ratio: 4 / 5;
-}
-
-.prompt-vault-cover-art {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
-  min-height: 480px;
-  padding: clamp(26px, 5vw, 42px);
-  border: 1px solid rgba(117, 245, 255, 0.34);
-  border-radius: 8px;
-  background:
-    linear-gradient(rgba(117, 245, 255, 0.11) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(117, 245, 255, 0.11) 1px, transparent 1px),
-    radial-gradient(circle at 72% 20%, rgba(54, 183, 255, 0.3), transparent 34%),
-    linear-gradient(145deg, #071a32, #020712 72%);
-  background-size: 28px 28px, 28px 28px, auto, auto;
-  box-shadow: 32px 36px 80px rgba(0, 0, 0, 0.42), 0 0 52px rgba(54, 183, 255, 0.22);
-}
-
-html[dir="rtl"] .prompt-vault-cover-art {
-  box-shadow: -32px 36px 80px rgba(0, 0, 0, 0.42), 0 0 52px rgba(54, 183, 255, 0.22);
-}
-
-.prompt-vault-cover-brand,
-.prompt-vault-cover-kicker,
-.prompt-vault-cover-count,
-.prompt-vault-cover-tracks {
-  color: var(--cyan);
-  font-family: var(--font-en);
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.prompt-vault-cover-brand {
-  margin-bottom: auto;
-  color: var(--text);
-  font-size: 1.65rem;
-}
-
-.prompt-vault-cover-kicker {
-  margin-bottom: 14px;
-}
-
-.prompt-vault-cover-art strong {
-  color: var(--text);
-  font-family: var(--font-en);
-  font-size: clamp(3rem, 7vw, 4.7rem);
-  line-height: 0.9;
-}
-
-.prompt-vault-cover-count {
-  margin-top: 24px;
-  color: var(--green);
-}
-
-.prompt-vault-cover-tracks {
-  margin-top: 8px;
-  color: var(--muted);
-}
-
 .prompt-vault-price-row,
 .prompt-vault-payment-price {
   display: flex;
@@ -1001,40 +965,6 @@ html[dir="rtl"] .prompt-vault-cover-art {
 
 .prompt-vault-highlights .catalog-card {
   min-height: 148px;
-}
-
-.prompt-vault-payment {
-  max-width: 820px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.prompt-vault-payment p {
-  max-width: 650px;
-  margin: 16px auto 0;
-}
-
-.prompt-vault-payment-price {
-  justify-content: center;
-  margin-top: 24px;
-}
-
-.prompt-vault-payment-price span {
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.prompt-vault-payment-price strong {
-  color: var(--text);
-  font-family: var(--font-en);
-  font-size: 1.8rem;
-}
-
-.prompt-vault-payment-btn {
-  margin-top: 24px;
 }
 
 .product-detail-grid {
