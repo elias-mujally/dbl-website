@@ -3,19 +3,19 @@
     "brand": "Digital Blueprint Lab",
     "about": "About",
     "lab": "Lab",
-    "guide": "Guide",
+    "guide": "Products",
     "books": "Books",
     "tools": "Tools",
-    "simulation": "Simulation",
-    "systems": "Systems",
-    "enterLab": "Enter Lab"
+    "simulation": "Client System",
+    "systems": "Resources",
+    "enterLab": "View Products"
   },
   "hero": {
-    "eyebrow": "AI systems for digital builders",
-    "title": "Build Smarter Digital Systems.",
-    "description": "Digital Blueprint Lab helps creators, freelancers, and digital builders develop practical systems, AI workflows, and modern digital products.",
-    "exploreBtn": "Explore The Lab",
-    "blueprintBtn": "Get The Blueprint"
+    "eyebrow": "Practical digital products for builders",
+    "title": "Build, Sell, And Work Smarter Online.",
+    "description": "Digital Blueprint Lab creates practical guides, client systems, templates, and AI resources for freelancers, creators, and digital product builders.",
+    "exploreBtn": "Explore DBL",
+    "blueprintBtn": "View Products"
   },
   "workflow": {
     "title": "DBL Workflow Core",
@@ -23,12 +23,12 @@
     "system": "System",
     "asset": "Asset",
     "launch": "Launch",
-    "aiWorkflow": "AI Workflow",
-    "aiWorkflowBenefit": "42% faster delivery",
-    "clientSystem": "Client System",
-    "clientSystemBenefit": "Scope clarity locked",
-    "productMap": "Product Map",
-    "productMapBenefit": "3 launch paths"
+    "aiWorkflow": "AI Resource",
+    "aiWorkflowBenefit": "Prompt Vault soon",
+    "clientSystem": "Client Kit",
+    "clientSystemBenefit": "25 ready messages",
+    "productMap": "Digital Guides",
+    "productMapBenefit": "Clear launch steps"
   },
   "about": {
     "eyebrow": "Practical execution",
@@ -89,47 +89,47 @@
     "toolsPageLead": "Practical kits and templates designed for cleaner, more professional digital execution."
   },
   "simulation": {
-    "eyebrow": "Live Scenario",
-    "title": "Client Simulation Lab",
-    "description": "Train your communication with client simulations that model negotiation, revision requests, expectation-setting, pricing friction, and delivery updates.",
+    "eyebrow": "Client Communication",
+    "title": "Client Communication System",
+    "description": "Practice better client communication with real freelance scenarios, ready message templates, and workflow tools from the DBL Client Kit.",
     "clientLabel": "Client",
     "builderLabel": "Builder",
     "clientMessage": "Can you do the full launch page by Friday and keep it inside the original scope?",
-    "builderMessage": "I can meet Friday for the core page. The extra launch assets would be a phase two add-on.",
-    "scopeControl": "Scope Control",
-    "negotiation": "Negotiation",
-    "deadlineFraming": "Deadline Framing",
-    "communicationTraining": "Communication training",
-    "scenarioTypes": "18",
-    "skillTracks": "4",
-    "scenarioTypesLabel": "Scenario types",
-    "skillTracksLabel": "Skill tracks"
+    "builderMessage": "I can deliver the core page by Friday. The extra launch assets can be added as a second phase.",
+    "scopeControl": "Scope control",
+    "negotiation": "Pricing replies",
+    "deadlineFraming": "Deadline clarity",
+    "communicationTraining": "Follow-up system",
+    "scenarioTypes": "25",
+    "skillTracks": "9",
+    "scenarioTypesLabel": "ready client messages",
+    "skillTracksLabel": "practical tools"
   },
   "systems": {
-    "title": "Digital Systems",
-    "subtitle": "Blueprints for modern execution.",
+    "title": "What DBL Helps You Build",
+    "subtitle": "Clear resources connected to real products, practical workflows, and upcoming tools.",
     "ai": "AI",
-    "aiTitle": "AI Workflows",
-    "aiDescription": "Prompt chains, automation maps, and repeatable delivery systems.",
-    "fs": "FS",
-    "fsTitle": "Freelancing Systems",
-    "fsDescription": "Offer clarity, client onboarding, scope control, and execution loops.",
-    "tp": "TP",
-    "tpTitle": "Templates",
-    "tpDescription": "Reusable assets for proposals, briefs, product maps, and delivery.",
-    "dt": "DT",
-    "dtTitle": "Digital Tools",
-    "dtDescription": "Lean tool stacks built for speed, clarity, and measurable output.",
-    "pb": "PB",
-    "pbTitle": "Productivity Blueprints",
-    "pbDescription": "Execution frameworks for staying focused from idea to launch."
+    "aiTitle": "AI Prompt Vault",
+    "aiDescription": "A coming collection of business prompts with Arabic explanations for freelancers and digital builders.",
+    "fs": "CS",
+    "fsTitle": "Client Systems",
+    "fsDescription": "Ready messages, onboarding steps, scope control, pricing replies, and delivery workflows.",
+    "tp": "DG",
+    "tpTitle": "Digital Guides",
+    "tpDescription": "Practical books that turn online work, digital products, and execution into clear steps.",
+    "dt": "TT",
+    "dtTitle": "Templates & Tools",
+    "dtDescription": "Reusable assets for organizing clients, offers, content, products, and delivery.",
+    "pb": "WF",
+    "pbTitle": "Productivity Workflows",
+    "pbDescription": "Simple execution frameworks for moving from idea to published product without getting stuck."
   },
   "quote": "Stop consuming. Start building.",
   "cta": {
     "eyebrow": "Launch Protocol",
     "title": "Start Building Your Digital Blueprint Today.",
-    "bookBtn": "Get The Book",
-    "labBtn": "Enter The Lab"
+    "bookBtn": "View Products",
+    "labBtn": "Back To Top"
   },
   "pages": {
     "about": {
@@ -218,7 +218,7 @@
     "paymentLead": "Complete payment using one of the options below, then send your payment confirmation to receive access.",
     "recommended": "Recommended",
     "paypalTitle": "PayPal",
-    "paypalBody": "Primary payment method. Send payment to the official DBL PayPal email.",
+    "paypalBody": "Primary payment method. Open the secure PayPal payment page to complete your purchase.",
     "paypalButton": "Pay with PayPal",
     "binanceTitle": "Binance Pay",
     "binanceBody": "Use the Binance Pay ID below to complete payment.",
@@ -277,6 +277,7 @@
     "usdtBody": "Send USDT using the BEP20 network only.",
     "networkLabel": "Network: BEP20",
     "copyBtn": "Copy",
+    "copiedBtn": "Copied",
     "aboutTitle": "About Digital Blueprint Lab",
     "aboutBody": "Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.",
     "finalTitle": "Get Access To DBL Client Kit",
@@ -313,9 +314,6 @@
     "refundPolicy": "Refund Policy",
     "contact": "Contact",
     "terms": "Terms",
-    "privacy": "Privacy Policy",
-    "socialX": "X",
-    "socialLinkedIn": "in",
-    "socialYouTube": "YT"
+    "privacy": "Privacy"
   }
 }
