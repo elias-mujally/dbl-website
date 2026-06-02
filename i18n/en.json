@@ -283,6 +283,55 @@
     "finalTitle": "Get Access To DBL Client Kit",
     "finalBody": "After completing payment, please send your payment confirmation to the official DBL email or WhatsApp. You will then receive access to DBL Client Kit."
   },
+  "promptVaultPage": {
+    "eyebrow": "Premium AI Resource",
+    "title": "DBL Prompt Vault",
+    "tagline": "100 Professional AI Prompts for Freelancers, Marketers, Content Creators & Digital Product Builders.",
+    "description": "DBL Prompt Vault is a premium collection of 100 professional AI prompts designed to help freelancers, marketers, content creators, and digital entrepreneurs achieve better results faster.",
+    "priceLabel": "Launch Price",
+    "discount": "25% OFF",
+    "cta": "Get Instant Access",
+    "includedTitle": "Included In The Vault",
+    "included": [
+      "100 Professional AI Prompts",
+      "Arabic Explanations",
+      "Practical Use Cases",
+      "Expected Outcomes",
+      "Real Examples",
+      "DBL Tips",
+      "Prompt Tracking Excel Template"
+    ],
+    "receivesTitle": "What You Receive",
+    "receives": [
+      "DBL Prompt Vault PDF",
+      "DBL Prompt Tracker Excel Template",
+      "Instant Access After Payment"
+    ],
+    "receivesBody": "Designed to save time, improve productivity, and help you get higher-quality AI outputs.",
+    "highlightsEyebrow": "Inside The System",
+    "highlightsTitle": "Product Highlights",
+    "highlights": [
+      "7 Structured Business Tracks",
+      "100 Carefully Selected Prompts",
+      "Arabic Learning Experience",
+      "Practical Business Applications",
+      "Freelancer & Creator Focus",
+      "Ready-to-Use System"
+    ],
+    "trustTitle": "Why Choose DBL Prompt Vault?",
+    "trust": [
+      "Save Hours of Trial and Error",
+      "Learn Practical AI Workflows",
+      "Improve Productivity",
+      "Get Better Results from AI Tools",
+      "Organized and Easy to Use"
+    ],
+    "builtForTitle": "Built For Practical Work",
+    "builtForBody": "Use the vault as a working system for marketing, freelancing, content creation, digital product building, and everyday AI-assisted execution.",
+    "paymentEyebrow": "Secure PayPal Checkout",
+    "paymentTitle": "Get Instant Access To DBL Prompt Vault",
+    "paymentLead": "Complete your purchase through PayPal and receive immediate access to the Prompt Vault PDF and Prompt Tracker Excel template."
+  },
   "downloadPages": {
     "privateAccess": "Private Customer Access",
     "title": "Thank you for your trust in DBL",
