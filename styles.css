@@ -1300,6 +1300,15 @@ html[dir="rtl"] .socials {
   margin-top: 30px;
 }
 
+.download-actions {
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.download-actions .download-btn {
+  margin-top: 0;
+}
+
 .download-support {
   display: grid;
   gap: 8px;

@@ -293,6 +293,15 @@
       "message": "Your purchase has been completed successfully. We hope DBL Client Kit helps you manage clients more professionally.",
       "button": "Download DBL Client Kit"
     },
+    "promptVault": {
+      "title": "DBL Prompt Vault",
+      "subtitle": "Thank you for your purchase.",
+      "confirmation": "Your purchase has been confirmed successfully.",
+      "instructions": "You can download your product files using the buttons below.",
+      "wish": "We hope you have a useful experience and achieve great results.",
+      "pdfButton": "Download PDF",
+      "excelButton": "Download Excel"
+    },
     "support": "If you face any issue, contact us:",
     "whatsapp": "WhatsApp: +967736747842"
   },
