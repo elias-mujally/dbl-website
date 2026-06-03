@@ -70,6 +70,25 @@ function injectBrandAssets() {
   }
 }
 
+function injectClarityTracking() {
+  const projectId = 'x13ucd5sdu';
+
+  if (window.clarity || document.querySelector(`script[src="https://www.clarity.ms/tag/${projectId}"]`)) {
+    return;
+  }
+
+  (function(c, l, a, r, i, t, y) {
+    c[a] = c[a] || function() {
+      (c[a].q = c[a].q || []).push(arguments);
+    };
+    t = l.createElement(r);
+    t.async = 1;
+    t.src = 'https://www.clarity.ms/tag/' + i;
+    y = l.getElementsByTagName(r)[0];
+    y.parentNode.insertBefore(t, y);
+  })(window, document, 'clarity', 'script', projectId);
+}
+
 function updateSocialLinks() {
   const facebookUrl = 'https://www.facebook.com/share/18NR4xWCvr/';
 
@@ -193,6 +212,7 @@ async function handleCopyButton(button) {
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
   injectBrandAssets();
+  injectClarityTracking();
   updateSocialLinks();
 
   document.addEventListener('click', async (event) => {
