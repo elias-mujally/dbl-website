@@ -18,6 +18,58 @@ function saveLanguage(lang) {
   }
 }
 
+function injectBrandAssets() {
+  const faviconHref = '/assets/dbl-favicon.svg';
+  const logoHref = '/assets/dbl-logo-site.svg';
+
+  if (!document.querySelector('link[rel="icon"]')) {
+    const favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.type = 'image/svg+xml';
+    favicon.href = faviconHref;
+    document.head.appendChild(favicon);
+  }
+
+  if (!document.querySelector('#dbl-logo-style')) {
+    const style = document.createElement('style');
+    style.id = 'dbl-logo-style';
+    style.textContent = `
+      .brand {
+        gap: 12px;
+      }
+
+      .brand-mark {
+        width: 92px !important;
+        height: 32px !important;
+        min-width: 92px;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: url('${logoHref}') center / contain no-repeat !important;
+        box-shadow: none !important;
+        color: transparent !important;
+        font-size: 0 !important;
+        overflow: hidden;
+        text-indent: -9999px;
+      }
+
+      .footer .brand-mark {
+        width: 104px !important;
+        height: 36px !important;
+        min-width: 104px;
+      }
+
+      @media (max-width: 760px) {
+        .brand-mark {
+          width: 78px !important;
+          height: 28px !important;
+          min-width: 78px;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
 // Load translations
 async function loadTranslations(lang) {
   try {
@@ -132,6 +184,8 @@ async function handleCopyButton(button) {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
+  injectBrandAssets();
+
   document.addEventListener('click', async (event) => {
     const copyButton = event.target.closest('.copy-btn');
     if (copyButton) {
