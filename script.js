@@ -70,6 +70,14 @@ function injectBrandAssets() {
   }
 }
 
+function updateSocialLinks() {
+  const facebookUrl = 'https://www.facebook.com/share/18NR4xWCvr/';
+
+  document.querySelectorAll('a[href*="facebook.com"]').forEach((link) => {
+    link.href = facebookUrl;
+  });
+}
+
 // Load translations
 async function loadTranslations(lang) {
   try {
@@ -185,6 +193,7 @@ async function handleCopyButton(button) {
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
   injectBrandAssets();
+  updateSocialLinks();
 
   document.addEventListener('click', async (event) => {
     const copyButton = event.target.closest('.copy-btn');
