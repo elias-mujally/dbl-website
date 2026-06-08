@@ -965,7 +965,7 @@ html[dir="rtl"] .product-cover-showcase img {
 }
 
 .discount-code-box {
-  display: grid;
+  display: none;
   gap: 8px;
   max-width: 420px;
   margin-top: 18px;
@@ -974,6 +974,10 @@ html[dir="rtl"] .product-cover-showcase img {
   border-radius: 8px;
   background: rgba(3, 12, 24, 0.62);
   box-shadow: 0 0 28px rgba(54, 183, 255, 0.12);
+}
+
+.discount-code-box.is-visible {
+  display: grid;
 }
 
 .discount-code-box[hidden] {
