@@ -130,9 +130,23 @@ async function handleCopyButton(button) {
   }, 1500);
 }
 
+function toggleDiscountCode(button) {
+  const box = button.closest('.section-copy')?.querySelector('.discount-code-box');
+  if (!box) return;
+
+  box.hidden = !box.hidden;
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
   document.addEventListener('click', async (event) => {
+    const discountButton = event.target.closest('.discount-code-toggle');
+    if (discountButton) {
+      event.preventDefault();
+      toggleDiscountCode(discountButton);
+      return;
+    }
+
     const copyButton = event.target.closest('.copy-btn');
     if (copyButton) {
       event.preventDefault();

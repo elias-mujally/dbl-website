@@ -959,6 +959,38 @@ html[dir="rtl"] .product-cover-showcase img {
   font-size: 0.72rem;
 }
 
+.discount-code-toggle {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.discount-code-box {
+  display: grid;
+  gap: 8px;
+  max-width: 420px;
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid rgba(117, 245, 255, 0.24);
+  border-radius: 8px;
+  background: rgba(3, 12, 24, 0.62);
+  box-shadow: 0 0 28px rgba(54, 183, 255, 0.12);
+}
+
+.discount-code-box[hidden] {
+  display: none;
+}
+
+.discount-code-box p {
+  margin: 0;
+}
+
+.discount-code-box strong {
+  color: var(--cyan);
+  font-family: var(--font-en);
+  font-size: 1.28rem;
+  letter-spacing: 0.04em;
+}
+
 .prompt-vault-highlights {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
