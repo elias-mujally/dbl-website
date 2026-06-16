@@ -1100,6 +1100,15 @@ html[dir="rtl"] .product-cover-showcase img {
   padding-top: 0;
 }
 
+.business-suite-payment-section {
+  margin-top: clamp(52px, 7vw, 86px);
+  scroll-margin-top: 96px;
+}
+
+.business-suite-payment-section .section-heading {
+  margin-bottom: 44px;
+}
+
 .payment-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
