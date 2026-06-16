@@ -25,7 +25,7 @@
     "asset": "الأصل",
     "launch": "الإطلاق",
     "aiWorkflow": "مورد ذكاء اصطناعي",
-    "aiWorkflowBenefit": "Prompt Vault قريبًا",
+    "aiWorkflowBenefit": "Prompt Vault متاح الآن",
     "clientSystem": "Client Kit",
     "clientSystemBenefit": "25 رسالة جاهزة",
     "productMap": "أدلة رقمية",
@@ -108,10 +108,10 @@
   },
   "systems": {
     "title": "ما الذي يساعدك DBL على بنائه؟",
-    "subtitle": "موارد واضحة مرتبطة بمنتجات حقيقية، وسير عمل عملي، وأدوات قادمة.",
+    "subtitle": "موارد واضحة مرتبطة بمنتجات منشورة وسير عمل عملي وأدوات جاهزة للاستخدام.",
     "ai": "AI",
     "aiTitle": "AI Prompt Vault",
-    "aiDescription": "مجموعة قادمة من برومبتات الأعمال مع شرح عربي للمستقلين والبنّاء الرقميين.",
+    "aiDescription": "مكتبة برومبتات جاهزة للاستخدام للمستقلين وصناع المحتوى والبنّاء الرقميين.",
     "fs": "CS",
     "fsTitle": "أنظمة العملاء",
     "fsDescription": "رسائل جاهزة، خطوات تجهيز العميل، ضبط النطاق، ردود التسعير، وسير عمل التسليم.",
@@ -389,5 +389,68 @@
     "contact": "تواصل",
     "terms": "الشروط",
     "privacy": "الخصوصية"
+  },
+  "businessSuite": {
+    "premiumBundle": "حزمة أعمال مميزة",
+    "bestValue": "أفضل قيمة",
+    "title": "DBL Business Suite",
+    "coverAlt": "غلاف DBL Business Suite",
+    "description": "DBL Business Suite هي حزمة أعمال متكاملة مصممة للمستقلين وصناع المحتوى ورواد الأعمال الرقميين الذين يريدون أنظمة عملية وموارد جاهزة للاستخدام وأدوات مدعومة بالذكاء الاصطناعي لبناء وإطلاق وإدارة أعمالهم الرقمية.",
+    "homeDescription": "نظام أعمال DBL الكامل في حزمة مميزة واحدة للمستقلين وصناع المحتوى ورواد الأعمال الرقميين.",
+    "shortDescription": "حزمة كاملة تشمل Prompt Vault وClient Kit وDigital Launch Bundle وWelcome Guide.",
+    "priceLabel": "سعر الإطلاق",
+    "price": "$34.99",
+    "valueLabel": "القيمة عند شراء المنتجات منفصلة",
+    "originalValue": "$49.97",
+    "viewBundle": "عرض الحزمة",
+    "purchase": "احصل على DBL Business Suite",
+    "viewIncludes": "عرض محتويات الحزمة",
+    "overviewTitle": "نظام أعمال DBL الكامل",
+    "overviewBody": "بدلاً من شراء المنتجات بشكل منفصل، تحصل على نظام أعمال DBL الكامل في حزمة واحدة: برومبتات، إدارة عملاء، أطر إطلاق، قوالب، ودليل ترحيبي.",
+    "gainTitle": "ماذا تحصل عليه؟",
+    "includesEyebrow": "داخل الحزمة",
+    "includesTitle": "المنتجات المضمنة",
+    "includesLead": "أربعة موارد عملية من DBL مجمعة في حزمة أعمال مميزة واحدة.",
+    "includes": [
+      "DBL Prompt Vault",
+      "DBL Client Kit",
+      "Digital Launch Bundle",
+      "Welcome Guide"
+    ],
+    "includeBodies": [
+      "مكتبة برومبتات جاهزة للاستخدام للمستقلين وصناع المحتوى والبنّاء الرقميين.",
+      "رسائل عملاء وقواعد وأدوات وقوائم تحقق وموارد عملية للتعامل مع العملاء.",
+      "إرشادات إطلاق عملية للعمل عبر الإنترنت والمنتجات الرقمية والتنفيذ.",
+      "دليل بداية سريع يساعدك على استخدام الحزمة كاملة بوضوح."
+    ],
+    "audienceTitle": "لمن هذه الحزمة؟",
+    "audience": [
+      "المستقلون",
+      "صناع المنتجات الرقمية",
+      "مقدمو الخدمات",
+      "صناع المحتوى",
+      "رواد الأعمال عبر الإنترنت"
+    ],
+    "benefits": [
+      "100 برومبت احترافي للذكاء الاصطناعي",
+      "أنظمة تواصل مع العملاء",
+      "أطر إطلاق عملية",
+      "قوالب جاهزة للاستخدام",
+      "دليل ترحيبي"
+    ],
+    "resultsTitle": "ما الذي ستكسبه؟",
+    "gains": [
+      "نظام أوضح لبناء وإطلاق المنتجات الرقمية",
+      "نتائج أفضل من أدوات الذكاء الاصطناعي عبر برومبتات منظمة",
+      "تواصل أكثر احترافية مع العملاء",
+      "قوالب قابلة لإعادة الاستخدام للتنفيذ العملي"
+    ],
+    "pricingTitle": "احصل على نظام أعمال DBL الكامل.",
+    "pricingLead": "عملية شراء واحدة تمنحك الحزمة كاملة: Prompt Vault وClient Kit وDigital Launch Bundle وWelcome Guide.",
+    "relatedEyebrow": "منتجات ذات صلة",
+    "relatedTitle": "استكشف منتجات DBL الفردية",
+    "booksUpsellTitle": "هل تريد نظام الأعمال الكامل؟",
+    "booksUpsellBody": "احصل على DBL Business Suite واحصل على Digital Launch Bundle وDBL Client Kit وDBL Prompt Vault في حزمة مميزة واحدة.",
+    "booksUpsellButton": "عرض DBL Business Suite"
   }
 }

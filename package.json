@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node -e \"const fs = require('fs'); const path = require('path'); fs.rmSync('dist',{recursive:true,force:true}); fs.mkdirSync('dist/i18n',{recursive:true}); fs.mkdirSync('dist/assets',{recursive:true}); fs.mkdirSync('dist/download',{recursive:true}); for (const f of fs.readdirSync('.').filter(f => f.endsWith('.html')).concat(['styles.css','script.js'])) fs.copyFileSync(f, path.join('dist', f)); for (const f of ['en.json','ar.json']) fs.copyFileSync(path.join('i18n',f), path.join('dist/i18n',f)); for (const f of fs.readdirSync('assets')) fs.copyFileSync(path.join('assets',f), path.join('dist/assets',f)); for (const f of fs.readdirSync('download').filter(f => f.endsWith('.html'))) fs.copyFileSync(path.join('download',f), path.join('dist/download',f));\"",
+    "build": "node -e \"const fs = require('fs'); const path = require('path'); fs.rmSync('dist',{recursive:true,force:true}); fs.mkdirSync('dist/i18n',{recursive:true}); fs.mkdirSync('dist/assets',{recursive:true}); fs.mkdirSync('dist/download',{recursive:true}); for (const f of fs.readdirSync('.').filter(f => f.endsWith('.html')).concat(['styles.css','script.js','sitemap.xml','robots.txt'])) fs.copyFileSync(f, path.join('dist', f)); for (const f of ['en.json','ar.json']) fs.copyFileSync(path.join('i18n',f), path.join('dist/i18n',f)); for (const f of fs.readdirSync('assets')) fs.copyFileSync(path.join('assets',f), path.join('dist/assets',f)); for (const f of fs.readdirSync('download').filter(f => f.endsWith('.html'))) fs.copyFileSync(path.join('download',f), path.join('dist/download',f));\"",
     "start": "node server.js"
   },
   "devDependencies": {}

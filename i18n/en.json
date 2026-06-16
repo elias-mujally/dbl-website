@@ -25,7 +25,7 @@
     "asset": "Asset",
     "launch": "Launch",
     "aiWorkflow": "AI Resource",
-    "aiWorkflowBenefit": "Prompt Vault soon",
+    "aiWorkflowBenefit": "Prompt Vault live",
     "clientSystem": "Client Kit",
     "clientSystemBenefit": "25 ready messages",
     "productMap": "Digital Guides",
@@ -73,6 +73,69 @@
     "previewBtn": "View Product",
     "getBtn": "Get The Kit"
   },
+  "businessSuite": {
+    "premiumBundle": "Premium Business Bundle",
+    "bestValue": "Best Value Bundle",
+    "title": "DBL Business Suite",
+    "coverAlt": "DBL Business Suite cover",
+    "description": "DBL Business Suite is a complete business bundle designed for freelancers, creators, and digital entrepreneurs who want practical systems, ready-to-use resources, and AI-powered tools to build, launch, and manage their digital business.",
+    "homeDescription": "The complete DBL business system in one premium bundle for freelancers, creators, and digital entrepreneurs.",
+    "shortDescription": "Complete bundle including Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide.",
+    "priceLabel": "Launch Price",
+    "price": "$34.99",
+    "valueLabel": "Individual Product Value",
+    "originalValue": "$49.97",
+    "viewBundle": "View Bundle",
+    "purchase": "Get DBL Business Suite",
+    "viewIncludes": "View What Is Included",
+    "overviewTitle": "The complete DBL business system",
+    "overviewBody": "Instead of purchasing separate products, you receive the complete DBL business system in one package: prompts, client management, launch frameworks, templates, and a Welcome Guide.",
+    "gainTitle": "What You Get",
+    "includesEyebrow": "Inside The Bundle",
+    "includesTitle": "Included Products",
+    "includesLead": "Four practical DBL resources combined into one premium business bundle.",
+    "includes": [
+      "DBL Prompt Vault",
+      "DBL Client Kit",
+      "Digital Launch Bundle",
+      "Welcome Guide"
+    ],
+    "includeBodies": [
+      "A ready-to-use AI prompt library for freelancers, creators, and digital builders.",
+      "Client messages, rules, tools, checklists, and practical client handling resources.",
+      "Practical launch guidance for online work, digital products, and execution.",
+      "A quick starting guide to help you use the full suite with clarity."
+    ],
+    "audienceTitle": "Who Is This For?",
+    "audience": [
+      "Freelancers",
+      "Digital Product Creators",
+      "Service Providers",
+      "Content Creators",
+      "Online Entrepreneurs"
+    ],
+    "benefits": [
+      "100 professional AI prompts",
+      "Client communication systems",
+      "Launch frameworks",
+      "Ready-to-use templates",
+      "Welcome Guide"
+    ],
+    "resultsTitle": "What Will You Gain?",
+    "gains": [
+      "A clearer system for building and launching digital products",
+      "Better AI outputs through structured prompts",
+      "More professional client communication",
+      "Reusable templates for practical execution"
+    ],
+    "pricingTitle": "Get the complete DBL business system.",
+    "pricingLead": "One purchase gives you the full bundle: Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide.",
+    "relatedEyebrow": "Related Products",
+    "relatedTitle": "Explore Individual DBL Products",
+    "booksUpsellTitle": "Want the complete business system?",
+    "booksUpsellBody": "Get DBL Business Suite and receive Digital Launch Bundle, DBL Client Kit, and DBL Prompt Vault in one premium bundle.",
+    "booksUpsellButton": "View DBL Business Suite"
+  },
   "catalog": {
     "eyebrow": "Product Catalog",
     "lead": "Choose a category and find the right DBL resource for your next step.",
@@ -108,10 +171,10 @@
   },
   "systems": {
     "title": "What DBL Helps You Build",
-    "subtitle": "Clear resources connected to real products, practical workflows, and upcoming tools.",
+    "subtitle": "Clear resources connected to published products, practical workflows, and ready-to-use tools.",
     "ai": "AI",
     "aiTitle": "AI Prompt Vault",
-    "aiDescription": "A coming collection of business prompts with Arabic explanations for freelancers and digital builders.",
+    "aiDescription": "A ready-to-use AI prompt library for freelancers, creators, and digital builders.",
     "fs": "CS",
     "fsTitle": "Client Systems",
     "fsDescription": "Ready messages, onboarding steps, scope control, pricing replies, and delivery workflows.",

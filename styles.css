@@ -691,6 +691,87 @@ html[dir="rtl"] .section-heading {
   margin-top: 28px;
 }
 
+.business-suite-feature {
+  padding-bottom: 42px;
+}
+
+.business-suite-stage,
+.business-suite-card,
+.business-suite-upsell,
+.pricing-panel {
+  border-color: rgba(238, 192, 96, 0.34);
+  background: linear-gradient(145deg, rgba(25, 22, 16, 0.82), rgba(6, 13, 24, 0.84));
+  box-shadow: var(--shadow), 0 0 48px rgba(238, 192, 96, 0.12);
+}
+
+.business-suite-stage::after {
+  position: absolute;
+  inset: auto 8% 0 auto;
+  width: 260px;
+  height: 260px;
+  content: "";
+  background: radial-gradient(circle, rgba(238, 192, 96, 0.18), transparent 68%);
+  pointer-events: none;
+}
+
+html[dir="rtl"] .business-suite-stage::after {
+  inset: auto auto 0 8%;
+}
+
+.business-suite-badge {
+  color: #f2c86f;
+}
+
+.business-suite-cover {
+  width: min(540px, 100%);
+}
+
+.business-suite-cover img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.business-suite-value {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.business-suite-value .price-badge {
+  margin-top: 0;
+}
+
+.value-badge {
+  border-color: rgba(238, 192, 96, 0.26);
+  background: rgba(238, 192, 96, 0.08);
+}
+
+.value-badge strong,
+.business-suite-card .category-product-price strong {
+  color: #f2c86f;
+}
+
+.business-suite-includes {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.business-suite-includes .catalog-card {
+  min-height: 240px;
+}
+
+.pricing-panel {
+  padding: clamp(28px, 5vw, 52px);
+  border: 1px solid rgba(238, 192, 96, 0.28);
+  border-radius: 8px;
+}
+
+.pricing-panel > p {
+  max-width: 680px;
+  margin-top: 18px;
+}
+
 .catalog-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1618,6 +1699,7 @@ html[dir="rtl"] .page-list li::before {
   .page-grid,
   .contact-grid,
   .payment-grid,
+  .business-suite-includes,
   .catalog-grid {
     grid-template-columns: 1fr;
   }
