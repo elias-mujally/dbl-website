@@ -447,6 +447,19 @@
     ],
     "pricingTitle": "احصل على نظام أعمال DBL الكامل.",
     "pricingLead": "عملية شراء واحدة تمنحك الحزمة كاملة: Prompt Vault وClient Kit وDigital Launch Bundle وWelcome Guide.",
+    "altPaymentEyebrow": "خيارات دفع أخرى",
+    "altPaymentTitle": "طرق الدفع البديلة",
+    "altPaymentLead": "إذا كان Gumroad غير متاح في بلدك، يمكنك التواصل معنا للحصول على خيارات دفع بديلة.",
+    "altPaymentMethods": [
+      "Binance Pay",
+      "USDT (Tether)"
+    ],
+    "altPaymentBody": [
+      "خيار محفظة رقمية للعملاء الذين يفضلون Binance Pay.",
+      "خيار عملة مستقرة للعملاء الذين يفضلون دعم الدفع بالعملات الرقمية."
+    ],
+    "altPaymentNote": "تواصل معنا لإكمال عملية الشراء باستخدام إحدى هذه الطرق.",
+    "contactButton": "تواصل معنا",
     "relatedEyebrow": "منتجات ذات صلة",
     "relatedTitle": "استكشف منتجات DBL الفردية",
     "booksUpsellTitle": "هل تريد نظام الأعمال الكامل؟",

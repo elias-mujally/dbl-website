@@ -772,6 +772,31 @@ html[dir="rtl"] .business-suite-stage::after {
   margin-top: 18px;
 }
 
+.suite-alt-payment {
+  padding-top: 0;
+}
+
+.suite-payment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.suite-payment-card {
+  border-color: rgba(238, 192, 96, 0.24);
+}
+
+.suite-payment-card .payment-tag {
+  color: #f2c86f;
+  border-color: rgba(238, 192, 96, 0.28);
+  background: rgba(238, 192, 96, 0.08);
+}
+
+.suite-alt-payment-note {
+  max-width: 680px;
+  margin-top: 20px;
+}
+
 .catalog-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1699,6 +1724,7 @@ html[dir="rtl"] .page-list li::before {
   .page-grid,
   .contact-grid,
   .payment-grid,
+  .suite-payment-grid,
   .business-suite-includes,
   .catalog-grid {
     grid-template-columns: 1fr;

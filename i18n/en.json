@@ -130,6 +130,19 @@
     ],
     "pricingTitle": "Get the complete DBL business system.",
     "pricingLead": "One purchase gives you the full bundle: Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide.",
+    "altPaymentEyebrow": "Other Payment Options",
+    "altPaymentTitle": "Alternative Payment Methods",
+    "altPaymentLead": "If Gumroad is unavailable in your country, you can contact us for alternative payment options.",
+    "altPaymentMethods": [
+      "Binance Pay",
+      "USDT (Tether)"
+    ],
+    "altPaymentBody": [
+      "A digital wallet option for customers who prefer Binance Pay.",
+      "A stablecoin option for customers who prefer crypto payment support."
+    ],
+    "altPaymentNote": "Contact us to complete your purchase using one of these methods.",
+    "contactButton": "Contact Us",
     "relatedEyebrow": "Related Products",
     "relatedTitle": "Explore Individual DBL Products",
     "booksUpsellTitle": "Want the complete business system?",
