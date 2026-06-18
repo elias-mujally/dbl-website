@@ -89,11 +89,11 @@
     "purchase": "Get DBL Business Suite",
     "viewIncludes": "View What Is Included",
     "overviewTitle": "The complete DBL business system",
-    "overviewBody": "Instead of purchasing separate products, you receive the complete DBL business system in one package: prompts, client management, launch frameworks, templates, and a Welcome Guide.",
+    "overviewBody": "Instead of purchasing separate products, you receive three paid DBL products plus the Welcome Guide as a free bonus guide in one complete business system.",
     "gainTitle": "What You Get",
     "includesEyebrow": "Inside The Bundle",
     "includesTitle": "Included Products",
-    "includesLead": "Four practical DBL resources combined into one premium business bundle.",
+    "includesLead": "Three paid DBL products plus the Welcome Guide as a free bonus guide.",
     "includes": [
       "DBL Prompt Vault",
       "DBL Client Kit",
@@ -104,7 +104,7 @@
       "A ready-to-use AI prompt library for freelancers, creators, and digital builders.",
       "Client messages, rules, tools, checklists, and practical client handling resources.",
       "Practical launch guidance for online work, digital products, and execution.",
-      "A quick starting guide to help you use the full suite with clarity."
+      "A free bonus guide that helps you start using the full suite with clarity."
     ],
     "audienceTitle": "Who Is This For?",
     "audience": [
@@ -129,12 +129,44 @@
       "Reusable templates for practical execution"
     ],
     "pricingTitle": "Get the complete DBL business system.",
-    "pricingLead": "One purchase gives you the full bundle: Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide.",
+    "pricingLead": "One purchase gives you the three paid DBL products plus the Welcome Guide bonus.",
     "relatedEyebrow": "Related Products",
     "relatedTitle": "Explore Individual DBL Products",
     "booksUpsellTitle": "Want the complete business system?",
     "booksUpsellBody": "Get DBL Business Suite and receive Digital Launch Bundle, DBL Client Kit, and DBL Prompt Vault in one premium bundle.",
-    "booksUpsellButton": "View DBL Business Suite"
+    "booksUpsellButton": "View DBL Business Suite",
+    "saveLabel": "You Save",
+    "saveAmount": "$14.98",
+    "savePercentLabel": "Bundle Discount",
+    "savePercent": "Save about 30%",
+    "includedCtaTitle": "Get all three paid products in one bundle.",
+    "includedCtaBody": "Buy once through Gumroad and receive DBL Prompt Vault, DBL Client Kit, Digital Launch Bundle, and the Welcome Guide bonus.",
+    "finalCtaTitle": "Ready to build with the complete DBL system?",
+    "finalCtaBody": "Get the full suite now, or use alternative payment methods if card checkout is unavailable in your country.",
+    "faqEyebrow": "Quick Answers",
+    "faqTitle": "Business Suite FAQ",
+    "faq": [
+      {
+        "q": "What do I get after purchase?",
+        "a": "You receive DBL Prompt Vault, DBL Client Kit, Digital Launch Bundle, and the Welcome Guide bonus."
+      },
+      {
+        "q": "Is this a subscription?",
+        "a": "No. DBL Business Suite is a one-time digital bundle purchase."
+      },
+      {
+        "q": "Can I pay without a card?",
+        "a": "Yes. Use the Alternative Payment Methods page if Gumroad card checkout is unavailable."
+      },
+      {
+        "q": "Who is this bundle for?",
+        "a": "It is built for freelancers, creators, service providers, and online entrepreneurs who want practical systems."
+      },
+      {
+        "q": "Are the files delivered instantly?",
+        "a": "Gumroad purchases provide instant access. Alternative payments are delivered after confirmation."
+      }
+    ]
   },
   "catalog": {
     "eyebrow": "Product Catalog",
@@ -260,7 +292,7 @@
     "eyebrow": "Official DBL Product",
     "priceLabel": "Launch Price",
     "buyNow": "Buy Now",
-    "alternativePayment": "Alternative Payment",
+    "alternativePayment": "Alternative Payment Methods",
     "learnTitle": "What Will You Learn?",
     "learn": [
       "How online work and digital products fit together",
@@ -295,13 +327,13 @@
     "aboutTitle": "About Digital Blueprint Lab",
     "aboutBody": "Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.",
     "finalTitle": "Start With A Practical Blueprint",
-    "finalBody": "After completing payment, please send your payment confirmation to the official DBL email or WhatsApp. You will then receive access to the Digital Launch Bundle."
+    "finalBody": "Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name."
   },
   "clientKitPage": {
     "eyebrow": "Official DBL Product",
     "priceLabel": "Launch Price",
     "buyNow": "Buy Now",
-    "alternativePayment": "Alternative Payment",
+    "alternativePayment": "Alternative Payment Methods",
     "contentsTitle": "What Is Included?",
     "contents": [
       "25 ready-to-use client messages",
@@ -347,7 +379,7 @@
     "aboutTitle": "About Digital Blueprint Lab",
     "aboutBody": "Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.",
     "finalTitle": "Get Access To DBL Client Kit",
-    "finalBody": "After completing payment, please send your payment confirmation to the official DBL email or WhatsApp. You will then receive access to DBL Client Kit."
+    "finalBody": "Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name."
   },
   "promptVaultPage": {
     "eyebrow": "Premium AI Resource",
@@ -361,7 +393,7 @@
     "priceLabel": "Launch Price",
     "discount": "Exclusive discount",
     "cta": "Get Instant Access",
-    "alternativePayment": "Alternative Payment",
+    "alternativePayment": "Alternative Payment Methods",
     "discountCodeButton": "Get Discount Code",
     "discountCodeIntro": "Use this code on Gumroad checkout:",
     "discountCodeNote": "25% discount. Valid for the first 10 customers only.",
@@ -417,8 +449,8 @@
     "networkLabel": "Network: BEP20",
     "copyBtn": "Copy",
     "copiedBtn": "Copied",
-    "manualTitle": "Binance Pay & USDT Confirmation",
-    "manualBody": "After completing payment with Binance Pay or USDT, please send your payment confirmation to the official DBL email or WhatsApp. You will then receive access to DBL Prompt Vault."
+    "manualTitle": "Payment Support",
+    "manualBody": "Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name."
   },
   "downloadPages": {
     "privateAccess": "Private Customer Access",
@@ -452,5 +484,28 @@
     "contact": "Contact",
     "terms": "Terms",
     "privacy": "Privacy"
+  },
+  "paymentMethods": {
+    "eyebrow": "Payment Support",
+    "title": "Alternative Payment Methods",
+    "intro": "If you cannot pay by card through Gumroad, you can use one of the alternative payment methods below.",
+    "productNote": "After payment, please send your payment confirmation and the name of the product you want to receive.",
+    "binanceTitle": "Binance Pay",
+    "binanceBody": "Use the Binance Pay ID below, then send your confirmation to DBL.",
+    "usdtTitle": "USDT",
+    "usdtBody": "Send USDT using the BEP20 network only.",
+    "networkLabel": "Network: BEP20 only",
+    "instructionsTitle": "After Payment",
+    "instructions": [
+      "Complete the payment.",
+      "Take a screenshot or save the transaction confirmation.",
+      "Send the confirmation to DBL through WhatsApp or email.",
+      "Include the product name.",
+      "DBL will send product access after payment confirmation."
+    ],
+    "contactTitle": "Send Confirmation",
+    "contactBody": "Contact DBL after payment so we can verify your order and send product access.",
+    "whatsappButton": "WhatsApp",
+    "emailButton": "Email"
   }
 }
