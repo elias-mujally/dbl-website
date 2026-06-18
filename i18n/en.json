@@ -83,7 +83,7 @@
     "shortDescription": "Complete bundle including Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide.",
     "priceLabel": "Launch Price",
     "price": "$34.99",
-    "valueLabel": "Individual Product Value",
+    "valueLabel": "Original Value",
     "originalValue": "$49.97",
     "viewBundle": "View Bundle",
     "purchase": "Get DBL Business Suite",
@@ -138,7 +138,7 @@
     "saveLabel": "You Save",
     "saveAmount": "$14.98",
     "savePercentLabel": "Bundle Discount",
-    "savePercent": "Save about 30%",
+    "savePercent": "Save 30%",
     "includedCtaTitle": "Get all three paid products in one bundle.",
     "includedCtaBody": "Buy once through Gumroad and receive DBL Prompt Vault, DBL Client Kit, Digital Launch Bundle, and the Welcome Guide bonus.",
     "finalCtaTitle": "Ready to build with the complete DBL system?",
@@ -166,7 +166,8 @@
         "q": "Are the files delivered instantly?",
         "a": "Gumroad purchases provide instant access. Alternative payments are delivered after confirmation."
       }
-    ]
+    ],
+    "bundlePriceNote": "Bundle price for all 3 paid products."
   },
   "catalog": {
     "eyebrow": "Product Catalog",

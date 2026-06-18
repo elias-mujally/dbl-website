@@ -1914,3 +1914,68 @@ html[dir="rtl"] .page-list li::before {
     grid-column: auto;
   }
 }
+
+.business-suite-pricing-box {
+  display: grid;
+  gap: 0.85rem;
+  max-width: 520px;
+  padding: 1.15rem;
+  margin: 1.35rem 0;
+  border: 1px solid rgba(73, 144, 255, 0.28);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(5, 18, 40, 0.86), rgba(10, 28, 56, 0.62));
+  box-shadow: 0 18px 60px rgba(0, 119, 255, 0.14);
+}
+
+.pricing-original,
+.pricing-current {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pricing-original span,
+.pricing-current span,
+.business-suite-pricing-box p {
+  color: var(--text-muted);
+}
+
+.pricing-original del {
+  color: rgba(225, 233, 245, 0.62);
+  font-size: 1.05rem;
+  text-decoration-thickness: 2px;
+}
+
+.pricing-current {
+  flex-wrap: wrap;
+}
+
+.pricing-current strong {
+  color: var(--text-main);
+  font-size: clamp(2.2rem, 5vw, 3.35rem);
+  line-height: 1;
+}
+
+.pricing-current em {
+  padding: 0.38rem 0.7rem;
+  border: 1px solid rgba(0, 199, 255, 0.35);
+  border-radius: 999px;
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 800;
+  background: rgba(0, 119, 255, 0.12);
+}
+
+.business-suite-pricing-box p {
+  margin: 0;
+}
+
+@media (max-width: 520px) {
+  .pricing-original,
+  .pricing-current {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+}

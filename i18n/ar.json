@@ -398,9 +398,9 @@
     "description": "DBL Business Suite هي حزمة أعمال متكاملة مصممة للمستقلين وصناع المحتوى ورواد الأعمال الرقميين الذين يريدون أنظمة عملية وموارد جاهزة للاستخدام وأدوات مدعومة بالذكاء الاصطناعي لبناء وإطلاق وإدارة أعمالهم الرقمية.",
     "homeDescription": "نظام أعمال DBL الكامل في حزمة مميزة واحدة للمستقلين وصناع المحتوى ورواد الأعمال الرقميين.",
     "shortDescription": "حزمة كاملة تشمل Prompt Vault وClient Kit وDigital Launch Bundle وWelcome Guide.",
-    "priceLabel": "سعر الإطلاق",
+    "priceLabel": "سعر الحزمة",
     "price": "34.99$",
-    "valueLabel": "قيمة المنتجات منفردة",
+    "valueLabel": "القيمة الأصلية",
     "originalValue": "49.97$",
     "viewBundle": "عرض الحزمة",
     "purchase": "احصل على DBL Business Suite",
@@ -455,7 +455,7 @@
     "saveLabel": "وفر",
     "saveAmount": "14.98$",
     "savePercentLabel": "خصم الحزمة",
-    "savePercent": "وفر حوالي 30%",
+    "savePercent": "وفر 30%",
     "includedCtaTitle": "احصل على المنتجات الثلاثة المدفوعة في حزمة واحدة.",
     "includedCtaBody": "اشترِ مرة واحدة عبر Gumroad واحصل على DBL Prompt Vault وDBL Client Kit وDigital Launch Bundle بالإضافة إلى Welcome Guide كدليل مجاني.",
     "finalCtaTitle": "هل أنت جاهز للبناء بنظام DBL الكامل؟",
@@ -483,7 +483,8 @@
         "q": "هل يتم تسليم الملفات فوراً؟",
         "a": "مشتريات Gumroad تمنحك وصولاً فورياً. أما طرق الدفع البديلة فيتم تسليمها بعد تأكيد الدفع."
       }
-    ]
+    ],
+    "bundlePriceNote": "حزمة واحدة تضم 3 منتجات مدفوعة + دليل ترحيبي مجاني"
   },
   "paymentMethods": {
     "eyebrow": "دعم الدفع",
