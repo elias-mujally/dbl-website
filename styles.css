@@ -1979,3 +1979,293 @@ html[dir="rtl"] .page-list li::before {
     gap: 0.45rem;
   }
 }
+
+/* DBL UI V2 theme layer */
+:root,
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #030814;
+  --panel: rgba(9, 20, 38, 0.62);
+  --panel-strong: rgba(12, 28, 50, 0.84);
+  --line: rgba(132, 196, 245, 0.16);
+  --line-strong: rgba(106, 179, 238, 0.32);
+  --text: #f4f8ff;
+  --muted: #aeb9c8;
+  --blue: #2fa8f4;
+  --cyan: #6bdcea;
+  --green: #52d9a0;
+  --shadow: 0 20px 58px rgba(0, 93, 180, 0.11);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f8fb;
+  --panel: rgba(255, 255, 255, 0.86);
+  --panel-strong: rgba(255, 255, 255, 0.96);
+  --line: rgba(30, 86, 145, 0.12);
+  --line-strong: rgba(0, 112, 224, 0.26);
+  --text: #142033;
+  --muted: #5f6e82;
+  --blue: #006fe6;
+  --cyan: #007fbf;
+  --green: #0c8f63;
+  --shadow: 0 18px 46px rgba(19, 46, 86, 0.09);
+}
+
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(31, 134, 255, 0.1), transparent 30rem),
+    radial-gradient(circle at 82% 14%, rgba(117, 245, 255, 0.07), transparent 25rem),
+    linear-gradient(180deg, #020611 0%, #061124 46%, #030814 100%);
+}
+
+html[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 18% 4%, rgba(0, 112, 224, 0.08), transparent 28rem),
+    radial-gradient(circle at 86% 12%, rgba(0, 180, 216, 0.07), transparent 25rem),
+    linear-gradient(180deg, #fbfcfe 0%, #f5f8fc 52%, #eef3f9 100%);
+}
+
+html[data-theme="dark"] body::before {
+  background-image:
+    linear-gradient(rgba(86, 184, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(86, 184, 255, 0.045) 1px, transparent 1px);
+}
+
+html[data-theme="light"] body::before {
+  background-image:
+    linear-gradient(rgba(0, 112, 224, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 112, 224, 0.04) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.62), transparent 70%);
+}
+
+html[data-theme="dark"] body::after {
+  opacity: 0.5;
+}
+
+html[data-theme="light"] body::after {
+  opacity: 0.22;
+  background-image:
+    linear-gradient(115deg, transparent 0 32%, rgba(0, 112, 224, 0.035) 33%, transparent 34% 66%, rgba(0, 112, 224, 0.026) 67%, transparent 68%),
+    radial-gradient(circle, rgba(0, 112, 224, 0.11) 1px, transparent 1.5px);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(54, 183, 255, 0.045);
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+
+.theme-toggle-icon {
+  width: 13px;
+  height: 13px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  box-shadow: inset 5px 0 0 currentColor;
+}
+
+html[data-theme="light"] .theme-toggle-icon {
+  box-shadow: inset -5px 0 0 transparent;
+  background: currentColor;
+}
+
+html[data-theme="dark"] .ambient {
+  opacity: 0.16;
+  filter: blur(58px);
+}
+
+html[data-theme="light"] .ambient {
+  opacity: 0.09;
+  filter: blur(72px);
+}
+
+html[data-theme="light"] .ambient-a,
+html[data-theme="light"] .ambient-b {
+  background: #0b82ee;
+}
+
+html[data-theme="dark"] .nav,
+html[data-theme="dark"] .product-card,
+html[data-theme="dark"] .catalog-card,
+html[data-theme="dark"] .system-card,
+html[data-theme="dark"] .page-panel,
+html[data-theme="dark"] .blueprint-panel,
+html[data-theme="dark"] .chat-lab,
+html[data-theme="dark"] .final-cta,
+html[data-theme="dark"] .quote,
+html[data-theme="dark"] .lab-console,
+html[data-theme="dark"] .hero-visual,
+html[data-theme="dark"] .product-stage,
+html[data-theme="dark"] .payment-card,
+html[data-theme="dark"] .business-suite-pricing-box,
+html[data-theme="dark"] .suite-cta-panel,
+html[data-theme="dark"] .float-card,
+html[data-theme="dark"] .blueprint-card,
+html[data-theme="dark"] .scenario-grid div,
+html[data-theme="dark"] .metric-strip {
+  box-shadow: var(--shadow);
+}
+
+html[data-theme="light"] .nav,
+html[data-theme="light"] .product-card,
+html[data-theme="light"] .catalog-card,
+html[data-theme="light"] .system-card,
+html[data-theme="light"] .page-panel,
+html[data-theme="light"] .blueprint-panel,
+html[data-theme="light"] .chat-lab,
+html[data-theme="light"] .final-cta,
+html[data-theme="light"] .quote,
+html[data-theme="light"] .lab-console,
+html[data-theme="light"] .hero-visual,
+html[data-theme="light"] .product-stage,
+html[data-theme="light"] .payment-card,
+html[data-theme="light"] .business-suite-pricing-box,
+html[data-theme="light"] .suite-cta-panel,
+html[data-theme="light"] .float-card,
+html[data-theme="light"] .blueprint-card,
+html[data-theme="light"] .scenario-grid div,
+html[data-theme="light"] .metric-strip {
+  border-color: var(--line);
+  color: var(--text);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+html[data-theme="light"] .nav {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+html[data-theme="light"] .brand-name,
+html[data-theme="light"] .nav-links a,
+html[data-theme="light"] .page-list li,
+html[data-theme="light"] .product-card p,
+html[data-theme="light"] .catalog-card p,
+html[data-theme="light"] .system-card p,
+html[data-theme="light"] .page-panel p,
+html[data-theme="light"] .section-heading p,
+html[data-theme="light"] .section-copy p,
+html[data-theme="light"] .business-suite-pricing-box p,
+html[data-theme="light"] .footer,
+html[data-theme="light"] .footer a {
+  color: var(--muted);
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] .product-card h3,
+html[data-theme="light"] .catalog-card h3,
+html[data-theme="light"] .system-card h3,
+html[data-theme="light"] .page-panel h2,
+html[data-theme="light"] .page-panel h3,
+html[data-theme="light"] .quote p,
+html[data-theme="light"] .pricing-current strong {
+  color: var(--text);
+}
+
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .catalog-icon,
+html[data-theme="light"] .icon,
+html[data-theme="light"] .pricing-current em,
+html[data-theme="light"] .catalog-card strong {
+  color: var(--blue);
+}
+
+html[data-theme="light"] .btn-primary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #006fe6, #00a4d8);
+  box-shadow: 0 14px 32px rgba(0, 112, 224, 0.18);
+}
+
+html[data-theme="light"] .btn-secondary,
+html[data-theme="light"] .nav-cta {
+  color: var(--blue);
+  border-color: var(--line-strong);
+  background: rgba(0, 112, 224, 0.06);
+}
+
+html[data-theme="light"] .language-switcher,
+html[data-theme="light"] .theme-toggle {
+  background: rgba(0, 112, 224, 0.05);
+}
+
+html[data-theme="light"] .lang-btn.active,
+html[data-theme="light"] .lang-btn:hover {
+  color: var(--blue);
+}
+
+html[data-theme="light"] .business-suite-badge {
+  color: #875c00;
+}
+
+html[data-theme="light"] .business-suite-pricing-box,
+html[data-theme="light"] .suite-cta-panel {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(245, 249, 255, 0.9));
+  border-color: rgba(0, 112, 224, 0.16);
+}
+
+html[data-theme="light"] .pricing-original del {
+  color: #77859a;
+}
+
+html[data-theme="dark"] .btn-primary,
+html[data-theme="dark"] .btn-secondary,
+html[data-theme="dark"] .nav-cta {
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .hero-visual,
+html[data-theme="dark"] .book-mockup,
+html[data-theme="dark"] .product-page-cover {
+  box-shadow: var(--shadow);
+}
+
+.hero,
+.about,
+.product,
+.systems,
+.final-cta,
+.page-section {
+  scroll-margin-top: 110px;
+}
+
+@media (max-width: 780px) {
+  .nav-controls {
+    gap: 8px;
+  }
+
+  .theme-toggle {
+    min-height: 34px;
+    padding: 7px 9px;
+  }
+
+  .theme-toggle-text {
+    display: none;
+  }
+
+  .hero,
+  .about,
+  .product,
+  .systems,
+  .final-cta {
+    margin-bottom: 64px;
+  }
+}

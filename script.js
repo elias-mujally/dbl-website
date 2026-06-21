@@ -1,6 +1,48 @@
 // Language and Translation Management
 let currentLanguage = 'ar';
 let translations = {};
+let currentTheme = 'dark';
+
+function getSavedTheme() {
+  try {
+    return localStorage.getItem('theme') || 'dark';
+  } catch (error) {
+    return 'dark';
+  }
+}
+
+function saveTheme(theme) {
+  try {
+    localStorage.setItem('theme', theme);
+  } catch (error) {
+    // Theme switching should still work when storage is unavailable.
+  }
+}
+
+function applyTheme(theme) {
+  currentTheme = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = currentTheme;
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) themeColor.setAttribute('content', currentTheme === 'light' ? '#f6f8fb' : '#020611');
+  updateThemeToggleLabel();
+}
+
+function setTheme(theme) {
+  applyTheme(theme);
+  saveTheme(currentTheme);
+}
+
+function updateThemeToggleLabel() {
+  const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+  document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+    button.setAttribute('aria-pressed', currentTheme === 'light' ? 'true' : 'false');
+    button.setAttribute('aria-label', getTranslation(`theme.switchTo${nextTheme === 'light' ? 'Light' : 'Dark'}`));
+    const label = button.querySelector('.theme-toggle-text');
+    if (label) label.textContent = getTranslation(`theme.${nextTheme}`);
+  });
+}
+
+applyTheme(getSavedTheme());
 
 function getSavedLanguage() {
   try {
@@ -45,6 +87,19 @@ function injectBrandAssets() {
     `;
     document.head.appendChild(style);
   }
+}
+
+function injectThemeToggles() {
+  document.querySelectorAll('.nav-controls').forEach((controls) => {
+    if (controls.querySelector('[data-theme-toggle]')) return;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'theme-toggle';
+    button.setAttribute('data-theme-toggle', '');
+    button.innerHTML = '<span class="theme-toggle-icon" aria-hidden="true"></span><span class="theme-toggle-text">Light</span>';
+    controls.insertBefore(button, controls.firstChild);
+  });
+  updateThemeToggleLabel();
 }
 
 function injectClarityTracking() {
@@ -93,6 +148,7 @@ function updatePageTranslations() {
     const translation = getTranslation(key);
     element.setAttribute('alt', translation);
   });
+  updateThemeToggleLabel();
 }
 
 function setLanguage(lang) {
@@ -142,10 +198,19 @@ function handleDiscountReveal(button) {
 
 document.addEventListener('DOMContentLoaded', async () => {
   injectBrandAssets();
+  injectThemeToggles();
   injectClarityTracking();
   updateSocialLinks();
 
   document.addEventListener('click', async (event) => {
+    const themeButton = event.target.closest('[data-theme-toggle]');
+    if (themeButton) {
+      event.preventDefault();
+      event.stopPropagation();
+      setTheme(currentTheme === 'light' ? 'dark' : 'light');
+      return;
+    }
+
     const discountButton = event.target.closest('[data-discount-reveal]');
     if (discountButton) {
       event.preventDefault();

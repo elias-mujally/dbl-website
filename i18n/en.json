@@ -508,5 +508,11 @@
     "contactBody": "Contact DBL after payment so we can verify your order and send product access.",
     "whatsappButton": "WhatsApp",
     "emailButton": "Email"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
   }
 }
