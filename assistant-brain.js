@@ -60,6 +60,9 @@ function detectIntent(message) {
   if (text === "start_online") return "choose_interest_beginner_start";
   if (text === "complete_bundle") return "choose_interest_full_bundle";
   if (text === "unsure") return "unclear";
+  if (/من أنت|من انت|who are you|هل أنت ai|هل انت ai|are you ai|ما هو dbl|ما هي dbl|what is dbl/.test(text)) return "about_assistant_or_dbl";
+  if (/ماذا تستطيع|ماذا تفعل|كيف تساعدني|what can you do|how can you help/.test(text)) return "assistant_capabilities";
+  if (/ما هي المنتجات|منتجات dbl|what products|products do you have|المنتجات الموجودة/.test(text)) return "products_overview";
   if (/^(hi|hello|hey)\b/.test(text) || /^(السلام عليكم|سلام|اهلا|أهلا|مرحبا|مرحباً|هلا)/.test(text)) return "greeting";
   if (/pay|payment|gumroad|binance|usdt|card|دفع|بطاقة|بدون بطاقة|بينانس|باينانس|يو اس دي/.test(text)) return "ask_payment";
   if (/purchase link|buy link|رابط الشراء|اشتري|شراء|كيف أشتري|كيف اشتري/.test(text)) return "ask_purchase_link";
@@ -69,12 +72,15 @@ function detectIntent(message) {
   if (/benefits|benefit|value|يفيد|فائدة|فوائد|استفيد|القيمة/.test(text)) return "ask_product_benefits";
   if (/fit|fits|suitable|right for me|يناسبني|مناسب لي|هل يناسبني|كمبتدئ/.test(text)) return "ask_if_product_fits_me";
   if (/details|more|explain|اشرح|شرح|تفاصيل|أكثر|اكثر|اشرح لي المنتج/.test(text)) return "ask_product_details";
+  if (/ما هو chatgpt|ما هو gpt|what is chatgpt|what is ai|ما هو الذكاء الاصطناعي/.test(text)) return "near_scope_ai_general";
+  if (/كيف أبدأ.*(أونلاين|اونلاين|online)|كيف ابدا.*(أونلاين|اونلاين|online)|how.*start.*online/.test(text)) return "near_scope_digital_work";
   if (/full bundle|complete bundle|الحزمة الكاملة|كاملة|كل المنتجات|اختيار الحزمة المناسبة/.test(text)) return "choose_interest_full_bundle";
   if (/prompt|ai|chatgpt|gemini|ذكاء|برومبت|برومبتات|مطالبات/.test(text)) return "choose_interest_ai";
   if (/client|customer|pricing|revision|delivery|عميل|عملاء|التعامل مع العملاء|تسعير|تعديل|تعديلات|تسليم/.test(text)) return "choose_interest_clients";
   if (/start|beginner|launch|online|book|guide|بداية|مبتدئ|أبدأ|ابدأ|انطلاق|اونلاين|أونلاين|كتاب|دليل/.test(text)) return "choose_interest_beginner_start";
   if (/not sure|unsure|confused|help me choose|لست متأكد|مش متأكد|محتار|لا أعرف|ما اعرف/.test(text)) return "unclear";
-  if (/weather|football|politics|recipe|movie|طقس|سياسة|طبخ|فيلم|مباراة/.test(text)) return "off_topic";
+  if (/news|world cup|football|sports|doctor|medical|medicine|law|legal|recipe|cooking|cook|car|cars|travel|programming|python|javascript|personal|أخبار|اخبار|كأس العالم|كاس العالم|رياضة|كرة|مباراة|طب|طبي|دواء|قانون|محامي|طبخ|أطبخ|اطبخ|كبسة|سيارات|سيارة|سفر|برمجة|بايثون|جافاسكربت|شخصي|ألم|الم/.test(text)) return "out_of_scope";
+  if (/weather|politics|movie|طقس|سياسة|فيلم/.test(text)) return "out_of_scope";
   return "unclear";
 }
 
@@ -166,6 +172,46 @@ function draftForIntent({ intent, responseGoal, product, language, memory, budge
       : "Hi. I am DBL Guide, here to help you choose the right DBL resource. What are you trying to improve in your digital work?";
   }
 
+  if (responseGoal === "explain_capabilities") {
+    return ar
+      ? "أستطيع مساعدتك في:\n• اختيار المنتج المناسب من DBL\n• شرح منتجات DBL ومحتوياتها\n• مقارنة المنتجات\n• توضيح الأسعار وطرق الدفع\n• مساعدتك في تحديد المورد الأنسب حسب هدفك في العمل الرقمي"
+      : "I can help you:\n• choose the right DBL product\n• understand DBL products and contents\n• compare products\n• check prices and payment options\n• identify the best resource for your digital work goal";
+  }
+
+  if (responseGoal === "explain_dbl") {
+    return ar
+      ? "أنا DBL Guide، مساعد موقع Digital Blueprint Lab. أساعدك تفهم منتجات DBL، الأسعار، طرق الدفع، وأي مورد يناسب هدفك في العمل الرقمي."
+      : "I am DBL Guide, the assistant for Digital Blueprint Lab. I help with DBL products, prices, payment options, and choosing the right resource for your digital work goal.";
+  }
+
+  if (responseGoal === "list_products") {
+    return ar
+      ? "منتجات DBL الحالية هي:\n• DBL Business Suite\n• DBL Prompt Vault\n• DBL Client Kit\n• Digital Launch Bundle\nأخبرني بهدفك وسأساعدك تختار الأنسب."
+      : "Current DBL products are:\n• DBL Business Suite\n• DBL Prompt Vault\n• DBL Client Kit\n• Digital Launch Bundle\nTell me your goal and I can help you choose.";
+  }
+
+  if (responseGoal === "answer_near_scope") {
+    if (intent === "near_scope_ai_general") {
+      return ar
+        ? "ChatGPT أداة ذكاء اصطناعي تساعدك في الكتابة، التفكير، التخطيط، وتوليد أفكار أو نصوص. في العمل الرقمي، يمكن استخدامه للمحتوى، التسويق، خدمة العملاء، وتنظيم الأفكار. وإذا أردت موردًا عمليًا من DBL لاستخدام AI بشكل أفضل، أستطيع ترشيح الأنسب لك."
+        : "ChatGPT is an AI tool that helps with writing, planning, ideas, and structured thinking. In digital work, it can support content, marketing, client replies, and product planning. If you want a practical DBL resource for using AI better, I can recommend one.";
+    }
+    return ar
+      ? "للبدء أونلاين، ابدأ بهدف واضح، خدمة أو منتج بسيط، طريقة تواصل مع العملاء، وخطة تنفيذ صغيرة قابلة للتطبيق. وإذا أردت موردًا عمليًا من DBL للبداية، أستطيع ترشيح الأنسب لك."
+      : "To start online, begin with a clear goal, a simple service or product, a way to communicate with clients, and a small execution plan. If you want a practical DBL resource for starting, I can recommend the best fit.";
+  }
+
+  if (responseGoal === "refuse_out_of_scope") {
+    if ((memory.outOfScopeCount || 0) > 1) {
+      return ar
+        ? "أنا مخصص فقط لمساعدتك داخل نطاق DBL والعمل الرقمي. هل تريد أن أساعدك في اختيار منتج مناسب؟"
+        : "I am focused on DBL and digital work only. Would you like help choosing a suitable product?";
+    }
+    return ar
+      ? "أعتذر، أنا متخصص فقط في منتجات وخدمات Digital Blueprint Lab ومساعدة الزوار في اختيار الموارد المناسبة داخل الموقع.\n\nإذا كان سؤالك عن منتجات DBL، الأسعار، طرق الدفع، الذكاء الاصطناعي في العمل الرقمي، الفريلانس، أو المنتجات الرقمية، فسأكون سعيدًا بمساعدتك."
+      : "Sorry, I am specialized in Digital Blueprint Lab products and services, and helping visitors choose the right resources on this website.\n\nIf your question is about DBL products, prices, payment methods, AI in digital work, freelancing, or digital products, I can help.";
+  }
+
   if (responseGoal === "answer_price" && facts) {
     return ar
       ? `سعر ${facts.name} هو ${facts.price}. وهو مناسب إذا كان هدفك قريبًا من ${facts.type}. هل تريد أن أوضح لك ماذا يحتوي؟`
@@ -226,12 +272,6 @@ function draftForIntent({ intent, responseGoal, product, language, memory, budge
       : `Based on what you shared, the closest fit is ${facts.name}. It matches your current need and gives you a practical resource instead of starting from scratch. Want me to explain what it includes?`;
   }
 
-  if (intent === "off_topic") {
-    return ar
-      ? "أقدر أجاوب باختصار، لكن تخصصي هنا موارد DBL. هل تريد مساعدة في اختيار مورد يناسب هدفك الرقمي؟"
-      : "I can answer briefly, but my focus here is DBL resources. Would you like help choosing a resource for your digital goal?";
-  }
-
   return ar
     ? "فهمت عليك. قبل أن أرشح أي شيء، ما الذي تريد تحسينه تحديدًا: استخدام AI، التعامل مع العملاء، البداية أونلاين، أم اختيار الحزمة المناسبة؟"
     : "I understand. Before recommending anything, what do you want to improve: AI, clients, starting online, or choosing the right bundle?";
@@ -250,6 +290,11 @@ function analyzeConversation({ message, language = "ar", currentPage = "", pageT
   let responseGoal = "ask_question";
 
   if (intent === "greeting") responseGoal = "ask_question";
+  else if (intent === "assistant_capabilities") responseGoal = "explain_capabilities";
+  else if (intent === "about_assistant_or_dbl") responseGoal = "explain_dbl";
+  else if (intent === "products_overview") responseGoal = "list_products";
+  else if (intent === "near_scope_ai_general" || intent === "near_scope_digital_work") responseGoal = "answer_near_scope";
+  else if (intent === "out_of_scope") responseGoal = "refuse_out_of_scope";
   else if (intent === "ask_payment") responseGoal = "show_payment_options";
   else if (intent === "ask_purchase_link") responseGoal = "show_purchase_link";
   else if (intent === "ask_comparison") responseGoal = "compare_products";
@@ -294,6 +339,7 @@ function analyzeConversation({ message, language = "ar", currentPage = "", pageT
     conversationStage: responseGoal,
     lastIntent: intent,
     currentPage,
+    outOfScopeCount: intent === "out_of_scope" ? ((memory.outOfScopeCount || 0) + 1) : (memory.outOfScopeCount || 0),
     goal: goalForIntent(intent) || memory.goal || null,
     experience_level: detectExperience(message) || memory.experience_level || null,
     budget: budget ?? memory.budget ?? null,
@@ -303,6 +349,7 @@ function analyzeConversation({ message, language = "ar", currentPage = "", pageT
     recommended_product: recommendedProduct?.id || memory.recommended_product || null,
     conversation_stage: responseGoal,
     last_intent: intent,
+    out_of_scope_count: intent === "out_of_scope" ? ((memory.out_of_scope_count || memory.outOfScopeCount || 0) + 1) : (memory.out_of_scope_count || memory.outOfScopeCount || 0),
     page_title: pageTitle || memory.page_title || null
   };
 
