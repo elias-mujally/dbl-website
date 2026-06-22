@@ -38,7 +38,7 @@ module.exports = async function handler(req, res) {
     sendJson(res, 200, result);
   } catch (error) {
     console.error("DBL Guide chat error:", error.message);
-    sendJson(res, error.statusCode || 500, {
+    sendJson(res, 200, {
       ...fallbackPayload(),
       error: error.publicMessage || "Assistant is temporarily unavailable."
     });

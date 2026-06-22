@@ -285,10 +285,10 @@ async function createChatResponse({
   const apiKey = process.env.GEMINI_API_KEY;
   logChat("GEMINI_API_KEY present", Boolean(apiKey));
   if (!apiKey) {
-    const error = new Error("Gemini API key is missing on the server.");
-    error.statusCode = 500;
-    error.publicMessage = "Gemini API key is missing on the server.";
-    throw error;
+    return fallbackPayload(FALLBACK_REPLY, {
+      error: "Gemini API key is missing on the server.",
+      server_error: true
+    });
   }
 
   const { raw: productsRaw, data: productsData } = readProductKnowledge(rootDir);
