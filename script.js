@@ -4,6 +4,7 @@ let translations = {};
 let currentTheme = 'dark';
 let assistantKnowledgePromise = null;
 const assistantSessionKey = 'dbl-guide-session';
+const assistantHistoryKey = 'dbl-guide-history';
 const assistantPositionKey = 'dbl-guide-position';
 const assistantBubbleDismissedKey = 'dbl-guide-bubble-dismissed';
 
@@ -256,13 +257,14 @@ function addAssistantMessage(messages, text, type = 'assistant', actions = []) {
     const actionsWrap = document.createElement('div');
     actionsWrap.className = 'dbl-chat-actions';
     actions.forEach((action) => {
-      const button = document.createElement(action.href ? 'a' : 'button');
+      const href = action.href || action.url;
+      const button = document.createElement(href ? 'a' : 'button');
       button.className = 'dbl-chat-action';
       button.textContent = action.label;
-      if (action.href) {
-        button.href = action.href;
-        button.target = action.external ? '_blank' : '_self';
-        button.rel = action.external ? 'noopener' : '';
+      if (href) {
+        button.href = href;
+        button.target = action.external || /^https?:\/\//.test(href) ? '_blank' : '_self';
+        button.rel = button.target === '_blank' ? 'noopener' : '';
       } else {
         button.type = 'button';
         button.dataset.assistantChoice = action.value || action.label;
@@ -334,6 +336,54 @@ function saveAssistantSession(patch) {
     // The assistant can still work without persistence.
   }
   return session;
+}
+
+function loadAssistantHistory() {
+  try {
+    const history = JSON.parse(localStorage.getItem(assistantHistoryKey) || '[]');
+    return Array.isArray(history) ? history.slice(-10) : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveAssistantHistory(history) {
+  try {
+    localStorage.setItem(assistantHistoryKey, JSON.stringify(history.slice(-10)));
+  } catch (error) {
+    // The assistant still works without persisted conversation history.
+  }
+}
+
+function rememberAssistantMessage(role, content) {
+  const text = String(content || '').trim();
+  if (!text) return;
+  const history = loadAssistantHistory();
+  history.push({
+    role: role === 'assistant' ? 'assistant' : 'user',
+    content: text.slice(0, 900)
+  });
+  saveAssistantHistory(history);
+}
+
+function normalizeAssistantActions(actions) {
+  if (!Array.isArray(actions)) return [];
+  return actions.slice(0, 4).map((action) => {
+    const label = String(action?.label || '').trim();
+    if (!label) return null;
+    const href = action.href || action.url;
+    if (href) {
+      return {
+        label,
+        href,
+        external: Boolean(action.external) || /^https?:\/\//.test(href)
+      };
+    }
+    return {
+      label,
+      value: action.value || label
+    };
+  }).filter(Boolean);
 }
 
 function assistantGoalOptions() {
@@ -568,6 +618,7 @@ async function buildAssistantFlowReply(input) {
 }
 
 async function requestAssistantReply(message) {
+  const fallbackReply = 'حدث خلل بسيط في الرد. جرّب إعادة صياغة سؤالك.';
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -575,27 +626,29 @@ async function requestAssistantReply(message) {
       body: JSON.stringify({
         message,
         language: currentLanguage,
+        conversationHistory: loadAssistantHistory().slice(-10),
+        userMemory: loadAssistantSession(),
         currentPage: window.location.pathname,
-        pageTitle: document.title,
-        memory: loadAssistantSession()
+        pageTitle: document.title
       })
     });
 
     if (!response.ok) throw new Error(`Chat request failed: ${response.status}`);
 
     const data = await response.json();
-    const reply = String(data.reply || '').trim();
+    const reply = String(data.reply || fallbackReply).trim();
+    if (data.memory_updates) saveAssistantSession(data.memory_updates);
     if (data.memory) saveAssistantSession(data.memory);
     return {
       reply,
-      actions: Array.isArray(data.actions) ? data.actions : []
+      actions: normalizeAssistantActions(data.buttons || data.actions || []),
+      recommendedProduct: data.recommended_product_id || null
     };
   } catch (error) {
-    console.warn('DBL Guide API unavailable, using fallback reply:', error);
-    const flow = await buildAssistantFlowReply(message);
+    console.warn('DBL Guide API unavailable:', error);
     return {
-      reply: flow.text,
-      actions: flow.actions
+      reply: fallbackReply,
+      actions: []
     };
   }
 }
@@ -819,12 +872,14 @@ function injectAssistantWidget() {
     const value = rawValue.trim();
     if (!value) return;
     addAssistantMessage(messages, displayValue.trim(), 'user');
+    rememberAssistantMessage('user', value);
     input.value = '';
     setAssistantState(widget, 'thinking');
     const thinking = addAssistantMessage(messages, getAssistantText('thinking'), 'assistant');
     const result = await requestAssistantReply(value);
     thinking.remove();
     addAssistantMessage(messages, result.reply, 'assistant', result.actions);
+    rememberAssistantMessage('assistant', result.reply);
     setAssistantState(widget, 'happy');
     window.setTimeout(() => setAssistantState(widget, 'idle'), 1400);
   };
