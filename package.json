@@ -6,5 +6,7 @@
     "build": "node -e \"const fs = require('fs'); const path = require('path'); const copyDir = (from, to) => { fs.mkdirSync(to, { recursive: true }); for (const entry of fs.readdirSync(from, { withFileTypes: true })) { const src = path.join(from, entry.name); const dest = path.join(to, entry.name); if (entry.isDirectory()) copyDir(src, dest); else fs.copyFileSync(src, dest); } }; fs.rmSync('dist',{recursive:true,force:true}); fs.mkdirSync('dist/i18n',{recursive:true}); fs.mkdirSync('dist/download',{recursive:true}); for (const f of fs.readdirSync('.').filter(f => f.endsWith('.html')).concat(['styles.css','script.js','sitemap.xml','robots.txt'])) fs.copyFileSync(f, path.join('dist', f)); for (const f of ['en.json','ar.json']) fs.copyFileSync(path.join('i18n',f), path.join('dist/i18n',f)); copyDir('assets', path.join('dist','assets')); for (const f of fs.readdirSync('download').filter(f => f.endsWith('.html'))) fs.copyFileSync(path.join('download',f), path.join('dist/download',f));\"",
     "start": "node server.js"
   },
-  "devDependencies": {}
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
 }
