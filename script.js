@@ -464,7 +464,7 @@ function buildAssistantIntro() {
   }
   return {
     text: `${getAssistantText('intro')} ${getAssistantText('goalQuestion')}`,
-    actions: []
+    actions: assistantGoalOptions()
   };
 }
 
