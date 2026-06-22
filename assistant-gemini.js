@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-1.5-flash";
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash";
 const FALLBACK_REPLY = "\u062a\u0639\u0630\u0631 \u0627\u0644\u0627\u062a\u0635\u0627\u0644 \u0628\u0627\u0644\u0645\u0633\u0627\u0639\u062f \u0627\u0644\u0622\u0646. \u062c\u0631\u0651\u0628 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649 \u0628\u0639\u062f \u0644\u062d\u0638\u0627\u062a.";
 const ALLOWED_INTENTS = new Set([
   "greeting",
@@ -258,14 +258,15 @@ function rawTextPayload(rawText) {
   });
 }
 
-async function callGeminiGenerate({ apiKey, prompt, useJsonMime }) {
+async function callGeminiGenerate({ apiKey, model, prompt, useJsonMime }) {
+  const selectedModel = model || GEMINI_MODEL;
   const generationConfig = {
     temperature: 0.7,
     maxOutputTokens: 700
   };
   if (useJsonMime) generationConfig.responseMimeType = "application/json";
 
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`, {
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${selectedModel}:generateContent?key=${encodeURIComponent(apiKey)}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -277,7 +278,7 @@ async function callGeminiGenerate({ apiKey, prompt, useJsonMime }) {
     })
   });
   const responseText = await response.text();
-  return { response, responseText, useJsonMime };
+  return { response, responseText, model: selectedModel, useJsonMime };
 }
 
 function parseGeminiEnvelope(responseText) {
@@ -295,6 +296,15 @@ function logChatError({ status, error }) {
     status,
     error: error?.message || String(error || "")
   });
+}
+
+function getGeminiModels() {
+  return [
+    process.env.GEMINI_MODEL,
+    "gemini-2.0-flash",
+    "gemini-1.5-flash",
+    "gemini-1.5-flash-latest"
+  ].filter(Boolean).filter((model, index, models) => models.indexOf(model) === index);
 }
 
 function sanitizeGeminiPayload(payload, products, currentPage) {
@@ -356,11 +366,12 @@ async function createChatResponse({
   let lastError = null;
   let lastStatus = null;
 
-  for (const useJsonMime of [true, false]) {
-    try {
-      const { response, responseText } = await callGeminiGenerate({ apiKey, prompt, useJsonMime });
+  for (const model of getGeminiModels()) {
+    for (const useJsonMime of [true, false]) {
+      try {
+        const { response, responseText } = await callGeminiGenerate({ apiKey, model, prompt, useJsonMime });
       lastStatus = response.status;
-      logChat("Gemini HTTP status", `${response.status} jsonMime=${useJsonMime}`);
+      logChat("Gemini HTTP status", `${response.status} model=${model} jsonMime=${useJsonMime}`);
 
       if (!response.ok) {
         logChat("Gemini API error body", responseText.slice(0, 1200));
@@ -385,9 +396,10 @@ async function createChatResponse({
       }
 
       return sanitizeGeminiPayload(parsed.data, productsData.products || [], currentPage);
-    } catch (error) {
-      lastError = error;
-      logChatError({ status: lastStatus, error });
+      } catch (error) {
+        lastError = error;
+        logChatError({ status: lastStatus, error });
+      }
     }
   }
 
