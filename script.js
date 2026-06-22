@@ -3,6 +3,7 @@ let currentLanguage = 'ar';
 let translations = {};
 let currentTheme = 'dark';
 let assistantKnowledgePromise = null;
+const assistantSessionKey = 'dbl-guide-session';
 
 function getSavedTheme() {
   try {
@@ -206,6 +207,8 @@ function getAssistantText(key) {
       title: 'DBL Guide',
       status: 'متصل الآن',
       intro: 'مرحباً، أنا DBL Guide. أقدر أساعدك تختار المنتج المناسب أو أوضح لك طريقة الدفع.',
+      goalQuestion: 'ما الذي تبحث عنه اليوم؟',
+      returningIntro: 'أهلًا بعودتك. أتذكر أنك كنت تبحث عن {goal}. ما الذي تحتاجه الآن؟',
       placeholder: 'اكتب رسالتك...',
       send: 'إرسال',
       thinking: 'يفكر...',
@@ -218,6 +221,8 @@ function getAssistantText(key) {
       title: 'DBL Guide',
       status: 'Online now',
       intro: 'Hi, I am DBL Guide. I can help you choose a product or understand the payment options.',
+      goalQuestion: 'What are you looking for today?',
+      returningIntro: 'Welcome back. I remember you were looking for {goal}. What do you need now?',
       placeholder: 'Write your message...',
       send: 'Send',
       thinking: 'Thinking...',
@@ -238,10 +243,34 @@ function setAssistantState(widget, state) {
   }
 }
 
-function addAssistantMessage(messages, text, type = 'assistant') {
+function addAssistantMessage(messages, text, type = 'assistant', actions = []) {
   const message = document.createElement('div');
   message.className = `dbl-chat-message ${type === 'user' ? 'is-user' : 'is-assistant'}`;
-  message.textContent = text;
+  const body = document.createElement('span');
+  body.textContent = text;
+  message.appendChild(body);
+
+  if (actions.length) {
+    const actionsWrap = document.createElement('div');
+    actionsWrap.className = 'dbl-chat-actions';
+    actions.forEach((action) => {
+      const button = document.createElement(action.href ? 'a' : 'button');
+      button.className = 'dbl-chat-action';
+      button.textContent = action.label;
+      if (action.href) {
+        button.href = action.href;
+        button.target = action.external ? '_blank' : '_self';
+        button.rel = action.external ? 'noopener' : '';
+      } else {
+        button.type = 'button';
+        button.dataset.assistantChoice = action.value || action.label;
+        button.dataset.assistantLabel = action.label;
+      }
+      actionsWrap.appendChild(button);
+    });
+    message.appendChild(actionsWrap);
+  }
+
   messages.appendChild(message);
   messages.scrollTop = messages.scrollHeight;
   return message;
@@ -283,36 +312,272 @@ function findKnowledgeProduct(knowledge, input) {
   return byId('dbl-business-suite');
 }
 
-function formatKnowledgeReply(product) {
+function loadAssistantSession() {
+  try {
+    return JSON.parse(localStorage.getItem(assistantSessionKey) || '{}');
+  } catch (error) {
+    return {};
+  }
+}
+
+function saveAssistantSession(patch) {
+  const session = {
+    ...loadAssistantSession(),
+    ...patch,
+    updatedAt: new Date().toISOString()
+  };
+  try {
+    localStorage.setItem(assistantSessionKey, JSON.stringify(session));
+  } catch (error) {
+    // The assistant can still work without persistence.
+  }
+  return session;
+}
+
+function assistantGoalOptions() {
+  return currentLanguage === 'ar'
+    ? [
+        { label: 'أريد البدء بالعمل أونلاين', value: 'start_online' },
+        { label: 'أحتاج أدوات ذكاء اصطناعي', value: 'ai_tools' },
+        { label: 'أريد تحسين التعامل مع العملاء', value: 'client_management' },
+        { label: 'أريد الحزمة الكاملة', value: 'complete_bundle' },
+        { label: 'لست متأكدًا', value: 'unsure' }
+      ]
+    : [
+        { label: 'Start working online', value: 'start_online' },
+        { label: 'I need AI tools', value: 'ai_tools' },
+        { label: 'Improve client communication', value: 'client_management' },
+        { label: 'I want the full bundle', value: 'complete_bundle' },
+        { label: 'Not sure yet', value: 'unsure' }
+      ];
+}
+
+function getGoalLabel(goal) {
+  return assistantGoalOptions().find((option) => option.value === goal)?.label || goal;
+}
+
+function assistantExperienceOptions() {
+  return currentLanguage === 'ar'
+    ? [
+        { label: 'أنا مبتدئ', value: 'beginner' },
+        { label: 'لدي خبرة', value: 'experienced' }
+      ]
+    : [
+        { label: 'I am a beginner', value: 'beginner' },
+        { label: 'I have experience', value: 'experienced' }
+      ];
+}
+
+function detectGreeting(input) {
+  return /^(hi|hello|hey|السلام عليكم|سلام|اهلا|أهلا|مرحبا|مرحباً|هلا)\b/i.test(input.trim());
+}
+
+function detectDetailsRequest(input) {
+  return /details|more|explain|included|contents|تفاصيل|اشرح|ماذا يشمل|يشمل|المحتوى|محتوى|أكثر|اكثر/i.test(input);
+}
+
+function detectOutOfScope(input) {
+  return /weather|football|politics|recipe|movie|طقس|سياسة|طبخ|فيلم|مباراة/i.test(input);
+}
+
+function detectGoal(input) {
+  const normalized = input.toLowerCase();
+  const chosen = assistantGoalOptions().find((option) => option.value === input || option.label === input);
+  if (chosen) return chosen.value;
+  if (/prompt|ai|chatgpt|gemini|ذكاء|برومبت|برومبتات|مطالبات/i.test(normalized)) return 'ai_tools';
+  if (/client|customer|freelance|pricing|revision|عميل|عملاء|فريلانسر|تسعير|تعديل|تعديلات/i.test(normalized)) return 'client_management';
+  if (/start|beginner|launch|online|book|guide|بداية|مبتدئ|أبدأ|ابدأ|انطلاق|أونلاين|اونلاين|كتاب|دليل/i.test(normalized)) return 'start_online';
+  if (/suite|bundle|complete|everything|all|best value|كامل|كاملة|كل|حزمة|أفضل قيمة|افضل قيمة/i.test(normalized)) return 'complete_bundle';
+  if (/not sure|unsure|confused|لست متأكد|مش متأكد|محتار|لا أعرف|ما اعرف/i.test(normalized)) return 'unsure';
+  return null;
+}
+
+function detectExperience(input) {
+  if (input === 'beginner') return 'beginner';
+  if (input === 'experienced') return 'experienced';
+  if (/beginner|new|مبتدئ|جديد|أول مرة|اول مرة/i.test(input)) return 'beginner';
+  if (/experienced|advanced|محترف|خبرة|متقدم/i.test(input)) return 'experienced';
+  return null;
+}
+
+function productForGoal(knowledge, goal, input = '') {
+  const byId = (id) => knowledge?.products?.find((product) => product.id === id);
+  if (goal === 'complete_bundle') return byId('dbl-business-suite');
+  if (goal === 'ai_tools') return byId('dbl-prompt-vault');
+  if (goal === 'client_management') return byId('dbl-client-kit');
+  if (goal === 'start_online') return byId('digital-launch-bundle');
+  if (goal === 'unsure') return findKnowledgeProduct(knowledge, input);
+  return findKnowledgeProduct(knowledge, input);
+}
+
+function recommendationReason(goal, product) {
+  if (currentLanguage === 'ar') {
+    const reasons = {
+      complete_bundle: 'يجمع منتجات DBL الأساسية في حزمة واحدة وبأفضل قيمة',
+      ai_tools: 'يركز على برومبتات AI جاهزة وشروحات عملية',
+      client_management: 'يساعدك في رسائل العملاء والتسعير والتعديلات والتسليم',
+      start_online: 'يعطيك نقطة بداية واضحة للعمل أونلاين والمنتجات الرقمية',
+      unsure: 'يغطي أكثر من جانب مهم: AI والعملاء والانطلاق الرقمي'
+    };
+    return reasons[goal] || product?.main_benefits?.[0] || 'يناسب هدفك الحالي';
+  }
+
+  const reasons = {
+    complete_bundle: 'it combines DBL core products in one best-value bundle',
+    ai_tools: 'it focuses on ready-to-use AI prompts and practical guidance',
+    client_management: 'it helps with client messages, pricing, revisions, and delivery',
+    start_online: 'it gives you a clear starting point for online work and digital products',
+    unsure: 'it covers AI, clients, and digital launch foundations together'
+  };
+  return reasons[goal] || product?.main_benefits?.[0] || 'it matches your current goal';
+}
+
+function buildRecommendationReply(product, goal) {
   if (!product) return getAssistantText('defaultReply');
 
   if (currentLanguage === 'ar') {
-    return `أرشح لك ${product.name}. ${product.short_description} السعر: ${product.price}. صفحة المنتج: ${product.page_link}`;
+    return `بناءً على كلامك، أرشح لك ${product.name} لأنه ${recommendationReason(goal, product)}.`;
   }
 
-  return `I recommend ${product.name}. ${product.short_description} Price: ${product.price}. Product page: ${product.page_link}`;
+  return `Based on what you shared, I recommend ${product.name} because ${recommendationReason(goal, product)}.`;
 }
 
-async function getKnowledgeAssistantReply(input) {
-  const normalized = input.toLowerCase();
-  if (/pay|payment|gumroad|binance|usdt|دفع|بطاقة|بينانس|باينانس|يو اس دي|usdt/i.test(normalized)) {
-    const knowledge = await loadAssistantKnowledge();
-    return knowledge?.assistant_rules?.find((rule) => rule.includes('/payment-methods.html')) || getAssistantText('paymentReply');
+function buildProductDetailsReply(product) {
+  if (!product) return getAssistantText('defaultReply');
+  const items = product.included_items || product.included_products?.map((item) => item.name) || [];
+  const topItems = items.slice(0, 4).join(currentLanguage === 'ar' ? '، ' : ', ');
+
+  if (currentLanguage === 'ar') {
+    return `${product.name} سعره ${product.price}. يشمل: ${topItems}. مناسب إذا كنت تريد ${product.best_for?.[0] || 'حلًا عمليًا من DBL'}.`;
   }
 
+  return `${product.name} is ${product.price}. It includes: ${topItems}. It is a good fit if you want ${product.best_for?.[0] || 'a practical DBL resource'}.`;
+}
+
+function buildAssistantIntro() {
+  const session = loadAssistantSession();
+  const actions = assistantGoalOptions();
+  if (session.goal) {
+    return {
+      text: getAssistantText('returningIntro').replace('{goal}', getGoalLabel(session.goal)),
+      actions
+    };
+  }
+  return {
+    text: `${getAssistantText('intro')} ${getAssistantText('goalQuestion')}`,
+    actions
+  };
+}
+
+async function buildAssistantFlowReply(input) {
   const knowledge = await loadAssistantKnowledge();
-  const product = findKnowledgeProduct(knowledge, input);
-  return formatKnowledgeReply(product);
+  const session = loadAssistantSession();
+
+  if (detectGreeting(input)) {
+    saveAssistantSession({ stage: 'greeting' });
+    return {
+      text: currentLanguage === 'ar' ? `أهلًا بك. ${getAssistantText('goalQuestion')}` : `Hi there. ${getAssistantText('goalQuestion')}`,
+      actions: assistantGoalOptions(),
+      stage: 'greeting'
+    };
+  }
+
+  if (detectOutOfScope(input)) {
+    saveAssistantSession({ stage: 'needs_clarification' });
+    return {
+      text: currentLanguage === 'ar'
+        ? `أقدر أساعدك باختصار، لكن تخصصي منتجات DBL. ${getAssistantText('goalQuestion')}`
+        : `I can help briefly, but my focus is DBL products. ${getAssistantText('goalQuestion')}`,
+      actions: assistantGoalOptions(),
+      stage: 'needs_clarification'
+    };
+  }
+
+  if (/pay|payment|gumroad|binance|usdt|دفع|بطاقة|بينانس|باينانس|يو اس دي|usdt/i.test(input)) {
+    saveAssistantSession({ stage: 'product_details', problem: 'payment' });
+    return {
+      text: currentLanguage === 'ar'
+        ? 'الدفع الأساسي يكون عبر رابط شراء المنتج. إذا لا تملك بطاقة، يمكنك استخدام طرق الدفع البديلة.'
+        : 'The main checkout is through the product purchase link. If you do not have a card, you can use alternative payment methods.',
+      actions: [{ label: currentLanguage === 'ar' ? 'طرق الدفع البديلة' : 'Alternative Payment Methods', href: '/payment-methods.html' }],
+      stage: 'product_details'
+    };
+  }
+
+  const goal = detectGoal(input) || session.goal;
+  const experience = detectExperience(input) || session.experience;
+  const product = productForGoal(knowledge, goal, input);
+
+  if (detectDetailsRequest(input) && (session.recommendedProduct || product)) {
+    const detailsProduct = knowledge?.products?.find((item) => item.id === session.recommendedProduct) || product;
+    saveAssistantSession({ stage: 'product_details', recommendedProduct: detailsProduct?.id });
+    return {
+      text: buildProductDetailsReply(detailsProduct),
+      actions: detailsProduct?.page_link ? [{ label: currentLanguage === 'ar' ? 'عرض المنتج' : 'View Product', href: detailsProduct.page_link }] : [],
+      stage: 'product_details',
+      product: detailsProduct
+    };
+  }
+
+  if (!goal || goal === 'unsure') {
+    saveAssistantSession({
+      stage: 'needs_clarification',
+      goal: goal || session.goal || 'unsure',
+      experience,
+      problem: input
+    });
+    return {
+      text: currentLanguage === 'ar'
+        ? 'حتى أرشح لك بدقة: هل مشكلتك الأساسية مع AI، العملاء، البداية أونلاين، أم تريد الحزمة الكاملة؟'
+        : 'To recommend accurately: is your main need AI, clients, starting online, or the complete bundle?',
+      actions: assistantGoalOptions(),
+      stage: 'needs_clarification'
+    };
+  }
+
+  if (!experience && !session.experience && goal !== 'complete_bundle') {
+    saveAssistantSession({
+      stage: 'diagnosis',
+      goal,
+      problem: input
+    });
+    return {
+      text: currentLanguage === 'ar'
+        ? 'قبل أن أرشح لك المنتج الأنسب: هل أنت مبتدئ أم لديك خبرة في العمل الرقمي؟'
+        : 'Before I recommend the best product: are you a beginner or do you already have digital work experience?',
+      actions: assistantExperienceOptions(),
+      stage: 'diagnosis'
+    };
+  }
+
+  saveAssistantSession({
+    stage: 'recommendation',
+    goal,
+    experience,
+    problem: input,
+    recommendedProduct: product?.id
+  });
+
+  return {
+    text: buildRecommendationReply(product, goal),
+    actions: product?.page_link ? [{ label: currentLanguage === 'ar' ? 'عرض المنتج' : 'View Product', href: product.page_link }] : [],
+    stage: 'recommendation',
+    product
+  };
 }
 
-async function requestAssistantReply(message) {
+async function requestAssistantReply(message, flow) {
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         message,
-        language: currentLanguage
+        language: currentLanguage,
+        stage: flow.stage,
+        draftReply: flow.text,
+        recommendedProductId: flow.product?.id || loadAssistantSession().recommendedProduct || null,
+        memory: loadAssistantSession()
       })
     });
 
@@ -320,10 +585,10 @@ async function requestAssistantReply(message) {
 
     const data = await response.json();
     const reply = String(data.reply || '').trim();
-    return reply || await getKnowledgeAssistantReply(message);
+    return reply || flow.text;
   } catch (error) {
     console.warn('DBL Guide API unavailable, using fallback reply:', error);
-    return await getKnowledgeAssistantReply(message);
+    return flow.text;
   }
 }
 
@@ -384,7 +649,8 @@ function injectAssistantWidget() {
   const input = form.querySelector('input');
 
   updateAssistantLanguage(widget);
-  addAssistantMessage(messages, getAssistantText('intro'));
+  const intro = buildAssistantIntro();
+  addAssistantMessage(messages, intro.text, 'assistant', intro.actions);
 
   avatar.addEventListener('click', () => {
     widget.classList.add('is-chat-open');
@@ -399,19 +665,30 @@ function injectAssistantWidget() {
     chatWindow.setAttribute('aria-hidden', 'true');
   });
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const value = input.value.trim();
+  const submitAssistantInput = async (rawValue, displayValue = rawValue) => {
+    const value = rawValue.trim();
     if (!value) return;
-    addAssistantMessage(messages, value, 'user');
+    addAssistantMessage(messages, displayValue.trim(), 'user');
     input.value = '';
     setAssistantState(widget, 'thinking');
     const thinking = addAssistantMessage(messages, getAssistantText('thinking'), 'assistant');
-    const reply = await requestAssistantReply(value);
+    const flow = await buildAssistantFlowReply(value);
+    const reply = await requestAssistantReply(value, flow);
     thinking.remove();
-    addAssistantMessage(messages, reply, 'assistant');
+    addAssistantMessage(messages, reply, 'assistant', flow.actions);
     setAssistantState(widget, 'happy');
     window.setTimeout(() => setAssistantState(widget, 'idle'), 1400);
+  };
+
+  messages.addEventListener('click', (event) => {
+    const choice = event.target.closest('[data-assistant-choice]');
+    if (!choice) return;
+    submitAssistantInput(choice.dataset.assistantChoice || choice.textContent, choice.dataset.assistantLabel || choice.textContent);
+  });
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    await submitAssistantInput(input.value);
   });
 
   window.setTimeout(() => showAssistantBubble(widget, getAssistantText('welcomeBubble'), 8000), 5000);

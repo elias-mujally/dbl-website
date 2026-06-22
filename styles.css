@@ -2468,6 +2468,37 @@ html[data-theme="dark"] .product-page-cover {
   border-bottom-right-radius: 5px;
 }
 
+.dbl-chat-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.dbl-chat-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 11px;
+  border: 1px solid rgba(13, 110, 253, 0.28);
+  border-radius: 999px;
+  color: #073675;
+  background: rgba(13, 110, 253, 0.08);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.dbl-chat-action:hover {
+  transform: translateY(-1px);
+  border-color: rgba(13, 110, 253, 0.48);
+  background: rgba(13, 110, 253, 0.14);
+}
+
 html[dir="rtl"] .dbl-chat-message.is-assistant {
   align-self: flex-end;
   border-bottom-left-radius: 16px;

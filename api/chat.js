@@ -20,7 +20,7 @@ function getProductKnowledge() {
   }
 }
 
-async function getGeminiReply(message, language) {
+async function getGeminiReply(message, language, context = {}) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     const error = new Error("GEMINI_API_KEY is not configured");
@@ -30,12 +30,18 @@ async function getGeminiReply(message, language) {
 
   const prompt = [
     "You are DBL Guide, the helpful assistant for Digital Blueprint Lab.",
-    "Help visitors choose DBL products, understand Gumroad checkout, and find alternative payment methods.",
-    "Keep replies concise, practical, friendly, and focused on DBL.",
+    "The website code decides the conversation stage and recommended product. You only rewrite the provided draft reply naturally.",
+    "Do not choose a different product. Do not add product links as raw text. Do not add full product descriptions unless the stage is product_details.",
+    "Keep replies short, practical, friendly, and focused on DBL.",
     "If the user asks in Arabic, reply in natural Arabic. If they ask in English, reply in English.",
     "Use the product knowledge JSON below as the source of truth for products, prices, links, recommendation rules, and assistant behavior.",
     "Do not invent products, prices, discounts, guarantees, or payment links that are not in the product knowledge.",
+    "Never promise guaranteed income, sales, or financial results.",
     `Current website language: ${language === "ar" ? "Arabic" : "English"}.`,
+    `Conversation stage: ${context.stage || "diagnosis"}.`,
+    `Recommended product id chosen by code: ${context.recommendedProductId || "none"}.`,
+    `Session memory: ${JSON.stringify(context.memory || {})}.`,
+    `Draft reply to rewrite without changing its meaning: ${context.draftReply || ""}`,
     "Product knowledge JSON:",
     getProductKnowledge(),
     `Visitor message: ${message}`
@@ -84,13 +90,19 @@ module.exports = async function handler(req, res) {
     const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
     const message = String(body.message || "").trim();
     const language = body.language === "ar" ? "ar" : "en";
+    const context = {
+      stage: body.stage,
+      draftReply: body.draftReply,
+      recommendedProductId: body.recommendedProductId,
+      memory: body.memory
+    };
 
     if (!message) {
       sendJson(res, 400, { error: "Message is required" });
       return;
     }
 
-    const reply = await getGeminiReply(message.slice(0, 1200), language);
+    const reply = await getGeminiReply(message.slice(0, 1200), language, context);
     sendJson(res, 200, { reply });
   } catch (error) {
     console.error("DBL Guide chat error:", error.message);
