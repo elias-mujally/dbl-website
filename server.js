@@ -79,12 +79,23 @@ async function handleChatRequest(req, res) {
     sendJson(res, 200, result);
   } catch (error) {
     console.error("DBL Guide chat error:", error.message);
-    sendJson(res, 200, fallbackPayload());
+    sendJson(res, error.statusCode || 500, {
+      ...fallbackPayload(),
+      error: error.publicMessage || "Assistant is temporarily unavailable."
+    });
   }
 }
 
 http.createServer((req, res) => {
   const urlPath = decodeURIComponent((req.url || "/").split("?")[0]);
+
+  if (urlPath === "/api/health") {
+    sendJson(res, 200, {
+      ok: true,
+      hasGeminiKey: Boolean(process.env.GEMINI_API_KEY)
+    });
+    return;
+  }
 
   if (urlPath === "/api/chat") {
     handleChatRequest(req, res);

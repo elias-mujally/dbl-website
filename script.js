@@ -633,9 +633,19 @@ async function requestAssistantReply(message) {
       })
     });
 
-    if (!response.ok) throw new Error(`Chat request failed: ${response.status}`);
-
     const data = await response.json();
+    if (!response.ok || data.error) {
+      console.warn('DBL Guide server error:', {
+        status: response.status,
+        error: data.error,
+        reply: data.reply
+      });
+      return {
+        reply: data.reply || fallbackReply,
+        actions: normalizeAssistantActions(data.buttons || data.actions || [])
+      };
+    }
+
     const reply = String(data.reply || fallbackReply).trim();
     if (data.memory_updates) saveAssistantSession(data.memory_updates);
     if (data.memory) saveAssistantSession(data.memory);

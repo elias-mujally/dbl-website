@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
-const GEMINI_MODEL = "gemini-1.5-flash";
-const FALLBACK_REPLY = "حدث خلل بسيط في الرد. جرّب إعادة صياغة سؤالك.";
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-1.5-flash";
+const FALLBACK_REPLY = "\u062a\u0639\u0630\u0631 \u0627\u0644\u0627\u062a\u0635\u0627\u0644 \u0628\u0627\u0644\u0645\u0633\u0627\u0639\u062f \u0627\u0644\u0622\u0646. \u062c\u0631\u0651\u0628 \u0645\u0631\u0629 \u0623\u062e\u0631\u0649 \u0628\u0639\u062f \u0644\u062d\u0638\u0627\u062a.";
 const ALLOWED_INTENTS = new Set([
   "greeting",
   "product_question",
@@ -30,8 +30,7 @@ function loadLocalEnv(rootDir) {
   const envPath = path.join(rootDir, ".env");
   if (!fs.existsSync(envPath)) return;
 
-  const lines = fs.readFileSync(envPath, "utf8").split(/\r?\n/);
-  lines.forEach((line) => {
+  fs.readFileSync(envPath, "utf8").split(/\r?\n/).forEach((line) => {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith("#")) return;
     const separator = trimmed.indexOf("=");
@@ -45,11 +44,23 @@ function loadLocalEnv(rootDir) {
   });
 }
 
+function logChat(label, value) {
+  if (value === undefined) {
+    console.log(`[DBL Guide] ${label}`);
+    return;
+  }
+  console.log(`[DBL Guide] ${label}:`, value);
+}
+
 function readProductKnowledge(rootDir) {
   const filePath = path.join(rootDir, "assets", "dbl-guide", "products.json");
   const raw = fs.readFileSync(filePath, "utf8");
   const data = JSON.parse(raw);
   return { raw, data };
+}
+
+function safeString(value, max = 1200) {
+  return String(value || "").trim().slice(0, max);
 }
 
 function productIds(products) {
@@ -59,10 +70,6 @@ function productIds(products) {
 function pageProductFromPath(currentPage, products) {
   const page = String(currentPage || "");
   return (products || []).find((product) => product.page_link && page.endsWith(product.page_link)) || null;
-}
-
-function safeString(value, max = 1200) {
-  return String(value || "").trim().slice(0, max);
 }
 
 function sanitizeHistory(history) {
@@ -86,56 +93,34 @@ function sanitizeMemory(memory) {
 
 function buildSystemPrompt({ language, productsRaw, currentPage, pageTitle, userMemory, conversationHistory }) {
   return [
-    "أنت DBL Guide، مساعد ذكي لموقع Digital Blueprint Lab.",
-    "أنت لست Chatbot بردود ثابتة، بل مستشار رقمي متخصص في منتجات DBL والعمل الرقمي ضمن نطاق DBL.",
+    "You are DBL Guide, the AI assistant for Digital Blueprint Lab.",
+    "You are not a fixed if/else chatbot. You are a focused digital consultant for DBL products and DBL-adjacent digital work.",
     "",
-    "مهمتك:",
-    "- فهم رسالة المستخدم وسياق المحادثة.",
-    "- استخدام ذاكرة المستخدم والصفحة الحالية.",
-    "- استخدام products.json كمصدر حقائق فقط.",
-    "- الإجابة بطريقة طبيعية وغير مكررة.",
-    "- عدم نسخ وصف المنتجات حرفيًا.",
-    "- عدم ترشيح منتج في كل رسالة.",
-    "- إذا كان السؤال واضحًا مثل السعر أو المحتويات، أجب مباشرة.",
-    "- إذا كانت المعلومات ناقصة، اسأل سؤالًا واحدًا فقط.",
-    "- إذا كان السؤال خارج نطاق DBL تمامًا، اعتذر بلطف بصياغة متنوعة، ولا تجب على السؤال نفسه.",
-    "- لا تستخدم نفس رسالة الاعتذار حرفيًا كل مرة.",
-    "- لا تعد بأرباح أو نتائج مالية مضمونة.",
-    "- لا تكتب روابط طويلة داخل الرد، استخدم buttons.",
-    "- اجعل الردود واضحة، إنسانية، ومناسبة للسياق.",
-    "- إذا كان السؤال قريبًا من نطاق DBL مثل العمل الرقمي أو AI أو الفريلانس، أجب باختصار ثم اربط بـ DBL فقط إذا كان مناسبًا.",
-    "- إذا قال المستخدم \"اشرحه\" أو \"كم سعره\" أو \"هل يناسبني\"، استخدم currentProduct أو lastRecommendedProduct من الذاكرة.",
+    "Use products.json as factual knowledge only. Do not copy long descriptions verbatim.",
+    "Understand the user's message, current page, memory, and conversation history.",
+    "Do not recommend a product in every message.",
+    "If the user asks a direct question such as price, contents, payment, or comparison, answer it directly.",
+    "If information is missing, ask exactly one useful follow-up question.",
+    "If the message is fully out of DBL scope, politely refuse without answering the outside topic. Vary the wording.",
+    "Do not promise guaranteed revenue, sales, or financial results.",
+    "Do not write long URLs inside reply text. Use buttons.",
+    "If the user says explain it, how much is it, or is it good for me, use currentProduct or lastRecommendedProduct from memory.",
     "",
-    "قواعد النطاق:",
-    "داخل النطاق: منتجات DBL، الأسعار، المحتويات، المقارنات، طرق الدفع، اختيار المنتج المناسب، العمل الرقمي، المنتجات الرقمية، الفريلانس، واستخدام AI في التسويق أو المحتوى أو العمل الحر أو بناء المنتجات الرقمية.",
-    "خارج النطاق تمامًا: الرياضة، الأخبار، الطب، القانون، الطبخ، السيارات، السفر، الأسئلة الشخصية غير المتعلقة بـ DBL، والبرمجة العامة غير المتعلقة بالموقع أو DBL.",
+    "Scope:",
+    "In scope: DBL products, prices, contents, comparisons, payment, product choice, digital work, digital products, freelancing, AI for marketing/content/freelancing/digital products.",
+    "Out of scope: sports, news, medical advice, legal advice, cooking, cars, travel, unrelated personal questions, and general programming unrelated to DBL or the website.",
     "",
-    "عند out_of_scope:",
-    "- لا تجب على الموضوع نفسه.",
-    "- اعتذر بلطف.",
-    "- وضح أنك متخصص في DBL والعمل الرقمي.",
-    "- غيّر الصياغة كل مرة.",
-    "- لا تجعل الرد طويلًا.",
-    "",
-    "قواعد الردود:",
-    "- لا تكرر نفس الجملة مرتين في محادثة واحدة.",
-    "- اجعل كل رد مناسبًا لما قاله المستخدم.",
-    "- لا تبدأ دائمًا بـ \"بناءً على كلامك\".",
-    "- لا تبدأ دائمًا بـ \"أعتذر\".",
-    "- لا تستخدم لغة تسويقية مبالغ فيها.",
-    "- لا تكن مبهمًا عند شرح المنتجات.",
-    "- عند شرح منتج، اذكر ما هو، ماذا يحتوي، لمن يناسب، ولماذا قد يفيد المستخدم بشكل مختصر ومنظم.",
-    "",
-    "يجب أن تعيد JSON صالحًا فقط، بدون Markdown وبدون شرح خارج JSON، بهذا الشكل:",
+    "Return ONLY valid JSON. No markdown. No code fences. No explanation outside JSON.",
+    "Required JSON shape:",
     JSON.stringify({
-      reply: "نص الرد الطبيعي للمستخدم",
+      reply: "natural answer for the user",
       intent: "greeting | product_question | price_question | product_details | comparison | payment | recommendation | near_scope_general | out_of_scope | unclear",
       is_out_of_scope: false,
       needs_more_info: false,
       recommended_product_id: null,
       current_product_id: null,
       confidence: 0,
-      buttons: [{ label: "عرض المنتج", type: "product", url: "/dbl-prompt-vault.html" }],
+      buttons: [{ label: "View Product", type: "product", url: "/dbl-prompt-vault.html" }],
       memory_updates: {
         userGoal: null,
         userOccupation: null,
@@ -147,7 +132,7 @@ function buildSystemPrompt({ language, productsRaw, currentPage, pageTitle, user
       }
     }, null, 2),
     "",
-    `Current website language: ${language === "ar" ? "Arabic" : "English"}. Reply in the same language unless the user clearly writes another language.`,
+    `Current website language: ${language === "ar" ? "Arabic" : "English"}. Reply in the user's language.`,
     `Current page path: ${currentPage || "/"}`,
     `Current page title: ${pageTitle || ""}`,
     `User memory JSON: ${JSON.stringify(userMemory)}`,
@@ -165,21 +150,42 @@ function extractTextFromGemini(data) {
     .trim() || "";
 }
 
-function parseStructuredOutput(text) {
-  const cleaned = text
-    .replace(/^```(?:json)?/i, "")
-    .replace(/```$/i, "")
+function cleanGeminiText(rawText) {
+  return safeString(rawText, 2000)
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/i, "")
     .trim();
+}
+
+function safeParseGeminiJson(rawText) {
+  const cleaned = cleanGeminiText(rawText);
+  if (!cleaned) {
+    return {
+      ok: false,
+      data: null,
+      rawText: "",
+      error: new Error("Gemini returned an empty text response")
+    };
+  }
+
+  const first = cleaned.indexOf("{");
+  const last = cleaned.lastIndexOf("}");
+  const jsonText = first !== -1 && last > first ? cleaned.slice(first, last + 1) : cleaned;
 
   try {
-    return JSON.parse(cleaned);
+    return {
+      ok: true,
+      data: JSON.parse(jsonText),
+      rawText: cleaned,
+      error: null
+    };
   } catch (error) {
-    const first = cleaned.indexOf("{");
-    const last = cleaned.lastIndexOf("}");
-    if (first !== -1 && last > first) {
-      return JSON.parse(cleaned.slice(first, last + 1));
-    }
-    throw error;
+    return {
+      ok: false,
+      data: null,
+      rawText: cleaned,
+      error
+    };
   }
 }
 
@@ -222,9 +228,9 @@ function sanitizeMemoryUpdates(memoryUpdates, ids) {
   return output;
 }
 
-function fallbackPayload() {
+function fallbackPayload(message = FALLBACK_REPLY, extra = {}) {
   return {
-    reply: FALLBACK_REPLY,
+    reply: message || FALLBACK_REPLY,
     intent: "unclear",
     is_out_of_scope: false,
     needs_more_info: true,
@@ -232,8 +238,15 @@ function fallbackPayload() {
     current_product_id: null,
     confidence: 0,
     buttons: [],
-    memory_updates: {}
+    memory_updates: {},
+    ...extra
   };
+}
+
+function rawTextPayload(rawText) {
+  return fallbackPayload(cleanGeminiText(rawText) || FALLBACK_REPLY, {
+    parse_fallback: true
+  });
 }
 
 function sanitizeGeminiPayload(payload, products, currentPage) {
@@ -270,7 +283,13 @@ async function createChatResponse({
   pageTitle = ""
 }) {
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) return fallbackPayload();
+  logChat("GEMINI_API_KEY present", Boolean(apiKey));
+  if (!apiKey) {
+    const error = new Error("Gemini API key is missing on the server.");
+    error.statusCode = 500;
+    error.publicMessage = "Gemini API key is missing on the server.";
+    throw error;
+  }
 
   const { raw: productsRaw, data: productsData } = readProductKnowledge(rootDir);
   const safeMessage = safeString(message, 1200);
@@ -289,34 +308,51 @@ async function createChatResponse({
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      systemInstruction: {
-        role: "system",
-        parts: [{ text: systemPrompt }]
-      },
       contents: [{
         role: "user",
-        parts: [{ text: safeMessage }]
+        parts: [{ text: `${systemPrompt}\n\nVisitor message:\n${safeMessage}` }]
       }],
       generationConfig: {
-        temperature: 0.65,
-        maxOutputTokens: 700,
-        responseMimeType: "application/json"
+        responseMimeType: "application/json",
+        temperature: 0.7,
+        maxOutputTokens: 700
       }
     })
   });
+  logChat("Gemini HTTP status", response.status);
 
+  const responseText = await response.text();
   if (!response.ok) {
-    throw new Error(`Gemini request failed with status ${response.status}`);
+    logChat("Gemini API error body", responseText.slice(0, 1200));
+    const error = new Error(`Gemini request failed with status ${response.status}`);
+    error.statusCode = 502;
+    error.publicMessage = "Gemini API request failed on the server.";
+    throw error;
   }
 
-  const data = await response.json();
-  const text = extractTextFromGemini(data);
-  const parsed = parseStructuredOutput(text);
-  return sanitizeGeminiPayload(parsed, productsData.products || [], currentPage);
+  let envelope;
+  try {
+    envelope = JSON.parse(responseText);
+  } catch (error) {
+    logChat("Gemini envelope JSON.parse error", error.message);
+    logChat("Gemini raw envelope", responseText.slice(0, 1200));
+    return rawTextPayload(responseText);
+  }
+
+  const rawText = extractTextFromGemini(envelope);
+  logChat("Gemini raw text before JSON.parse", rawText || "(empty)");
+  const parsed = safeParseGeminiJson(rawText);
+  if (!parsed.ok) {
+    logChat("Gemini structured JSON.parse error", parsed.error.message);
+    return rawTextPayload(parsed.rawText);
+  }
+
+  return sanitizeGeminiPayload(parsed.data, productsData.products || [], currentPage);
 }
 
 module.exports = {
   createChatResponse,
   fallbackPayload,
-  loadLocalEnv
+  loadLocalEnv,
+  safeParseGeminiJson
 };
