@@ -456,16 +456,15 @@ function buildProductDetailsReply(product) {
 
 function buildAssistantIntro() {
   const session = loadAssistantSession();
-  const actions = assistantGoalOptions();
   if (session.goal) {
     return {
       text: getAssistantText('returningIntro').replace('{goal}', getGoalLabel(session.goal)),
-      actions
+      actions: []
     };
   }
   return {
     text: `${getAssistantText('intro')} ${getAssistantText('goalQuestion')}`,
-    actions
+    actions: []
   };
 }
 
@@ -566,7 +565,7 @@ async function buildAssistantFlowReply(input) {
   };
 }
 
-async function requestAssistantReply(message, flow) {
+async function requestAssistantReply(message) {
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -574,9 +573,8 @@ async function requestAssistantReply(message, flow) {
       body: JSON.stringify({
         message,
         language: currentLanguage,
-        stage: flow.stage,
-        draftReply: flow.text,
-        recommendedProductId: flow.product?.id || loadAssistantSession().recommendedProduct || null,
+        currentPage: window.location.pathname,
+        pageTitle: document.title,
         memory: loadAssistantSession()
       })
     });
@@ -585,10 +583,18 @@ async function requestAssistantReply(message, flow) {
 
     const data = await response.json();
     const reply = String(data.reply || '').trim();
-    return reply || flow.text;
+    if (data.memory) saveAssistantSession(data.memory);
+    return {
+      reply,
+      actions: Array.isArray(data.actions) ? data.actions : []
+    };
   } catch (error) {
     console.warn('DBL Guide API unavailable, using fallback reply:', error);
-    return flow.text;
+    const flow = await buildAssistantFlowReply(message);
+    return {
+      reply: flow.text,
+      actions: flow.actions
+    };
   }
 }
 
@@ -672,10 +678,9 @@ function injectAssistantWidget() {
     input.value = '';
     setAssistantState(widget, 'thinking');
     const thinking = addAssistantMessage(messages, getAssistantText('thinking'), 'assistant');
-    const flow = await buildAssistantFlowReply(value);
-    const reply = await requestAssistantReply(value, flow);
+    const result = await requestAssistantReply(value);
     thinking.remove();
-    addAssistantMessage(messages, reply, 'assistant', flow.actions);
+    addAssistantMessage(messages, result.reply, 'assistant', result.actions);
     setAssistantState(widget, 'happy');
     window.setTimeout(() => setAssistantState(widget, 'idle'), 1400);
   };

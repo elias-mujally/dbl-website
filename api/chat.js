@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { analyzeConversation } = require("../assistant-brain");
 
 function sendJson(res, status, payload) {
   res.statusCode = status;
@@ -20,28 +21,32 @@ function getProductKnowledge() {
   }
 }
 
-async function getGeminiReply(message, language, context = {}) {
+function getProductKnowledgeData() {
+  try {
+    return JSON.parse(getProductKnowledge());
+  } catch (error) {
+    return { products: [] };
+  }
+}
+
+async function getGeminiReply(message, language, brain) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    const error = new Error("GEMINI_API_KEY is not configured");
-    error.statusCode = 503;
-    throw error;
+    return brain.draftReply;
   }
 
   const prompt = [
-    "You are DBL Guide, the helpful assistant for Digital Blueprint Lab.",
-    "The website code decides the conversation stage and recommended product. You only rewrite the provided draft reply naturally.",
-    "Do not choose a different product. Do not add product links as raw text. Do not add full product descriptions unless the stage is product_details.",
-    "Keep replies short, practical, friendly, and focused on DBL.",
-    "If the user asks in Arabic, reply in natural Arabic. If they ask in English, reply in English.",
-    "Use the product knowledge JSON below as the source of truth for products, prices, links, recommendation rules, and assistant behavior.",
-    "Do not invent products, prices, discounts, guarantees, or payment links that are not in the product knowledge.",
+    "أنت DBL Guide، مساعد ذكي لموقع Digital Blueprint Lab. أنت لست chatbot مبيعات تقليدي. أنت مستشار رقمي ودود يساعد الزائر على فهم احتياجه واختيار المورد المناسب عند الحاجة. لا تبدأ بالبيع. افهم أولًا. اسأل سؤالًا واحدًا فقط إذا كانت المعلومات ناقصة. استخدم بيانات products.json كحقائق فقط، ولا تنسخ الوصف حرفيًا. لا ترشح منتجًا إلا إذا كان مناسبًا. اجعل الردود قصيرة، طبيعية، متنوعة، وواضحة. إذا كان السؤال لا يحتاج منتجًا، أجب بدون بيع. إذا رشحت منتجًا، اذكر السبب بجملة أو جملتين فقط.",
+    "The Conversation Brain already decided the intent, action, product, memory, and draft reply. Do not change the decision or recommend a different product.",
+    "Do not write raw product URLs. Buttons are handled by the website UI.",
     "Never promise guaranteed income, sales, or financial results.",
     `Current website language: ${language === "ar" ? "Arabic" : "English"}.`,
-    `Conversation stage: ${context.stage || "diagnosis"}.`,
-    `Recommended product id chosen by code: ${context.recommendedProductId || "none"}.`,
-    `Session memory: ${JSON.stringify(context.memory || {})}.`,
-    `Draft reply to rewrite without changing its meaning: ${context.draftReply || ""}`,
+    `Brain intent: ${brain.intent}.`,
+    `Brain action: ${brain.decision}.`,
+    `Recommended product id chosen by brain: ${brain.product?.id || "none"}.`,
+    `Current page product id: ${brain.pageProduct?.id || "none"}.`,
+    `Session memory: ${JSON.stringify(brain.memory || {})}.`,
+    `Draft reply to rewrite naturally without changing meaning: ${brain.draftReply || ""}`,
     "Product knowledge JSON:",
     getProductKnowledge(),
     `Visitor message: ${message}`
@@ -90,20 +95,29 @@ module.exports = async function handler(req, res) {
     const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
     const message = String(body.message || "").trim();
     const language = body.language === "ar" ? "ar" : "en";
-    const context = {
-      stage: body.stage,
-      draftReply: body.draftReply,
-      recommendedProductId: body.recommendedProductId,
-      memory: body.memory
-    };
 
     if (!message) {
       sendJson(res, 400, { error: "Message is required" });
       return;
     }
 
-    const reply = await getGeminiReply(message.slice(0, 1200), language, context);
-    sendJson(res, 200, { reply });
+    const knowledge = getProductKnowledgeData();
+    const brain = analyzeConversation({
+      message: message.slice(0, 1200),
+      language,
+      currentPage: body.currentPage,
+      pageTitle: body.pageTitle,
+      memory: body.memory,
+      products: knowledge.products || []
+    });
+    const reply = await getGeminiReply(message.slice(0, 1200), language, brain);
+    sendJson(res, 200, {
+      reply,
+      actions: brain.actions,
+      memory: brain.memory,
+      intent: brain.intent,
+      decision: brain.decision
+    });
   } catch (error) {
     console.error("DBL Guide chat error:", error.message);
     sendJson(res, error.statusCode || 500, { error: "Assistant is temporarily unavailable" });
