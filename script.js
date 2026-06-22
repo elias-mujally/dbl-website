@@ -259,6 +259,28 @@ function getDemoAssistantReply(input) {
   return getAssistantText('defaultReply');
 }
 
+async function requestAssistantReply(message) {
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message,
+        language: currentLanguage
+      })
+    });
+
+    if (!response.ok) throw new Error(`Chat request failed: ${response.status}`);
+
+    const data = await response.json();
+    const reply = String(data.reply || '').trim();
+    return reply || getDemoAssistantReply(message);
+  } catch (error) {
+    console.warn('DBL Guide API unavailable, using fallback reply:', error);
+    return getDemoAssistantReply(message);
+  }
+}
+
 function updateAssistantLanguage(widget) {
   if (!widget) return;
   widget.querySelector('[data-dbl-assistant-title]').textContent = getAssistantText('title');
@@ -331,7 +353,7 @@ function injectAssistantWidget() {
     chatWindow.setAttribute('aria-hidden', 'true');
   });
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const value = input.value.trim();
     if (!value) return;
@@ -339,12 +361,11 @@ function injectAssistantWidget() {
     input.value = '';
     setAssistantState(widget, 'thinking');
     const thinking = addAssistantMessage(messages, getAssistantText('thinking'), 'assistant');
-    window.setTimeout(() => {
-      thinking.remove();
-      addAssistantMessage(messages, getDemoAssistantReply(value), 'assistant');
-      setAssistantState(widget, 'happy');
-      window.setTimeout(() => setAssistantState(widget, 'idle'), 1400);
-    }, 850);
+    const reply = await requestAssistantReply(value);
+    thinking.remove();
+    addAssistantMessage(messages, reply, 'assistant');
+    setAssistantState(widget, 'happy');
+    window.setTimeout(() => setAssistantState(widget, 'idle'), 1400);
   });
 
   window.setTimeout(() => showAssistantBubble(widget, getAssistantText('welcomeBubble'), 8000), 5000);
