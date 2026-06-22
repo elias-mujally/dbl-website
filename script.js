@@ -149,6 +149,7 @@ function updatePageTranslations() {
     element.setAttribute('alt', translation);
   });
   updateThemeToggleLabel();
+  updateAssistantLanguage(document.querySelector('.dbl-assistant-widget'));
 }
 
 function setLanguage(lang) {
@@ -196,9 +197,164 @@ function handleDiscountReveal(button) {
   if (code) copyTextToClipboard(code).catch(() => {});
 }
 
+function getAssistantText(key) {
+  const dictionary = {
+    ar: {
+      welcomeBubble: 'هل تريد مساعدة؟ اسأل DBL Guide',
+      secondBubble: 'أقدر أرشح لك المنتج المناسب خلال دقيقة.',
+      title: 'DBL Guide',
+      status: 'متصل الآن',
+      intro: 'مرحباً، أنا DBL Guide. أقدر أساعدك تختار المنتج المناسب أو أوضح لك طريقة الدفع.',
+      placeholder: 'اكتب رسالتك...',
+      send: 'إرسال',
+      thinking: 'يفكر...',
+      quickReply: 'إذا كنت تريد نظام كامل، ابدأ بـ DBL Business Suite. إذا تريد أدوات عملاء فقط، DBL Client Kit مناسب. وإذا تريد برومبتات AI، Prompt Vault هو الخيار الأفضل.',
+      paymentReply: 'للدفع بالبطاقة استخدم Gumroad. إذا لا تملك بطاقة، افتح صفحة طرق الدفع البديلة لاستخدام Binance Pay أو USDT.',
+      defaultReply: 'فهمت عليك. كنسخة تجريبية، أقدر أرشح لك منتجاً حسب هدفك: إطلاق مشروع، إدارة عملاء، أو استخدام AI بشكل أفضل.'
+    },
+    en: {
+      welcomeBubble: 'Need help? Ask DBL Guide',
+      secondBubble: 'I can recommend the right product in one minute.',
+      title: 'DBL Guide',
+      status: 'Online now',
+      intro: 'Hi, I am DBL Guide. I can help you choose a product or understand the payment options.',
+      placeholder: 'Write your message...',
+      send: 'Send',
+      thinking: 'Thinking...',
+      quickReply: 'If you want the complete system, start with DBL Business Suite. For client tools, choose DBL Client Kit. For AI prompts, Prompt Vault is the best fit.',
+      paymentReply: 'Use Gumroad for card checkout. If you do not have a card, open Alternative Payment Methods for Binance Pay or USDT.',
+      defaultReply: 'Got it. In this demo version, I can recommend a product based on your goal: launching, managing clients, or using AI better.'
+    }
+  };
+  return dictionary[currentLanguage]?.[key] || dictionary.en[key] || key;
+}
+
+function setAssistantState(widget, state) {
+  widget.classList.remove('is-thinking', 'is-happy', 'is-open-wave');
+  if (state === 'thinking') widget.classList.add('is-thinking');
+  if (state === 'happy') widget.classList.add('is-happy');
+  if (state === 'wave') {
+    widget.classList.add('is-open-wave');
+    window.setTimeout(() => widget.classList.remove('is-open-wave'), 900);
+  }
+}
+
+function addAssistantMessage(messages, text, type = 'assistant') {
+  const message = document.createElement('div');
+  message.className = `dbl-chat-message ${type === 'user' ? 'is-user' : 'is-assistant'}`;
+  message.textContent = text;
+  messages.appendChild(message);
+  messages.scrollTop = messages.scrollHeight;
+  return message;
+}
+
+function getDemoAssistantReply(input) {
+  const normalized = input.toLowerCase();
+  if (/pay|payment|gumroad|binance|usdt|دفع|بطاقة|بينانس|باينانس|يو اس دي|usdt/i.test(normalized)) {
+    return getAssistantText('paymentReply');
+  }
+  if (/product|bundle|suite|kit|prompt|book|منتج|حزمة|كتاب|عميل|برومبت|ذكاء/i.test(normalized)) {
+    return getAssistantText('quickReply');
+  }
+  return getAssistantText('defaultReply');
+}
+
+function updateAssistantLanguage(widget) {
+  if (!widget) return;
+  widget.querySelector('[data-dbl-assistant-title]').textContent = getAssistantText('title');
+  widget.querySelector('[data-dbl-assistant-status]').textContent = getAssistantText('status');
+  widget.querySelector('[data-dbl-assistant-placeholder]').setAttribute('placeholder', getAssistantText('placeholder'));
+  widget.querySelector('[data-dbl-assistant-send]').setAttribute('aria-label', getAssistantText('send'));
+  const bubble = widget.querySelector('.dbl-chat-bubble');
+  if (bubble && !widget.classList.contains('is-chat-open')) bubble.textContent = getAssistantText('welcomeBubble');
+}
+
+function showAssistantBubble(widget, text, duration = 8000) {
+  if (widget.classList.contains('is-chat-open')) return;
+  const bubble = widget.querySelector('.dbl-chat-bubble');
+  bubble.textContent = text;
+  bubble.classList.add('is-visible');
+  window.clearTimeout(widget._bubbleTimer);
+  widget._bubbleTimer = window.setTimeout(() => bubble.classList.remove('is-visible'), duration);
+}
+
+function injectAssistantWidget() {
+  if (document.querySelector('.dbl-assistant-widget')) return;
+
+  const widget = document.createElement('aside');
+  widget.className = 'dbl-assistant-widget';
+  widget.setAttribute('aria-label', 'DBL Guide assistant');
+  widget.innerHTML = `
+    <div class="dbl-chat-bubble" role="status" aria-live="polite"></div>
+    <section class="dbl-chat-window" aria-hidden="true">
+      <header class="dbl-chat-header">
+        <img class="dbl-chat-header-avatar" src="/assets/dbl-guide/dbl-guide-bot.svg" alt="" aria-hidden="true">
+        <div>
+          <strong data-dbl-assistant-title>DBL Guide</strong>
+          <span data-dbl-assistant-status>Online now</span>
+        </div>
+        <button type="button" class="dbl-chat-close" aria-label="Close DBL Guide">×</button>
+      </header>
+      <div class="dbl-chat-messages"></div>
+      <form class="dbl-chat-form">
+        <input type="text" data-dbl-assistant-placeholder autocomplete="off" />
+        <button type="submit" data-dbl-assistant-send aria-label="Send">➤</button>
+      </form>
+    </section>
+    <button type="button" class="dbl-assistant-avatar" aria-label="Open DBL Guide">
+      <img src="/assets/dbl-guide/dbl-guide-bot.svg" alt="DBL Guide">
+      <span class="dbl-assistant-pulse" aria-hidden="true"></span>
+    </button>
+  `;
+  document.body.appendChild(widget);
+
+  const avatar = widget.querySelector('.dbl-assistant-avatar');
+  const closeButton = widget.querySelector('.dbl-chat-close');
+  const chatWindow = widget.querySelector('.dbl-chat-window');
+  const messages = widget.querySelector('.dbl-chat-messages');
+  const form = widget.querySelector('.dbl-chat-form');
+  const input = form.querySelector('input');
+
+  updateAssistantLanguage(widget);
+  addAssistantMessage(messages, getAssistantText('intro'));
+
+  avatar.addEventListener('click', () => {
+    widget.classList.add('is-chat-open');
+    chatWindow.setAttribute('aria-hidden', 'false');
+    widget.querySelector('.dbl-chat-bubble').classList.remove('is-visible');
+    setAssistantState(widget, 'wave');
+    input.focus({ preventScroll: true });
+  });
+
+  closeButton.addEventListener('click', () => {
+    widget.classList.remove('is-chat-open');
+    chatWindow.setAttribute('aria-hidden', 'true');
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const value = input.value.trim();
+    if (!value) return;
+    addAssistantMessage(messages, value, 'user');
+    input.value = '';
+    setAssistantState(widget, 'thinking');
+    const thinking = addAssistantMessage(messages, getAssistantText('thinking'), 'assistant');
+    window.setTimeout(() => {
+      thinking.remove();
+      addAssistantMessage(messages, getDemoAssistantReply(value), 'assistant');
+      setAssistantState(widget, 'happy');
+      window.setTimeout(() => setAssistantState(widget, 'idle'), 1400);
+    }, 850);
+  });
+
+  window.setTimeout(() => showAssistantBubble(widget, getAssistantText('welcomeBubble'), 8000), 5000);
+  window.setTimeout(() => showAssistantBubble(widget, getAssistantText('secondBubble'), 8000), 30000);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   injectBrandAssets();
   injectThemeToggles();
+  injectAssistantWidget();
   injectClarityTracking();
   updateSocialLinks();
 
