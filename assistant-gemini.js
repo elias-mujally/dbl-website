@@ -249,6 +249,45 @@ function rawTextPayload(rawText) {
   });
 }
 
+async function callGeminiGenerate({ apiKey, prompt, useJsonMime }) {
+  const generationConfig = {
+    temperature: 0.7,
+    maxOutputTokens: 700
+  };
+  if (useJsonMime) generationConfig.responseMimeType = "application/json";
+
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{
+        role: "user",
+        parts: [{ text: prompt }]
+      }],
+      generationConfig
+    })
+  });
+  const responseText = await response.text();
+  return { response, responseText, useJsonMime };
+}
+
+function parseGeminiEnvelope(responseText) {
+  const envelope = JSON.parse(responseText);
+  return {
+    envelope,
+    rawText: extractTextFromGemini(envelope)
+  };
+}
+
+function logChatError({ status, error }) {
+  console.error("DBL Chat Error", {
+    hasKey: Boolean(process.env.GEMINI_API_KEY),
+    model: GEMINI_MODEL,
+    status,
+    error: error?.message || String(error || "")
+  });
+}
+
 function sanitizeGeminiPayload(payload, products, currentPage) {
   const ids = productIds(products);
   const pageProduct = pageProductFromPath(currentPage, products);
@@ -304,55 +343,119 @@ async function createChatResponse({
     conversationHistory: safeHistory
   });
 
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{
-        role: "user",
-        parts: [{ text: `${systemPrompt}\n\nVisitor message:\n${safeMessage}` }]
-      }],
-      generationConfig: {
-        responseMimeType: "application/json",
-        temperature: 0.7,
-        maxOutputTokens: 700
+  const prompt = `${systemPrompt}\n\nVisitor message:\n${safeMessage}`;
+  let lastError = null;
+  let lastStatus = null;
+
+  for (const useJsonMime of [true, false]) {
+    try {
+      const { response, responseText } = await callGeminiGenerate({ apiKey, prompt, useJsonMime });
+      lastStatus = response.status;
+      logChat("Gemini HTTP status", `${response.status} jsonMime=${useJsonMime}`);
+
+      if (!response.ok) {
+        logChat("Gemini API error body", responseText.slice(0, 1200));
+        lastError = new Error(`Gemini request failed with status ${response.status}`);
+        continue;
       }
-    })
+
+      let rawText = "";
+      try {
+        rawText = parseGeminiEnvelope(responseText).rawText;
+      } catch (error) {
+        logChat("Gemini envelope JSON.parse error", error.message);
+        logChat("Gemini raw envelope", responseText.slice(0, 1200));
+        return rawTextPayload(responseText);
+      }
+
+      logChat("Gemini raw text before JSON.parse", rawText || "(empty)");
+      const parsed = safeParseGeminiJson(rawText);
+      if (!parsed.ok) {
+        logChat("Gemini structured JSON.parse error", parsed.error.message);
+        return rawTextPayload(parsed.rawText);
+      }
+
+      return sanitizeGeminiPayload(parsed.data, productsData.products || [], currentPage);
+    } catch (error) {
+      lastError = error;
+      logChatError({ status: lastStatus, error });
+    }
+  }
+
+  logChatError({ status: lastStatus, error: lastError || new Error("Gemini request failed") });
+  return fallbackPayload(FALLBACK_REPLY, {
+    debug_error: process.env.NODE_ENV === "production" ? undefined : safeString(lastError?.message || "Gemini request failed", 300),
+    server_error: true
   });
-  logChat("Gemini HTTP status", response.status);
+}
 
-  const responseText = await response.text();
-  if (!response.ok) {
-    logChat("Gemini API error body", responseText.slice(0, 1200));
-    const error = new Error(`Gemini request failed with status ${response.status}`);
-    error.statusCode = 502;
-    error.publicMessage = "Gemini API request failed on the server.";
-    throw error;
-  }
+async function runChatDiagnostic(rootDir) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  const diagnostic = {
+    ok: false,
+    hasGeminiKey: Boolean(apiKey),
+    model: GEMINI_MODEL,
+    geminiStatus: null,
+    geminiRawTextPreview: "",
+    parsed: false,
+    productsLoaded: false,
+    error: null
+  };
 
-  let envelope;
   try {
-    envelope = JSON.parse(responseText);
+    readProductKnowledge(rootDir);
+    diagnostic.productsLoaded = true;
   } catch (error) {
-    logChat("Gemini envelope JSON.parse error", error.message);
-    logChat("Gemini raw envelope", responseText.slice(0, 1200));
-    return rawTextPayload(responseText);
+    diagnostic.error = `products.json failed: ${error.message}`;
+    return diagnostic;
   }
 
-  const rawText = extractTextFromGemini(envelope);
-  logChat("Gemini raw text before JSON.parse", rawText || "(empty)");
-  const parsed = safeParseGeminiJson(rawText);
-  if (!parsed.ok) {
-    logChat("Gemini structured JSON.parse error", parsed.error.message);
-    return rawTextPayload(parsed.rawText);
+  if (!apiKey) {
+    diagnostic.error = "Gemini API key is missing on the server.";
+    return diagnostic;
   }
 
-  return sanitizeGeminiPayload(parsed.data, productsData.products || [], currentPage);
+  const prompt = [
+    "Return ONLY valid JSON. No markdown.",
+    "Use this exact shape:",
+    JSON.stringify({ reply: "hello from DBL Guide" }),
+    "Message: قل مرحبًا من DBL Guide"
+  ].join("\n");
+
+  let lastError = null;
+  for (const useJsonMime of [true, false]) {
+    try {
+      const { response, responseText } = await callGeminiGenerate({ apiKey, prompt, useJsonMime });
+      diagnostic.geminiStatus = response.status;
+
+      if (!response.ok) {
+        diagnostic.geminiRawTextPreview = responseText.slice(0, 500);
+        lastError = new Error(`Gemini request failed with status ${response.status}`);
+        continue;
+      }
+
+      const { rawText } = parseGeminiEnvelope(responseText);
+      diagnostic.geminiRawTextPreview = safeString(rawText || responseText, 500);
+      const parsed = safeParseGeminiJson(rawText);
+      diagnostic.parsed = parsed.ok;
+      diagnostic.ok = parsed.ok;
+      diagnostic.error = parsed.ok ? null : parsed.error.message;
+      return diagnostic;
+    } catch (error) {
+      lastError = error;
+      diagnostic.error = error.message;
+      logChatError({ status: diagnostic.geminiStatus, error });
+    }
+  }
+
+  diagnostic.error = lastError?.message || diagnostic.error || "Gemini diagnostic failed";
+  return diagnostic;
 }
 
 module.exports = {
   createChatResponse,
   fallbackPayload,
   loadLocalEnv,
+  runChatDiagnostic,
   safeParseGeminiJson
 };

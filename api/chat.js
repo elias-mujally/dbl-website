@@ -1,5 +1,17 @@
 const { createChatResponse, fallbackPayload, loadLocalEnv } = require("../assistant-gemini");
 
+/*
+POST /api/chat
+{
+  "message": "أهلا",
+  "language": "ar",
+  "conversationHistory": [],
+  "userMemory": {},
+  "currentPage": "/",
+  "pageTitle": "Digital Blueprint Lab"
+}
+*/
+
 function sendJson(res, status, payload) {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -37,10 +49,16 @@ module.exports = async function handler(req, res) {
 
     sendJson(res, 200, result);
   } catch (error) {
-    console.error("DBL Guide chat error:", error.message);
+    console.error("DBL Chat Error", {
+      hasKey: Boolean(process.env.GEMINI_API_KEY),
+      model: process.env.GEMINI_MODEL || "gemini-1.5-flash",
+      status: error.statusCode || null,
+      error: error.message
+    });
     sendJson(res, 200, {
       ...fallbackPayload(),
-      error: error.publicMessage || "Assistant is temporarily unavailable."
+      error: error.publicMessage || "Assistant is temporarily unavailable.",
+      debug_error: process.env.NODE_ENV === "production" ? undefined : error.message
     });
   }
 };

@@ -2,7 +2,7 @@ require("dotenv").config();
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
-const { createChatResponse, fallbackPayload, loadLocalEnv } = require("./assistant-gemini");
+const { createChatResponse, fallbackPayload, loadLocalEnv, runChatDiagnostic } = require("./assistant-gemini");
 
 const root = __dirname;
 loadLocalEnv(root);
@@ -79,10 +79,16 @@ async function handleChatRequest(req, res) {
 
     sendJson(res, 200, result);
   } catch (error) {
-    console.error("DBL Guide chat error:", error.message);
+    console.error("DBL Chat Error", {
+      hasKey: Boolean(process.env.GEMINI_API_KEY),
+      model: process.env.GEMINI_MODEL || "gemini-1.5-flash",
+      status: error.statusCode || null,
+      error: error.message
+    });
     sendJson(res, 200, {
       ...fallbackPayload(),
-      error: error.publicMessage || "Assistant is temporarily unavailable."
+      error: error.publicMessage || "Assistant is temporarily unavailable.",
+      debug_error: process.env.NODE_ENV === "production" ? undefined : error.message
     });
   }
 }
@@ -95,6 +101,22 @@ http.createServer((req, res) => {
       ok: true,
       hasGeminiKey: Boolean(process.env.GEMINI_API_KEY)
     });
+    return;
+  }
+
+  if (urlPath === "/api/chat-test") {
+    runChatDiagnostic(root)
+      .then((result) => sendJson(res, 200, result))
+      .catch((error) => sendJson(res, 200, {
+        ok: false,
+        hasGeminiKey: Boolean(process.env.GEMINI_API_KEY),
+        model: process.env.GEMINI_MODEL || "gemini-1.5-flash",
+        geminiStatus: null,
+        geminiRawTextPreview: "",
+        parsed: false,
+        productsLoaded: false,
+        error: error.message
+      }));
     return;
   }
 

@@ -633,7 +633,17 @@ async function requestAssistantReply(message) {
       })
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
+    console.error('chat response status:', response.status);
+    console.error('chat response body:', responseText);
+
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (parseError) {
+      console.error('chat response JSON parse error:', parseError);
+      throw parseError;
+    }
     if (!response.ok || data.error) {
       console.warn('DBL Guide server error:', {
         status: response.status,
