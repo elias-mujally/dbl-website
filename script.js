@@ -2,6 +2,8 @@
 let currentLanguage = 'ar';
 let translations = {};
 let currentTheme = 'dark';
+// Set DBL_GUIDE_ENABLED to true when DBL Guide is ready to relaunch.
+const DBL_GUIDE_ENABLED = false;
 let assistantKnowledgePromise = null;
 const assistantSessionKey = 'dbl-guide-session';
 const assistantHistoryKey = 'dbl-guide-history';
@@ -753,6 +755,7 @@ function showAssistantBubble(widget, text, duration = 8000) {
 }
 
 function injectAssistantWidget() {
+  if (!DBL_GUIDE_ENABLED) return;
   if (document.querySelector('.dbl-assistant-widget')) return;
 
   const widget = document.createElement('aside');
@@ -922,7 +925,7 @@ function injectAssistantWidget() {
 document.addEventListener('DOMContentLoaded', async () => {
   injectBrandAssets();
   injectThemeToggles();
-  injectAssistantWidget();
+  if (DBL_GUIDE_ENABLED) injectAssistantWidget();
   injectClarityTracking();
   updateSocialLinks();
 
