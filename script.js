@@ -4,6 +4,8 @@ let translations = {};
 let currentTheme = 'dark';
 let assistantKnowledgePromise = null;
 const assistantSessionKey = 'dbl-guide-session';
+const assistantPositionKey = 'dbl-guide-position';
+const assistantBubbleDismissedKey = 'dbl-guide-bubble-dismissed';
 
 function getSavedTheme() {
   try {
@@ -604,15 +606,75 @@ function updateAssistantLanguage(widget) {
   widget.querySelector('[data-dbl-assistant-status]').textContent = getAssistantText('status');
   widget.querySelector('[data-dbl-assistant-placeholder]').setAttribute('placeholder', getAssistantText('placeholder'));
   widget.querySelector('[data-dbl-assistant-send]').setAttribute('aria-label', getAssistantText('send'));
+  const bubbleText = widget.querySelector('[data-dbl-bubble-text]');
+  if (bubbleText && !widget.classList.contains('is-chat-open')) bubbleText.textContent = getAssistantText('welcomeBubble');
+}
+
+function getAssistantPosition() {
+  try {
+    return JSON.parse(localStorage.getItem(assistantPositionKey) || 'null');
+  } catch (error) {
+    return null;
+  }
+}
+
+function saveAssistantPosition(position) {
+  try {
+    localStorage.setItem(assistantPositionKey, JSON.stringify(position));
+  } catch (error) {
+    // Dragging still works when storage is unavailable.
+  }
+}
+
+function clampAssistantPosition(position, avatarSize) {
+  const margin = 8;
+  const maxRight = Math.max(margin, window.innerWidth - avatarSize - margin);
+  const maxBottom = Math.max(margin, window.innerHeight - avatarSize - margin);
+  return {
+    right: Math.min(Math.max(position.right, margin), maxRight),
+    bottom: Math.min(Math.max(position.bottom, margin), maxBottom)
+  };
+}
+
+function applyAssistantPosition(widget, position) {
+  if (!position) return;
+  const avatar = widget.querySelector('.dbl-assistant-avatar');
+  const avatarSize = avatar?.offsetWidth || 82;
+  const safe = clampAssistantPosition(position, avatarSize);
+  widget.style.right = `${safe.right}px`;
+  widget.style.bottom = `${safe.bottom}px`;
+}
+
+function isAssistantBubbleDismissed() {
+  try {
+    return sessionStorage.getItem(assistantBubbleDismissedKey) === 'true';
+  } catch (error) {
+    return false;
+  }
+}
+
+function dismissAssistantBubble(widget) {
   const bubble = widget.querySelector('.dbl-chat-bubble');
-  if (bubble && !widget.classList.contains('is-chat-open')) bubble.textContent = getAssistantText('welcomeBubble');
+  window.clearTimeout(widget._bubbleTimer);
+  bubble.classList.add('is-dismissing');
+  bubble.classList.remove('is-visible');
+  try {
+    sessionStorage.setItem(assistantBubbleDismissedKey, 'true');
+  } catch (error) {
+    // The visual dismissal is enough if storage is unavailable.
+  }
+  window.setTimeout(() => bubble.classList.remove('is-dismissing'), 240);
 }
 
 function showAssistantBubble(widget, text, duration = 8000) {
+  if (isAssistantBubbleDismissed()) return;
   if (widget.classList.contains('is-chat-open')) return;
   const bubble = widget.querySelector('.dbl-chat-bubble');
-  bubble.textContent = text;
+  const bubbleText = widget.querySelector('[data-dbl-bubble-text]');
+  if (bubbleText) bubbleText.textContent = text;
   bubble.classList.add('is-visible');
+  widget.classList.add('has-new-bubble');
+  window.setTimeout(() => widget.classList.remove('has-new-bubble'), 760);
   window.clearTimeout(widget._bubbleTimer);
   widget._bubbleTimer = window.setTimeout(() => bubble.classList.remove('is-visible'), duration);
 }
@@ -624,7 +686,10 @@ function injectAssistantWidget() {
   widget.className = 'dbl-assistant-widget';
   widget.setAttribute('aria-label', 'DBL Guide assistant');
   widget.innerHTML = `
-    <div class="dbl-chat-bubble" role="status" aria-live="polite"></div>
+    <div class="dbl-chat-bubble" role="status" aria-live="polite">
+      <button type="button" class="dbl-chat-bubble-close" aria-label="Close message">×</button>
+      <span data-dbl-bubble-text></span>
+    </div>
     <section class="dbl-chat-window" aria-hidden="true">
       <header class="dbl-chat-header">
         <img class="dbl-chat-header-avatar" src="/assets/dbl-guide/dbl-guide-bot.svg" alt="" aria-hidden="true">
@@ -648,17 +713,25 @@ function injectAssistantWidget() {
   document.body.appendChild(widget);
 
   const avatar = widget.querySelector('.dbl-assistant-avatar');
+  const bubbleClose = widget.querySelector('.dbl-chat-bubble-close');
   const closeButton = widget.querySelector('.dbl-chat-close');
   const chatWindow = widget.querySelector('.dbl-chat-window');
   const messages = widget.querySelector('.dbl-chat-messages');
   const form = widget.querySelector('.dbl-chat-form');
   const input = form.querySelector('input');
+  let didDragAssistant = false;
 
   updateAssistantLanguage(widget);
+  window.setTimeout(() => applyAssistantPosition(widget, getAssistantPosition()), 0);
+  window.addEventListener('resize', () => applyAssistantPosition(widget, getAssistantPosition()));
   const intro = buildAssistantIntro();
   addAssistantMessage(messages, intro.text, 'assistant', intro.actions);
 
   avatar.addEventListener('click', () => {
+    if (didDragAssistant) {
+      didDragAssistant = false;
+      return;
+    }
     widget.classList.add('is-chat-open');
     chatWindow.setAttribute('aria-hidden', 'false');
     widget.querySelector('.dbl-chat-bubble').classList.remove('is-visible');
@@ -666,10 +739,81 @@ function injectAssistantWidget() {
     input.focus({ preventScroll: true });
   });
 
+  bubbleClose.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    dismissAssistantBubble(widget);
+  });
+
   closeButton.addEventListener('click', () => {
     widget.classList.remove('is-chat-open');
     chatWindow.setAttribute('aria-hidden', 'true');
   });
+
+  avatar.addEventListener('pointerdown', (event) => {
+    if (event.button !== undefined && event.button !== 0) return;
+    const avatarRect = avatar.getBoundingClientRect();
+    const grabOffsetX = event.clientX - avatarRect.left;
+    const grabOffsetY = event.clientY - avatarRect.top;
+    const startX = event.clientX;
+    const startY = event.clientY;
+    const avatarSize = avatarRect.width;
+    let dragging = false;
+
+    avatar.setPointerCapture(event.pointerId);
+
+    const handlePointerMove = (moveEvent) => {
+      const deltaX = moveEvent.clientX - startX;
+      const deltaY = moveEvent.clientY - startY;
+      if (!dragging && Math.hypot(deltaX, deltaY) < 5) return;
+      dragging = true;
+      didDragAssistant = true;
+      widget.classList.add('is-dragging');
+      widget.classList.toggle('is-looking-left', deltaX < -2);
+      widget.classList.toggle('is-looking-right', deltaX > 2);
+
+      const nextLeft = Math.min(Math.max(moveEvent.clientX - grabOffsetX, 8), window.innerWidth - avatarSize - 8);
+      const nextTop = Math.min(Math.max(moveEvent.clientY - grabOffsetY, 8), window.innerHeight - avatarSize - 8);
+      const nextPosition = {
+        right: window.innerWidth - nextLeft - avatarSize,
+        bottom: window.innerHeight - nextTop - avatarSize
+      };
+      applyAssistantPosition(widget, nextPosition);
+    };
+
+    const handlePointerUp = () => {
+      avatar.releasePointerCapture(event.pointerId);
+      avatar.removeEventListener('pointermove', handlePointerMove);
+      avatar.removeEventListener('pointerup', handlePointerUp);
+      avatar.removeEventListener('pointercancel', handlePointerUp);
+      widget.classList.remove('is-dragging', 'is-looking-left', 'is-looking-right');
+      widget.classList.add('is-drag-release');
+      window.setTimeout(() => widget.classList.remove('is-drag-release'), 260);
+
+      if (dragging) {
+        const rect = avatar.getBoundingClientRect();
+        saveAssistantPosition({
+          right: window.innerWidth - rect.right,
+          bottom: window.innerHeight - rect.bottom
+        });
+        window.setTimeout(() => { didDragAssistant = false; }, 180);
+      } else {
+        didDragAssistant = false;
+      }
+    };
+
+    avatar.addEventListener('pointermove', handlePointerMove);
+    avatar.addEventListener('pointerup', handlePointerUp);
+    avatar.addEventListener('pointercancel', handlePointerUp);
+  });
+
+  input.addEventListener('focus', () => widget.classList.add('is-user-typing'));
+  input.addEventListener('input', () => {
+    widget.classList.add('is-user-typing');
+    window.clearTimeout(widget._typingTimer);
+    widget._typingTimer = window.setTimeout(() => widget.classList.remove('is-user-typing'), 900);
+  });
+  input.addEventListener('blur', () => widget.classList.remove('is-user-typing'));
 
   const submitAssistantInput = async (rawValue, displayValue = rawValue) => {
     const value = rawValue.trim();
