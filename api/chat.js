@@ -1,8 +1,23 @@
+const fs = require("fs");
+const path = require("path");
+
 function sendJson(res, status, payload) {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
   res.end(JSON.stringify(payload));
+}
+
+function getProductKnowledge() {
+  try {
+    const filePath = path.join(process.cwd(), "assets", "dbl-guide", "products.json");
+    const knowledge = fs.readFileSync(filePath, "utf8");
+    JSON.parse(knowledge);
+    return knowledge;
+  } catch (error) {
+    console.warn("DBL Guide product knowledge unavailable:", error.message);
+    return "{}";
+  }
 }
 
 async function getGeminiReply(message, language) {
@@ -18,8 +33,11 @@ async function getGeminiReply(message, language) {
     "Help visitors choose DBL products, understand Gumroad checkout, and find alternative payment methods.",
     "Keep replies concise, practical, friendly, and focused on DBL.",
     "If the user asks in Arabic, reply in natural Arabic. If they ask in English, reply in English.",
-    "Mention these products when useful: DBL Business Suite, DBL Prompt Vault, DBL Client Kit, Digital Launch Bundle.",
+    "Use the product knowledge JSON below as the source of truth for products, prices, links, recommendation rules, and assistant behavior.",
+    "Do not invent products, prices, discounts, guarantees, or payment links that are not in the product knowledge.",
     `Current website language: ${language === "ar" ? "Arabic" : "English"}.`,
+    "Product knowledge JSON:",
+    getProductKnowledge(),
     `Visitor message: ${message}`
   ].join("\n");
 
