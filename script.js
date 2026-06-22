@@ -2,6 +2,7 @@
 let currentLanguage = 'ar';
 let translations = {};
 let currentTheme = 'dark';
+let assistantKnowledgePromise = null;
 
 function getSavedTheme() {
   try {
@@ -208,7 +209,6 @@ function getAssistantText(key) {
       placeholder: 'اكتب رسالتك...',
       send: 'إرسال',
       thinking: 'يفكر...',
-      quickReply: 'إذا كنت تريد نظام كامل، ابدأ بـ DBL Business Suite. إذا تريد أدوات عملاء فقط، DBL Client Kit مناسب. وإذا تريد برومبتات AI، Prompt Vault هو الخيار الأفضل.',
       paymentReply: 'للدفع بالبطاقة استخدم Gumroad. إذا لا تملك بطاقة، افتح صفحة طرق الدفع البديلة لاستخدام Binance Pay أو USDT.',
       defaultReply: 'فهمت عليك. كنسخة تجريبية، أقدر أرشح لك منتجاً حسب هدفك: إطلاق مشروع، إدارة عملاء، أو استخدام AI بشكل أفضل.'
     },
@@ -221,7 +221,6 @@ function getAssistantText(key) {
       placeholder: 'Write your message...',
       send: 'Send',
       thinking: 'Thinking...',
-      quickReply: 'If you want the complete system, start with DBL Business Suite. For client tools, choose DBL Client Kit. For AI prompts, Prompt Vault is the best fit.',
       paymentReply: 'Use Gumroad for card checkout. If you do not have a card, open Alternative Payment Methods for Binance Pay or USDT.',
       defaultReply: 'Got it. In this demo version, I can recommend a product based on your goal: launching, managing clients, or using AI better.'
     }
@@ -248,15 +247,62 @@ function addAssistantMessage(messages, text, type = 'assistant') {
   return message;
 }
 
-function getDemoAssistantReply(input) {
+async function loadAssistantKnowledge() {
+  if (!assistantKnowledgePromise) {
+    assistantKnowledgePromise = fetch('/assets/dbl-guide/products.json')
+      .then((response) => {
+        if (!response.ok) throw new Error(`Knowledge request failed: ${response.status}`);
+        return response.json();
+      })
+      .catch((error) => {
+        console.warn('DBL Guide product knowledge unavailable:', error);
+        return null;
+      });
+  }
+  return assistantKnowledgePromise;
+}
+
+function findKnowledgeProduct(knowledge, input) {
+  if (!knowledge?.products?.length) return null;
+  const normalized = input.toLowerCase();
+  const byId = (id) => knowledge.products.find((product) => product.id === id);
+
+  if (/suite|bundle|complete|everything|all|best value|كامل|كاملة|كل|حزمة|أفضل قيمة|افضل قيمة/i.test(normalized)) {
+    return byId('dbl-business-suite');
+  }
+  if (/prompt|ai|chatgpt|gemini|ذكاء|برومبت|برومبتات|مطالبات/i.test(normalized)) {
+    return byId('dbl-prompt-vault');
+  }
+  if (/client|customer|freelance|pricing|revision|عميل|عملاء|فريلانسر|تسعير|تعديل|تعديلات/i.test(normalized)) {
+    return byId('dbl-client-kit');
+  }
+  if (/start|beginner|launch|online|book|guide|بداية|مبتدئ|أبدأ|ابدأ|انطلاق|أونلاين|اونلاين|كتاب|دليل/i.test(normalized)) {
+    return byId('digital-launch-bundle');
+  }
+
+  return byId('dbl-business-suite');
+}
+
+function formatKnowledgeReply(product) {
+  if (!product) return getAssistantText('defaultReply');
+
+  if (currentLanguage === 'ar') {
+    return `أرشح لك ${product.name}. ${product.short_description} السعر: ${product.price}. صفحة المنتج: ${product.page_link}`;
+  }
+
+  return `I recommend ${product.name}. ${product.short_description} Price: ${product.price}. Product page: ${product.page_link}`;
+}
+
+async function getKnowledgeAssistantReply(input) {
   const normalized = input.toLowerCase();
   if (/pay|payment|gumroad|binance|usdt|دفع|بطاقة|بينانس|باينانس|يو اس دي|usdt/i.test(normalized)) {
-    return getAssistantText('paymentReply');
+    const knowledge = await loadAssistantKnowledge();
+    return knowledge?.assistant_rules?.find((rule) => rule.includes('/payment-methods.html')) || getAssistantText('paymentReply');
   }
-  if (/product|bundle|suite|kit|prompt|book|منتج|حزمة|كتاب|عميل|برومبت|ذكاء/i.test(normalized)) {
-    return getAssistantText('quickReply');
-  }
-  return getAssistantText('defaultReply');
+
+  const knowledge = await loadAssistantKnowledge();
+  const product = findKnowledgeProduct(knowledge, input);
+  return formatKnowledgeReply(product);
 }
 
 async function requestAssistantReply(message) {
@@ -274,10 +320,10 @@ async function requestAssistantReply(message) {
 
     const data = await response.json();
     const reply = String(data.reply || '').trim();
-    return reply || getDemoAssistantReply(message);
+    return reply || await getKnowledgeAssistantReply(message);
   } catch (error) {
     console.warn('DBL Guide API unavailable, using fallback reply:', error);
-    return getDemoAssistantReply(message);
+    return await getKnowledgeAssistantReply(message);
   }
 }
 
