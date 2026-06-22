@@ -53,7 +53,16 @@ function logChat(label, value) {
 }
 
 function readProductKnowledge(rootDir) {
-  const filePath = path.join(rootDir, "assets", "dbl-guide", "products.json");
+  const candidates = [
+    path.join(rootDir, "assets", "dbl-guide", "products.json"),
+    path.join(rootDir, "dist", "assets", "dbl-guide", "products.json"),
+    path.join(__dirname, "assets", "dbl-guide", "products.json"),
+    path.join(__dirname, "dist", "assets", "dbl-guide", "products.json")
+  ];
+  const filePath = candidates.find((candidate) => fs.existsSync(candidate));
+  if (!filePath) {
+    throw new Error(`products.json not found. Checked: ${candidates.join(", ")}`);
+  }
   const raw = fs.readFileSync(filePath, "utf8");
   const data = JSON.parse(raw);
   return { raw, data };
