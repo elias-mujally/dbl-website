@@ -507,12 +507,93 @@
     "contactTitle": "Send Confirmation",
     "contactBody": "Contact DBL after payment so we can verify your order and send product access.",
     "whatsappButton": "WhatsApp",
-    "emailButton": "Email"
+    "emailButton": "Email",
+    "productsTitle": "Product Reference",
+    "productsBody": "When sending confirmation, include the exact product name and price."
   },
   "theme": {
     "light": "Light",
     "dark": "Dark",
     "switchToLight": "Switch to light mode",
     "switchToDark": "Switch to dark mode"
+  },
+  "businessIdeasVault": {
+    "catalogEyebrow": "New Premium Guide",
+    "homeEyebrow": "New Release",
+    "eyebrow": "Premium Digital Guide",
+    "title": "DBL Business Ideas Vault",
+    "pageTitle": "107 Practical Business Ideas You Can Start in 2026",
+    "arabicTitle": "107 فكرة تجارية عملية يمكنك البدء بها في 2026",
+    "coverAlt": "DBL Business Ideas Vault cover",
+    "shortDescription": "A practical DBL guide that helps beginners choose, evaluate, and start the right business idea through 107 business ideas, clear analysis, realistic examples, AI tools, and a 7-day action plan.",
+    "description": "A practical DBL guide that helps beginners choose, evaluate, and start the right business idea through 107 business ideas, clear analysis, realistic examples, AI tools, and a 7-day action plan.",
+    "priceLabel": "Launch Price",
+    "viewProduct": "View Product",
+    "buyNow": "Buy Now",
+    "alternativePayment": "Alternative Payment Methods",
+    "insideTitle": "What Is Inside?",
+    "inside": [
+      "107 practical business ideas",
+      "8 business categories",
+      "Clear evaluation for each idea",
+      "Author opinion for every idea",
+      "Realistic examples and warnings",
+      "AI tools and startup toolkit",
+      "7-day action plan"
+    ],
+    "whoTitle": "Who Is This For?",
+    "who": [
+      "Beginners who want a practical business starting point",
+      "Creators looking for realistic product or service ideas",
+      "Freelancers who want to expand into simple business models",
+      "Digital builders who need a clearer idea selection process"
+    ],
+    "differentTitle": "Why It Is Different",
+    "differentBody": "This guide is not a random list of ideas. It helps you compare ideas through practical criteria, realistic warnings, author notes, examples, AI support, and a short action plan so you can move from browsing to execution.",
+    "noteTitle": "Important Note",
+    "noteBody": "This guide does not guarantee income, sales, or business results. It is designed to help you think clearly, choose better, and start with a more practical plan.",
+    "categoriesEyebrow": "Idea Map",
+    "categoriesTitle": "8 Business Categories",
+    "categories": [
+      "Digital Products",
+      "Freelance Services",
+      "AI-Assisted Work",
+      "Content & Media",
+      "Education & Coaching",
+      "Local Services",
+      "Ecommerce Ideas",
+      "Simple Startup Models"
+    ],
+    "benefitsTitle": "Main Benefits",
+    "benefits": [
+      "107 practical business ideas",
+      "8 business categories",
+      "Clear evaluation for each idea",
+      "Author opinion for every idea",
+      "Realistic examples and warnings",
+      "AI tools and startup toolkit",
+      "7-day action plan"
+    ],
+    "faqTitle": "FAQ",
+    "faq": [
+      {
+        "q": "Is this a physical book?",
+        "a": "No. It is a premium digital PDF guide."
+      },
+      {
+        "q": "Do I get instant access?",
+        "a": "Gumroad checkout provides instant access after payment."
+      },
+      {
+        "q": "Is it beginner-friendly?",
+        "a": "Yes. It is built to help beginners choose and evaluate ideas more clearly."
+      },
+      {
+        "q": "Can I pay without a card?",
+        "a": "Yes. Use the Alternative Payment Methods page and include the product name and price."
+      }
+    ],
+    "finalTitle": "Start With A Clearer Idea",
+    "finalBody": "Use the guide to compare ideas, avoid unrealistic options, and choose a practical direction for your next business step."
   }
 }
