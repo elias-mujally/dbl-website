@@ -111,6 +111,13 @@ function updatePageTranslations() {
     element.setAttribute('alt', getTranslation(element.getAttribute('data-i18n-alt')));
   });
 
+  document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+    const key = element.getAttribute('data-i18n-aria-label');
+    let label = getTranslation(key);
+    if (element.hasAttribute('data-preview-dot')) label = `${label} ${Number(element.dataset.previewDot) + 1}`;
+    element.setAttribute('aria-label', label);
+  });
+
   updateThemeToggleLabel();
   document.querySelectorAll('.mobile-menu-toggle').forEach((button) => button.setAttribute('aria-label', getTranslation('nav.mobileMenu')));
   document.querySelectorAll('.mobile-nav-panel').forEach((panel) => panel.setAttribute('aria-label', getTranslation('nav.mobileMenu')));
@@ -258,6 +265,107 @@ function initHeroParallax() {
   visual?.addEventListener('pointerleave', () => { cards.forEach((card) => { card.style.transform = ''; }); });
 }
 
+function initPreviewCarousels() {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('[data-preview-carousel]').forEach((carousel) => {
+    if (carousel.dataset.previewReady === 'true') return;
+    carousel.dataset.previewReady = 'true';
+
+    const mainImage = carousel.querySelector('[data-preview-main]');
+    const lightbox = carousel.querySelector('[data-preview-lightbox]');
+    const lightboxImage = carousel.querySelector('[data-preview-lightbox-image]');
+    const thumbs = Array.from(carousel.querySelectorAll('[data-preview-thumb]'));
+    const dots = Array.from(carousel.querySelectorAll('[data-preview-dot]'));
+    const slides = thumbs.map((thumb) => {
+      const image = thumb.querySelector('img');
+      return {
+        src: image?.getAttribute('src') || '',
+        alt: image?.getAttribute('alt') || '',
+        altKey: image?.getAttribute('data-i18n-alt') || ''
+      };
+    }).filter((slide) => slide.src);
+
+    if (!mainImage || !slides.length) return;
+
+    let index = 0;
+    let timer = null;
+    let pausedUntil = 0;
+    const interval = Number(carousel.dataset.previewInterval || 5000);
+
+    const setActive = (nextIndex, userAction = false) => {
+      index = (nextIndex + slides.length) % slides.length;
+      const slide = slides[index];
+      mainImage.src = slide.src;
+      mainImage.alt = slide.altKey ? getTranslation(slide.altKey) : slide.alt;
+      mainImage.setAttribute('data-i18n-alt', slide.altKey);
+      if (lightboxImage) {
+        lightboxImage.src = slide.src;
+        lightboxImage.alt = mainImage.alt;
+        lightboxImage.setAttribute('data-i18n-alt', slide.altKey);
+      }
+      dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === index));
+      thumbs.forEach((thumb, thumbIndex) => thumb.classList.toggle('active', thumbIndex === index));
+      if (userAction) {
+        pausedUntil = Date.now() + interval * 2;
+        restartAuto();
+      }
+    };
+
+    const stopAuto = () => {
+      if (timer) window.clearInterval(timer);
+      timer = null;
+    };
+
+    const startAuto = () => {
+      if (reducedMotion || timer || lightbox?.classList.contains('is-open')) return;
+      timer = window.setInterval(() => {
+        if (Date.now() < pausedUntil || carousel.matches(':hover') || lightbox?.classList.contains('is-open')) return;
+        setActive(index + 1);
+      }, interval);
+    };
+
+    const restartAuto = () => {
+      stopAuto();
+      startAuto();
+    };
+
+    carousel.querySelector('[data-preview-prev]')?.addEventListener('click', () => setActive(index - 1, true));
+    carousel.querySelector('[data-preview-next]')?.addEventListener('click', () => setActive(index + 1, true));
+    dots.forEach((dot) => dot.addEventListener('click', () => setActive(Number(dot.dataset.previewDot), true)));
+    thumbs.forEach((thumb) => thumb.addEventListener('click', () => setActive(Number(thumb.dataset.previewThumb), true)));
+
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+
+    carousel.querySelector('[data-preview-open]')?.addEventListener('click', () => {
+      stopAuto();
+      lightbox?.removeAttribute('hidden');
+      lightbox?.classList.add('is-open');
+      carousel.querySelector('[data-preview-close]')?.focus({ preventScroll: true });
+    });
+
+    const closeLightbox = () => {
+      if (!lightbox) return;
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('hidden', '');
+      pausedUntil = Date.now() + interval * 2;
+      startAuto();
+    };
+
+    carousel.querySelector('[data-preview-close]')?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox?.classList.contains('is-open')) closeLightbox();
+    });
+
+    setActive(0);
+    startAuto();
+  });
+}
+
 applyEarlyLanguage();
 applyTheme(getSavedTheme());
 
@@ -274,6 +382,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateSocialLinks();
   initRevealAnimations();
   initHeroParallax();
+  initPreviewCarousels();
 
   await loadTranslations(currentLanguage);
   updatePageTranslations();

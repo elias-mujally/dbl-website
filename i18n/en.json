@@ -599,7 +599,23 @@
       }
     ],
     "finalTitle": "Start With A Clearer Idea",
-    "finalBody": "Use the guide to compare ideas, avoid unrealistic options, and choose a practical direction for your next business step."
+    "finalBody": "Use the guide to compare ideas, avoid unrealistic options, and choose a practical direction for your next business step.",
+    "previewTitle": "See a real preview from inside the guide before buying",
+    "previewBody": "Selected pages from inside the product showing the structure, idea index, fit test, and idea explanation style.",
+    "previewOpen": "Open preview image",
+    "previewNext": "Next preview image",
+    "previewPrevious": "Previous preview image",
+    "previewClose": "Close preview",
+    "previewSlideLabel": "Preview slide",
+    "previewAlt": [
+      "DBL Business Ideas Vault cover preview",
+      "Business idea fit test preview",
+      "Business idea index preview",
+      "Sample business idea start preview",
+      "Sample business idea rating preview",
+      "Mid-book sample preview",
+      "Mid-book sample continued preview"
+    ]
   },
   "preview": {
     "eyebrow": "Product Preview",

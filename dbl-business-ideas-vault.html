@@ -82,9 +82,43 @@
       </section>
 
 
-      <section class="page-section product-preview-section">
-        <div class="section-heading reveal in-view"><span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span><h2 data-i18n="preview.title">Preview From Inside The Product</h2></div>
-        <div class="preview-placeholder reveal in-view"><p data-i18n="preview.businessIdeas">Product preview will be added here soon.</p></div>
+      <section class="page-section product-preview-section business-ideas-preview" aria-labelledby="business-ideas-preview-title">
+        <div class="section-heading reveal in-view">
+          <span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span>
+          <h2 id="business-ideas-preview-title" data-i18n="businessIdeasVault.previewTitle">See a real preview from inside the guide before buying</h2>
+          <p data-i18n="businessIdeasVault.previewBody">Selected pages from inside the product showing the structure, idea index, fit test, and idea explanation style.</p>
+        </div>
+        <div class="preview-carousel reveal in-view" data-preview-carousel data-preview-interval="5000">
+          <div class="preview-carousel-stage">
+            <button class="preview-nav preview-prev" type="button" data-preview-prev data-i18n-aria-label="businessIdeasVault.previewPrevious">‹</button>
+            <button class="preview-main-button" type="button" data-preview-open data-i18n-aria-label="businessIdeasVault.previewOpen">
+              <img src="/assets/previews/business-ideas-vault/business-ideas-preview-01-cover.png" alt="DBL Business Ideas Vault cover preview" data-preview-main data-i18n-alt="businessIdeasVault.previewAlt.0">
+            </button>
+            <button class="preview-nav preview-next" type="button" data-preview-next data-i18n-aria-label="businessIdeasVault.previewNext">›</button>
+          </div>
+          <div class="preview-dots" role="tablist" aria-label="Business Ideas Vault preview slides">
+            <button type="button" class="active" data-preview-dot="0" data-i18n-aria-label="businessIdeasVault.previewSlideLabel">1</button>
+            <button type="button" data-preview-dot="1" data-i18n-aria-label="businessIdeasVault.previewSlideLabel">2</button>
+            <button type="button" data-preview-dot="2" data-i18n-aria-label="businessIdeasVault.previewSlideLabel">3</button>
+            <button type="button" data-preview-dot="3" data-i18n-aria-label="businessIdeasVault.previewSlideLabel">4</button>
+            <button type="button" data-preview-dot="4" data-i18n-aria-label="businessIdeasVault.previewSlideLabel">5</button>
+            <button type="button" data-preview-dot="5" data-i18n-aria-label="businessIdeasVault.previewSlideLabel">6</button>
+            <button type="button" data-preview-dot="6" data-i18n-aria-label="businessIdeasVault.previewSlideLabel">7</button>
+          </div>
+          <div class="preview-thumbnails" aria-label="Business Ideas Vault preview thumbnails">
+            <button type="button" class="active" data-preview-thumb="0"><img src="/assets/previews/business-ideas-vault/business-ideas-preview-01-cover.png" alt="DBL Business Ideas Vault cover preview thumbnail" data-i18n-alt="businessIdeasVault.previewAlt.0"></button>
+            <button type="button" data-preview-thumb="1"><img src="/assets/previews/business-ideas-vault/business-ideas-preview-02-fit-test.png" alt="Business idea fit test preview thumbnail" loading="lazy" data-i18n-alt="businessIdeasVault.previewAlt.1"></button>
+            <button type="button" data-preview-thumb="2"><img src="/assets/previews/business-ideas-vault/business-ideas-preview-03-idea-index.png" alt="Business idea index preview thumbnail" loading="lazy" data-i18n-alt="businessIdeasVault.previewAlt.2"></button>
+            <button type="button" data-preview-thumb="3"><img src="/assets/previews/business-ideas-vault/business-ideas-preview-04-sample-idea-start.png" alt="Sample business idea start preview thumbnail" loading="lazy" data-i18n-alt="businessIdeasVault.previewAlt.3"></button>
+            <button type="button" data-preview-thumb="4"><img src="/assets/previews/business-ideas-vault/business-ideas-preview-05-sample-idea-rating.png" alt="Sample business idea rating preview thumbnail" loading="lazy" data-i18n-alt="businessIdeasVault.previewAlt.4"></button>
+            <button type="button" data-preview-thumb="5"><img src="/assets/previews/business-ideas-vault/business-ideas-preview-06-mid-book-sample.png" alt="Mid-book sample preview thumbnail" loading="lazy" data-i18n-alt="businessIdeasVault.previewAlt.5"></button>
+            <button type="button" data-preview-thumb="6"><img src="/assets/previews/business-ideas-vault/business-ideas-preview-07-mid-book-sample-continued.png" alt="Mid-book sample continued preview thumbnail" loading="lazy" data-i18n-alt="businessIdeasVault.previewAlt.6"></button>
+          </div>
+          <div class="preview-lightbox" data-preview-lightbox hidden>
+            <button type="button" class="preview-lightbox-close" data-preview-close data-i18n-aria-label="businessIdeasVault.previewClose">×</button>
+            <img src="/assets/previews/business-ideas-vault/business-ideas-preview-01-cover.png" alt="DBL Business Ideas Vault cover preview" data-preview-lightbox-image data-i18n-alt="businessIdeasVault.previewAlt.0">
+          </div>
+        </div>
       </section>
 
       <section class="page-section page-grid">
