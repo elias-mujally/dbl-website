@@ -65,9 +65,39 @@
       </section>
 
 
-      <section class="page-section product-preview-section">
-        <div class="section-heading reveal in-view"><span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span><h2 data-i18n="preview.title">Preview From Inside The Product</h2></div>
-        <div class="preview-placeholder reveal in-view"><p data-i18n="preview.clientKit">Product preview will be added here soon.</p></div>
+      <section class="page-section product-preview-section client-kit-preview" aria-labelledby="client-kit-preview-title">
+        <div class="section-heading reveal in-view">
+          <span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span>
+          <h2 id="client-kit-preview-title" data-i18n="clientKitPage.previewTitle">See a real preview from inside DBL Client Kit before buying</h2>
+          <p data-i18n="clientKitPage.previewBody">Selected pages from inside the product showing client rules, message templates, delivery workflows, and practical client tools.</p>
+        </div>
+        <div class="preview-carousel reveal in-view" data-preview-carousel data-preview-interval="5000">
+          <div class="preview-carousel-stage">
+            <button class="preview-nav preview-prev" type="button" data-preview-prev data-i18n-aria-label="clientKitPage.previewPrevious">‹</button>
+            <button class="preview-main-button" type="button" data-preview-open data-i18n-aria-label="clientKitPage.previewOpen">
+              <img src="/assets/previews/dbl-client-kit/client-kit-preview-01-cover.png" alt="DBL Client Kit cover preview" data-preview-main data-i18n-alt="clientKitPage.previewAlt.0">
+            </button>
+            <button class="preview-nav preview-next" type="button" data-preview-next data-i18n-aria-label="clientKitPage.previewNext">›</button>
+          </div>
+          <div class="preview-dots" role="tablist" aria-label="DBL Client Kit preview slides">
+            <button type="button" class="active" data-preview-dot="0" data-i18n-aria-label="clientKitPage.previewSlideLabel">1</button>
+            <button type="button" data-preview-dot="1" data-i18n-aria-label="clientKitPage.previewSlideLabel">2</button>
+            <button type="button" data-preview-dot="2" data-i18n-aria-label="clientKitPage.previewSlideLabel">3</button>
+            <button type="button" data-preview-dot="3" data-i18n-aria-label="clientKitPage.previewSlideLabel">4</button>
+            <button type="button" data-preview-dot="4" data-i18n-aria-label="clientKitPage.previewSlideLabel">5</button>
+          </div>
+          <div class="preview-thumbnails" aria-label="DBL Client Kit preview thumbnails">
+            <button type="button" class="active" data-preview-thumb="0"><img src="/assets/previews/dbl-client-kit/client-kit-preview-01-cover.png" data-preview-slide alt="DBL Client Kit cover preview thumbnail" data-i18n-alt="clientKitPage.previewAlt.0"></button>
+            <button type="button" data-preview-thumb="1"><img src="/assets/previews/dbl-client-kit/client-kit-preview-02-rules.png" data-preview-slide alt="DBL Client Kit client rules preview thumbnail" loading="lazy" data-i18n-alt="clientKitPage.previewAlt.1"></button>
+            <button type="button" data-preview-thumb="2"><img src="/assets/previews/dbl-client-kit/client-kit-preview-03-before-agreement.png" data-preview-slide alt="DBL Client Kit before agreement section preview thumbnail" loading="lazy" data-i18n-alt="clientKitPage.previewAlt.2"></button>
+            <button type="button" data-preview-thumb="3"><img src="/assets/previews/dbl-client-kit/client-kit-preview-04-delivery.png" data-preview-slide alt="DBL Client Kit delivery section preview thumbnail" loading="lazy" data-i18n-alt="clientKitPage.previewAlt.3"></button>
+            <button type="button" data-preview-thumb="4"><img src="/assets/previews/dbl-client-kit/client-kit-preview-05-tools.png" data-preview-slide alt="DBL Client Kit tools preview thumbnail" loading="lazy" data-i18n-alt="clientKitPage.previewAlt.4"></button>
+          </div>
+          <div class="preview-lightbox" data-preview-lightbox hidden>
+            <button type="button" class="preview-lightbox-close" data-preview-close data-i18n-aria-label="clientKitPage.previewClose">×</button>
+            <img src="/assets/previews/dbl-client-kit/client-kit-preview-01-cover.png" alt="DBL Client Kit cover preview" data-preview-lightbox-image data-i18n-alt="clientKitPage.previewAlt.0">
+          </div>
+        </div>
       </section>
 
       <section class="page-section page-grid"><article class="page-panel reveal in-view"><h2 data-i18n="clientKitPage.aboutTitle">About Digital Blueprint Lab</h2><p data-i18n="clientKitPage.aboutBody">Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.</p></article><article class="page-panel reveal in-view"><h2 data-i18n="clientKitPage.finalTitle">Get Access To DBL Client Kit</h2><p data-i18n="clientKitPage.finalBody">Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name.</p><div class="button-row"><a class="btn btn-secondary" href="/payment-methods.html" data-i18n="clientKitPage.alternativePayment">Alternative Payment Methods</a></div></article></section>

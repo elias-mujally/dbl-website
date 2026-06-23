@@ -399,7 +399,21 @@
     "aboutTitle": "About Digital Blueprint Lab",
     "aboutBody": "Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.",
     "finalTitle": "Get Access To DBL Client Kit",
-    "finalBody": "Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name."
+    "finalBody": "Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name.",
+    "previewTitle": "See a real preview from inside DBL Client Kit before buying",
+    "previewBody": "Selected pages from inside the product showing client rules, message templates, delivery workflows, and practical client tools.",
+    "previewOpen": "Open preview image",
+    "previewNext": "Next preview image",
+    "previewPrevious": "Previous preview image",
+    "previewClose": "Close preview",
+    "previewSlideLabel": "Preview slide",
+    "previewAlt": [
+      "DBL Client Kit cover preview",
+      "DBL Client Kit client rules preview",
+      "DBL Client Kit before agreement section preview",
+      "DBL Client Kit delivery section preview",
+      "DBL Client Kit practical client tools preview"
+    ]
   },
   "promptVaultPage": {
     "eyebrow": "Premium AI Resource",
