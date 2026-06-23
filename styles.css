@@ -3069,13 +3069,24 @@ html[data-theme="light"] .preview-thumbnails button {
 
 .about-hero {
   max-width: 1040px;
+  padding-bottom: 28px;
+}
+
+.about-hero h1 {
+  max-width: 860px;
+}
+
+.about-hero p {
+  max-width: 700px;
+  font-size: clamp(1.02rem, 1.4vw, 1.16rem);
 }
 
 .about-story,
 .about-feature-section,
 .about-audience-section,
 .about-principles-section {
-  padding-bottom: 88px;
+  padding-top: 42px;
+  padding-bottom: 76px;
 }
 
 .about-section-heading {
@@ -3098,7 +3109,7 @@ html[data-theme="light"] .preview-thumbnails button {
   display: grid;
   gap: 18px;
   max-width: 980px;
-  padding: clamp(24px, 5vw, 46px);
+  padding: clamp(24px, 4vw, 40px);
   border: 1px solid rgba(134, 204, 255, 0.18);
   border-radius: 8px;
   background:
@@ -3110,12 +3121,16 @@ html[data-theme="light"] .preview-thumbnails button {
 .about-card-grid,
 .about-principles-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
+}
+
+.about-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .about-card,
 .about-principle {
+  position: relative;
   min-width: 0;
   padding: clamp(20px, 3vw, 28px);
   border: 1px solid rgba(134, 204, 255, 0.18);
@@ -3125,8 +3140,41 @@ html[data-theme="light"] .preview-thumbnails button {
 }
 
 .about-card h3 {
+  padding-top: 34px;
   margin-bottom: 10px;
   font-size: var(--type-h3);
+}
+
+.about-card::before {
+  position: absolute;
+  top: 22px;
+  inset-inline-start: 22px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid rgba(117, 245, 255, 0.34);
+  border-radius: 999px;
+  color: var(--cyan);
+  background: rgba(54, 183, 255, 0.08);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.about-card:nth-child(1)::before {
+  content: "01";
+}
+
+.about-card:nth-child(2)::before {
+  content: "02";
+}
+
+.about-card:nth-child(3)::before {
+  content: "03";
+}
+
+.about-card:nth-child(4)::before {
+  content: "04";
 }
 
 .about-card p,
@@ -3134,11 +3182,10 @@ html[data-theme="light"] .preview-thumbnails button {
   color: var(--muted);
 }
 
-.about-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
-  gap: 18px;
-  align-items: stretch;
+.about-philosophy-section {
+  max-width: 980px;
+  padding-top: 30px;
+  padding-bottom: 76px;
 }
 
 .about-philosophy {
@@ -3154,7 +3201,7 @@ html[data-theme="light"] .preview-thumbnails button {
 .about-quote {
   display: grid;
   place-items: center;
-  margin: 0;
+  margin: 0 auto;
   padding: clamp(28px, 5vw, 52px);
   border: 1px solid rgba(117, 245, 255, 0.26);
   border-radius: 8px;
@@ -3164,12 +3211,19 @@ html[data-theme="light"] .preview-thumbnails button {
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
 }
 
+.about-hero-quote {
+  max-width: 980px;
+  margin-bottom: 46px;
+  min-height: 190px;
+}
+
 .about-quote p {
-  max-width: 560px;
+  max-width: 760px;
   color: var(--text);
-  font-size: clamp(1.55rem, 3vw, 2.45rem);
+  font-size: clamp(1.75rem, 4vw, 3rem);
   font-weight: 800;
   line-height: 1.15;
+  text-align: center;
 }
 
 .about-pill-grid {
@@ -3192,24 +3246,38 @@ html[data-theme="light"] .preview-thumbnails button {
 }
 
 .about-principles-grid {
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .about-principle {
   display: grid;
-  gap: 14px;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 18px 20px;
 }
 
 .about-principle span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(117, 245, 255, 0.28);
+  border-radius: 999px;
   color: var(--cyan);
   font-size: 0.82rem;
   font-weight: 900;
+  background: rgba(54, 183, 255, 0.08);
+}
+
+.about-principle:last-child {
+  grid-column: 1 / -1;
 }
 
 .about-final-cta {
-  max-width: 860px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: clamp(34px, 7vw, 64px);
+  padding: clamp(38px, 8vw, 76px);
   border: 1px solid rgba(117, 245, 255, 0.24);
   border-radius: 8px;
   text-align: center;
@@ -3255,8 +3323,7 @@ html[data-theme="light"] .about-pill-grid span {
 
   .about-card-grid,
   .about-pill-grid,
-  .about-principles-grid,
-  .about-split {
+  .about-principles-grid {
     grid-template-columns: 1fr;
   }
 
@@ -3282,6 +3349,44 @@ html[data-theme="light"] .about-pill-grid span {
 
   .mobile-nav-panel {
     top: calc(100% + 8px);
+  }
+
+  .about-hero {
+    padding-bottom: 18px;
+  }
+
+  .about-story,
+  .about-feature-section,
+  .about-audience-section,
+  .about-principles-section,
+  .about-philosophy-section {
+    padding-top: 30px;
+    padding-bottom: 58px;
+  }
+
+  .about-hero-quote {
+    min-height: 0;
+    margin-bottom: 30px;
+    padding: 28px 18px;
+  }
+
+  .about-quote p {
+    font-size: clamp(1.45rem, 8vw, 2rem);
+  }
+
+  .about-copy-panel,
+  .about-card,
+  .about-principle,
+  .about-final-cta {
+    padding: 20px;
+  }
+
+  .about-principle {
+    gap: 12px;
+  }
+
+  .about-pill-grid span {
+    min-height: 54px;
   }
 
   .preview-carousel {
