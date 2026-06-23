@@ -1,13 +1,29 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function() {
+      try {
+        var lang = localStorage.getItem('language') || 'ar';
+        lang = lang === 'en' ? 'en' : 'ar';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.classList.toggle('rtl', lang === 'ar');
+        var theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/dbl-favicon-512.png">
   <link rel="apple-touch-icon" href="/assets/dbl-favicon-512.png">
   <title>Refund Policy | Digital Blueprint Lab</title>
   <meta name="description" content="Digital Blueprint Lab refund policy for digital products and subscription-based services.">
-  <link rel="stylesheet" href="styles.css?v=guide-micro-20260622">
+  <link rel="stylesheet" href="styles.css?v=site-v2-20260623">
 </head>
 <body>
   <div class="site-shell">
@@ -44,6 +60,6 @@
       <div class="socials"><a href="https://www.instagram.com/dbl_lap" aria-label="Instagram">IG</a><a href="https://www.facebook.com/share/18NR4xWCvr/" aria-label="Facebook">FB</a><a href="https://www.tiktok.com/@dbl_lap" aria-label="TikTok">TT</a></div>
     </footer>
   </div>
-  <script src="script.js?v=guide-disabled-20260622"></script>
+  <script src="script.js?v=site-v2-20260623"></script>
 </body>
 </html>

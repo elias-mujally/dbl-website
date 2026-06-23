@@ -8,6 +8,9 @@ const root = __dirname;
 loadLocalEnv(root);
 
 const port = process.env.PORT || 4173;
+const chatRateBuckets = new Map();
+const CHAT_RATE_LIMIT = 10;
+const CHAT_RATE_WINDOW_MS = 5 * 60 * 1000;
 const types = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -51,9 +54,38 @@ function readJsonBody(req) {
   });
 }
 
+function getClientIp(req) {
+  const forwarded = req.headers["x-forwarded-for"];
+  if (typeof forwarded === "string" && forwarded.trim()) return forwarded.split(",")[0].trim();
+  return req.socket?.remoteAddress || "unknown";
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const bucket = chatRateBuckets.get(ip) || { count: 0, resetAt: now + CHAT_RATE_WINDOW_MS };
+  if (now > bucket.resetAt) {
+    bucket.count = 0;
+    bucket.resetAt = now + CHAT_RATE_WINDOW_MS;
+  }
+  bucket.count += 1;
+  chatRateBuckets.set(ip, bucket);
+  return bucket.count > CHAT_RATE_LIMIT;
+}
+
 async function handleChatRequest(req, res) {
   if (req.method !== "POST") {
     sendJson(res, 405, { error: "Method not allowed" });
+    return;
+  }
+
+  if (isRateLimited(getClientIp(req))) {
+    sendJson(res, 429, {
+      reply: "تم إرسال عدد كبير من الرسائل خلال فترة قصيرة. حاول مرة أخرى بعد دقائق قليلة.",
+      intent: "rate_limited",
+      buttons: [],
+      memory_updates: {},
+      error: "Rate limit exceeded"
+    });
     return;
   }
 
@@ -97,20 +129,19 @@ http.createServer((req, res) => {
   const urlPath = decodeURIComponent((req.url || "/").split("?")[0]);
 
   if (urlPath === "/api/health") {
-    sendJson(res, 200, {
-      ok: true,
-      hasGeminiKey: Boolean(process.env.GEMINI_API_KEY)
-    });
+    sendJson(res, 200, { ok: true });
     return;
   }
 
   if (urlPath === "/api/chat-test") {
+    if (process.env.NODE_ENV === "production") {
+      sendJson(res, 404, { error: "Not found" });
+      return;
+    }
     runChatDiagnostic(root)
       .then((result) => sendJson(res, 200, result))
       .catch((error) => sendJson(res, 200, {
         ok: false,
-        hasGeminiKey: Boolean(process.env.GEMINI_API_KEY),
-        model: process.env.GEMINI_MODEL || "gemini-1.5-flash",
         geminiStatus: null,
         geminiRawTextPreview: "",
         parsed: false,

@@ -9,7 +9,11 @@
     "tools": "Tools",
     "simulation": "Client System",
     "systems": "Resources",
-    "enterLab": "View Products"
+    "enterLab": "View Products",
+    "mobileMenu": "Open menu",
+    "refundPolicy": "Refund Policy",
+    "terms": "Terms",
+    "privacy": "Privacy"
   },
   "hero": {
     "eyebrow": "Practical digital products for builders",
@@ -509,7 +513,8 @@
     "whatsappButton": "WhatsApp",
     "emailButton": "Email",
     "productsTitle": "Product Reference",
-    "productsBody": "When sending confirmation, include the exact product name and price."
+    "productsBody": "Use this list to confirm the product name and exact price before sending payment proof.",
+    "productReferenceNote": "When sending payment confirmation, mention the product name and price exactly."
   },
   "theme": {
     "light": "Light",
@@ -595,5 +600,73 @@
     ],
     "finalTitle": "Start With A Clearer Idea",
     "finalBody": "Use the guide to compare ideas, avoid unrealistic options, and choose a practical direction for your next business step."
+  },
+  "preview": {
+    "eyebrow": "Product Preview",
+    "title": "Preview From Inside The Product",
+    "businessSuite": "A structured preview area for DBL Business Suite will be added here soon.",
+    "promptVault": "A preview from DBL Prompt Vault will be added here soon.",
+    "clientKit": "A preview from DBL Client Kit will be added here soon.",
+    "digitalLaunch": "A preview from Digital Launch Bundle will be added here soon.",
+    "businessIdeas": "A preview from DBL Business Ideas Vault will be added here soon."
+  },
+  "trust": {
+    "eyebrow": "Trust Basics",
+    "title": "Clear Digital Product Delivery",
+    "subtitle": "Simple, honest purchase and support details without unrealistic income promises.",
+    "items": [
+      {
+        "title": "Secure checkout via Gumroad",
+        "body": "Card purchases are handled through Gumroad checkout."
+      },
+      {
+        "title": "Instant access after payment",
+        "body": "Gumroad purchases provide product access after checkout."
+      },
+      {
+        "title": "Alternative payment support",
+        "body": "Binance Pay and USDT options are available for customers without cards."
+      },
+      {
+        "title": "Digital PDF/resources",
+        "body": "DBL products are practical digital guides, tools, templates, and resources."
+      },
+      {
+        "title": "No unrealistic income promises",
+        "body": "DBL focuses on practical execution, not guaranteed income claims."
+      },
+      {
+        "title": "Support via WhatsApp/email",
+        "body": "Contact DBL if you need payment or access support."
+      }
+    ]
+  },
+  "comparison": {
+    "eyebrow": "Product Comparison",
+    "title": "Choose The Right DBL Product",
+    "subtitle": "A quick overview of who each resource is best for.",
+    "viewProduct": "View Product",
+    "products": {
+      "businessSuite": {
+        "bestFor": "Best for complete DBL system buyers.",
+        "includes": "Includes Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide."
+      },
+      "promptVault": {
+        "bestFor": "Best for AI prompts and practical AI workflows.",
+        "includes": "Includes 100 prompts, Arabic explanations, examples, and tracker."
+      },
+      "clientKit": {
+        "bestFor": "Best for freelancers managing client communication.",
+        "includes": "Includes messages, rules, tools, checklists, and examples."
+      },
+      "digitalLaunch": {
+        "bestFor": "Best for beginners starting online.",
+        "includes": "Includes launch guidance, starter resources, and execution foundations."
+      },
+      "businessIdeas": {
+        "bestFor": "Best for choosing and evaluating a practical business idea.",
+        "includes": "Includes 107 ideas, 8 categories, analysis, AI tools, and a 7-day plan."
+      }
+    }
   }
 }

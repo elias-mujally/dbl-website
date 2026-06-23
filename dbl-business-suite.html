@@ -1,8 +1,24 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    (function() {
+      try {
+        var lang = localStorage.getItem('language') || 'ar';
+        lang = lang === 'en' ? 'en' : 'ar';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.classList.toggle('rtl', lang === 'ar');
+        var theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+      }
+    })();
+  </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/dbl-favicon-512.png">
   <link rel="apple-touch-icon" href="/assets/dbl-favicon-512.png">
   <title>DBL Business Suite | Premium Business Bundle</title>
@@ -14,7 +30,9 @@
   <meta name="twitter:title" content="DBL Business Suite | Premium Business Bundle">
   <meta name="twitter:description" content="A complete business bundle for freelancers, creators, and digital entrepreneurs.">
   <meta name="twitter:image" content="https://www.dblab.site/assets/dbl-business-suite-cover.png">
-  <link rel="stylesheet" href="styles.css?v=guide-micro-20260622">
+  <link rel="stylesheet" href="styles.css?v=site-v2-20260623">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"DBL Business Suite","description":"Premium DBL business bundle with Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide.","image":"https://www.dblab.site/assets/dbl-business-suite-cover.png","url":"https://www.dblab.site/dbl-business-suite.html","brand":{"@type":"Brand","name":"Digital Blueprint Lab"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"34.99","availability":"https://schema.org/InStock","url":"https://www.dblab.site/dbl-business-suite.html"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What do I get after purchase?","acceptedAnswer":{"@type":"Answer","text":"You receive DBL Prompt Vault, DBL Client Kit, Digital Launch Bundle, and the Welcome Guide bonus."}},{"@type":"Question","name":"Is this a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. DBL Business Suite is a one-time digital bundle purchase."}},{"@type":"Question","name":"Can I pay without a card?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Alternative Payment Methods page if Gumroad card checkout is unavailable."}},{"@type":"Question","name":"Who is this bundle for?","acceptedAnswer":{"@type":"Answer","text":"It is built for freelancers, creators, service providers, and online entrepreneurs who want practical systems."}},{"@type":"Question","name":"Are the files delivered instantly?","acceptedAnswer":{"@type":"Answer","text":"Gumroad purchases provide instant access. Alternative payments are delivered after confirmation."}}]}</script>
 </head>
 <body>
   <div class="site-shell">
@@ -63,6 +81,12 @@
         </div>
       </section>
 
+
+      <section class="page-section product-preview-section">
+        <div class="section-heading reveal in-view"><span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span><h2 data-i18n="preview.title">Preview From Inside The Product</h2></div>
+        <div class="preview-placeholder reveal in-view"><p data-i18n="preview.businessSuite">Product preview will be added here soon.</p></div>
+      </section>
+
       <section class="page-section page-grid product-detail-grid">
         <article class="page-panel reveal in-view"><h2 data-i18n="businessSuite.audienceTitle">Who Is This For?</h2><ul class="page-list"><li data-i18n="businessSuite.audience.0">Freelancers</li><li data-i18n="businessSuite.audience.1">Digital Product Creators</li><li data-i18n="businessSuite.audience.2">Service Providers</li><li data-i18n="businessSuite.audience.3">Content Creators</li><li data-i18n="businessSuite.audience.4">Online Entrepreneurs</li></ul></article>
         <article class="page-panel reveal in-view"><h2 data-i18n="businessSuite.resultsTitle">What Will You Gain?</h2><ul class="page-list"><li data-i18n="businessSuite.gains.0">A clearer system for building and launching digital products</li><li data-i18n="businessSuite.gains.1">Better AI outputs through structured prompts</li><li data-i18n="businessSuite.gains.2">More professional client communication</li><li data-i18n="businessSuite.gains.3">Reusable templates for practical execution</li></ul></article>
@@ -98,6 +122,6 @@
 
     <footer class="footer"><a class="brand" href="/" aria-label="Digital Blueprint Lab home"><span class="brand-mark">DBL</span><span class="brand-name" data-i18n="footer.brand">Digital Blueprint Lab</span></a><nav aria-label="Footer navigation"><a href="/books.html" data-i18n="footer.books">Books</a><a href="/tools.html" data-i18n="footer.tools">Tools</a><a href="/about.html" data-i18n="footer.about">About</a><a href="/refund-policy.html" data-i18n="footer.refundPolicy">Refund Policy</a><a href="/contact.html" data-i18n="footer.contact">Contact</a><a href="/terms.html" data-i18n="footer.terms">Terms</a><a href="/privacy-policy.html" data-i18n="footer.privacy">Privacy</a></nav><div class="socials"><a href="https://www.instagram.com/dbl_lap" aria-label="Instagram">IG</a><a href="https://www.facebook.com/share/18NR4xWCvr/" aria-label="Facebook">FB</a><a href="https://www.tiktok.com/@dbl_lap" aria-label="TikTok">TT</a></div></footer>
   </div>
-  <script src="script.js?v=guide-disabled-20260622"></script>
+  <script src="script.js?v=site-v2-20260623"></script>
 </body>
 </html>

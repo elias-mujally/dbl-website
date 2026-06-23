@@ -11,8 +11,5 @@ module.exports = function handler(req, res) {
     return;
   }
 
-  sendJson(res, 200, {
-    ok: true,
-    hasGeminiKey: Boolean(process.env.GEMINI_API_KEY)
-  });
+  sendJson(res, 200, { ok: true });
 };

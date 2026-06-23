@@ -1,5 +1,9 @@
 const { createChatResponse, fallbackPayload, loadLocalEnv } = require("../assistant-gemini");
 
+const chatRateBuckets = new Map();
+const CHAT_RATE_LIMIT = 10;
+const CHAT_RATE_WINDOW_MS = 5 * 60 * 1000;
+
 /*
 POST /api/chat
 {
@@ -19,9 +23,38 @@ function sendJson(res, status, payload) {
   res.end(JSON.stringify(payload));
 }
 
+function getClientIp(req) {
+  const forwarded = req.headers["x-forwarded-for"];
+  if (typeof forwarded === "string" && forwarded.trim()) return forwarded.split(",")[0].trim();
+  return req.socket?.remoteAddress || "unknown";
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const bucket = chatRateBuckets.get(ip) || { count: 0, resetAt: now + CHAT_RATE_WINDOW_MS };
+  if (now > bucket.resetAt) {
+    bucket.count = 0;
+    bucket.resetAt = now + CHAT_RATE_WINDOW_MS;
+  }
+  bucket.count += 1;
+  chatRateBuckets.set(ip, bucket);
+  return bucket.count > CHAT_RATE_LIMIT;
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     sendJson(res, 405, { error: "Method not allowed" });
+    return;
+  }
+
+  if (isRateLimited(getClientIp(req))) {
+    sendJson(res, 429, {
+      reply: "تم إرسال عدد كبير من الرسائل خلال فترة قصيرة. حاول مرة أخرى بعد دقائق قليلة.",
+      intent: "rate_limited",
+      buttons: [],
+      memory_updates: {},
+      error: "Rate limit exceeded"
+    });
     return;
   }
 

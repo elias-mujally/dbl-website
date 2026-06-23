@@ -1,13 +1,30 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    (function() {
+      try {
+        var lang = localStorage.getItem('language') || 'ar';
+        lang = lang === 'en' ? 'en' : 'ar';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.classList.toggle('rtl', lang === 'ar');
+        var theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+      }
+    })();
+  </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/dbl-favicon-512.png">
   <link rel="apple-touch-icon" href="/assets/dbl-favicon-512.png">
   <title>DBL Prompt Vault | 100 Professional AI Prompts</title>
   <meta name="description" content="Get DBL Prompt Vault: 100 professional AI prompts with Arabic explanations, practical use cases, real examples, DBL tips, and a Prompt Tracker Excel template.">
-  <link rel="stylesheet" href="styles.css?v=guide-micro-20260622">
+  <link rel="stylesheet" href="styles.css?v=site-v2-20260623">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"DBL Prompt Vault","description":"100 professional AI prompts with Arabic explanations, practical use cases, examples, DBL tips, and a prompt tracker.","image":"https://www.dblab.site/assets/dbl-prompt-vault-cover.jpeg","url":"https://www.dblab.site/dbl-prompt-vault.html","brand":{"@type":"Brand","name":"Digital Blueprint Lab"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"19.99","availability":"https://schema.org/InStock","url":"https://www.dblab.site/dbl-prompt-vault.html"}}</script>
 </head>
 <body>
   <div class="site-shell">
@@ -51,11 +68,17 @@
 
       <section class="page-section page-grid"><article class="page-panel reveal in-view"><h2 data-i18n="promptVaultPage.trustTitle">Why Choose DBL Prompt Vault?</h2><ul class="page-list"><li data-i18n="promptVaultPage.trust.0">Save Hours of Trial and Error</li><li data-i18n="promptVaultPage.trust.1">Learn Practical AI Workflows</li><li data-i18n="promptVaultPage.trust.2">Improve Productivity</li><li data-i18n="promptVaultPage.trust.3">Get Better Results from AI Tools</li><li data-i18n="promptVaultPage.trust.4">Organized and Easy to Use</li></ul></article><article class="page-panel reveal in-view"><h2 data-i18n="promptVaultPage.builtForTitle">Built For Practical Work</h2><p data-i18n="promptVaultPage.builtForBody">Use the vault as a working system for marketing, freelancing, content creation, digital product building, and everyday AI-assisted execution.</p></article></section>
 
+
+      <section class="page-section product-preview-section">
+        <div class="section-heading reveal in-view"><span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span><h2 data-i18n="preview.title">Preview From Inside The Product</h2></div>
+        <div class="preview-placeholder reveal in-view"><p data-i18n="preview.promptVault">Product preview will be added here soon.</p></div>
+      </section>
+
       <section class="page-section page-grid"><article class="page-panel reveal in-view"><h2 data-i18n="promptVaultPage.manualTitle">Payment Support</h2><p data-i18n="promptVaultPage.manualBody">Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name.</p><div class="button-row"><a class="btn btn-secondary" href="/payment-methods.html" data-i18n="promptVaultPage.alternativePayment">Alternative Payment Methods</a></div></article></section>
     </main>
 
     <footer class="footer"><a class="brand" href="/" aria-label="Digital Blueprint Lab home"><span class="brand-mark">DBL</span><span class="brand-name" data-i18n="footer.brand">Digital Blueprint Lab</span></a><nav aria-label="Footer navigation"><a href="/books.html" data-i18n="footer.books">Books</a><a href="/tools.html" data-i18n="footer.tools">Tools</a><a href="/about.html" data-i18n="footer.about">About</a><a href="/refund-policy.html" data-i18n="footer.refundPolicy">Refund Policy</a><a href="/contact.html" data-i18n="footer.contact">Contact</a><a href="/terms.html" data-i18n="footer.terms">Terms</a><a href="/privacy-policy.html" data-i18n="footer.privacy">Privacy</a></nav><div class="socials"><a href="https://www.instagram.com/dbl_lap" aria-label="Instagram">IG</a><a href="https://www.facebook.com/share/18NR4xWCvr/" aria-label="Facebook">FB</a><a href="https://www.tiktok.com/@dbl_lap" aria-label="TikTok">TT</a></div></footer>
   </div>
-  <script src="script.js?v=guide-disabled-20260622"></script>
+  <script src="script.js?v=site-v2-20260623"></script>
 </body>
 </html>

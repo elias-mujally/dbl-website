@@ -1,7 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function() {
+      try {
+        var lang = localStorage.getItem('language') || 'ar';
+        lang = lang === 'en' ? 'en' : 'ar';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.classList.toggle('rtl', lang === 'ar');
+        var theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/dbl-favicon-512.png">
   <link rel="apple-touch-icon" href="/assets/dbl-favicon-512.png">
@@ -18,7 +34,9 @@
   <meta name="twitter:title" content="DBL Business Ideas Vault">
   <meta name="twitter:description" content="107 practical business ideas with analysis, examples, AI tools, and a 7-day action plan.">
   <meta name="twitter:image" content="https://www.dblab.site/assets/dbl-business-ideas-vault-cover.png">
-  <link rel="stylesheet" href="styles.css?v=guide-micro-20260622">
+  <link rel="stylesheet" href="styles.css?v=site-v2-20260623">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"DBL Business Ideas Vault","description":"Premium PDF guide with 107 practical business ideas, clear analysis, realistic examples, AI tools, and a 7-day action plan.","image":"https://www.dblab.site/assets/dbl-business-ideas-vault-cover.png","url":"https://www.dblab.site/dbl-business-ideas-vault.html","brand":{"@type":"Brand","name":"Digital Blueprint Lab"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"17.99","availability":"https://schema.org/InStock","url":"https://www.dblab.site/dbl-business-ideas-vault.html"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a physical book?","acceptedAnswer":{"@type":"Answer","text":"No. It is a premium digital PDF guide."}},{"@type":"Question","name":"Do I get instant access?","acceptedAnswer":{"@type":"Answer","text":"Gumroad checkout provides instant access after payment."}},{"@type":"Question","name":"Is it beginner-friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is built to help beginners choose and evaluate ideas more clearly."}},{"@type":"Question","name":"Can I pay without a card?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Alternative Payment Methods page and include the product name and price."}}]}</script>
 </head>
 <body>
   <div class="site-shell">
@@ -63,6 +81,12 @@
         <div class="catalog-grid"><article class="catalog-card reveal in-view"><h3 data-i18n="businessIdeasVault.categories.0">Digital Products</h3></article><article class="catalog-card reveal in-view"><h3 data-i18n="businessIdeasVault.categories.1">Freelance Services</h3></article><article class="catalog-card reveal in-view"><h3 data-i18n="businessIdeasVault.categories.2">AI-Assisted Work</h3></article><article class="catalog-card reveal in-view"><h3 data-i18n="businessIdeasVault.categories.3">Content & Media</h3></article><article class="catalog-card reveal in-view"><h3 data-i18n="businessIdeasVault.categories.4">Education & Coaching</h3></article><article class="catalog-card reveal in-view"><h3 data-i18n="businessIdeasVault.categories.5">Local Services</h3></article><article class="catalog-card reveal in-view"><h3 data-i18n="businessIdeasVault.categories.6">Ecommerce Ideas</h3></article><article class="catalog-card reveal in-view"><h3 data-i18n="businessIdeasVault.categories.7">Simple Startup Models</h3></article></div>
       </section>
 
+
+      <section class="page-section product-preview-section">
+        <div class="section-heading reveal in-view"><span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span><h2 data-i18n="preview.title">Preview From Inside The Product</h2></div>
+        <div class="preview-placeholder reveal in-view"><p data-i18n="preview.businessIdeas">Product preview will be added here soon.</p></div>
+      </section>
+
       <section class="page-section page-grid">
         <article class="page-panel reveal in-view"><h2 data-i18n="businessIdeasVault.benefitsTitle">Main Benefits</h2><ul class="page-list"><li data-i18n="businessIdeasVault.benefits.0">107 practical business ideas</li><li data-i18n="businessIdeasVault.benefits.1">8 business categories</li><li data-i18n="businessIdeasVault.benefits.2">Clear evaluation for each idea</li><li data-i18n="businessIdeasVault.benefits.3">Author opinion for every idea</li><li data-i18n="businessIdeasVault.benefits.4">Realistic examples and warnings</li><li data-i18n="businessIdeasVault.benefits.5">AI tools and startup toolkit</li><li data-i18n="businessIdeasVault.benefits.6">7-day action plan</li></ul></article>
         <article class="page-panel reveal in-view"><h2 data-i18n="businessIdeasVault.faqTitle">FAQ</h2><ul class="page-list"><li><strong data-i18n="businessIdeasVault.faq.0.q">Is this a physical book?</strong><br><span data-i18n="businessIdeasVault.faq.0.a">No. It is a premium digital PDF guide.</span></li><li><strong data-i18n="businessIdeasVault.faq.1.q">Do I get instant access?</strong><br><span data-i18n="businessIdeasVault.faq.1.a">Gumroad checkout provides instant access after payment.</span></li><li><strong data-i18n="businessIdeasVault.faq.2.q">Is it beginner-friendly?</strong><br><span data-i18n="businessIdeasVault.faq.2.a">Yes. It is built to help beginners choose and evaluate ideas more clearly.</span></li><li><strong data-i18n="businessIdeasVault.faq.3.q">Can I pay without a card?</strong><br><span data-i18n="businessIdeasVault.faq.3.a">Yes. Use the Alternative Payment Methods page and include the product name and price.</span></li></ul></article>
@@ -73,6 +97,6 @@
 
     <footer class="footer"><a class="brand" href="/" aria-label="Digital Blueprint Lab home"><span class="brand-mark">DBL</span><span class="brand-name" data-i18n="footer.brand">Digital Blueprint Lab</span></a><nav aria-label="Footer navigation"><a href="/books.html" data-i18n="footer.books">Books</a><a href="/tools.html" data-i18n="footer.tools">Tools</a><a href="/about.html" data-i18n="footer.about">About</a><a href="/refund-policy.html" data-i18n="footer.refundPolicy">Refund Policy</a><a href="/contact.html" data-i18n="footer.contact">Contact</a><a href="/terms.html" data-i18n="footer.terms">Terms</a><a href="/privacy-policy.html" data-i18n="footer.privacy">Privacy</a></nav><div class="socials"><a href="https://www.instagram.com/dbl_lap" aria-label="Instagram">IG</a><a href="https://www.facebook.com/share/18NR4xWCvr/" aria-label="Facebook">FB</a><a href="https://www.tiktok.com/@dbl_lap" aria-label="TikTok">TT</a></div></footer>
   </div>
-  <script src="script.js?v=guide-disabled-20260622"></script>
+  <script src="script.js?v=site-v2-20260623"></script>
 </body>
 </html>

@@ -8,6 +8,11 @@ function sendJson(res, status, payload) {
 }
 
 module.exports = async function handler(req, res) {
+  if (process.env.NODE_ENV === "production") {
+    sendJson(res, 404, { error: "Not found" });
+    return;
+  }
+
   if (req.method !== "GET") {
     sendJson(res, 405, { error: "Method not allowed" });
     return;
