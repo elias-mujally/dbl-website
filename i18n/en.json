@@ -470,7 +470,22 @@
     "copyBtn": "Copy",
     "copiedBtn": "Copied",
     "manualTitle": "Payment Support",
-    "manualBody": "Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name."
+    "manualBody": "Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name.",
+    "previewTitle": "See a real preview from inside DBL Prompt Vault before buying",
+    "previewBody": "Selected pages from inside the product showing the prompt roadmap, business tracks, and ready-to-copy prompt structure.",
+    "previewOpen": "Open preview image",
+    "previewNext": "Next preview image",
+    "previewPrevious": "Previous preview image",
+    "previewClose": "Close preview",
+    "previewSlideLabel": "Preview slide",
+    "previewAlt": [
+      "DBL Prompt Vault cover preview",
+      "DBL Prompt Vault usage roadmap preview",
+      "DBL Prompt Vault business track start preview",
+      "DBL Prompt Vault ready-to-copy prompt sample preview",
+      "DBL Prompt Vault customer data prompt preview",
+      "DBL Prompt Vault marketing system prompt preview"
+    ]
   },
   "downloadPages": {
     "privateAccess": "Private Customer Access",
