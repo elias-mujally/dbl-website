@@ -277,10 +277,11 @@ function initPreviewCarousels() {
     const lightboxImage = carousel.querySelector('[data-preview-lightbox-image]');
     const thumbs = Array.from(carousel.querySelectorAll('[data-preview-thumb]'));
     const dots = Array.from(carousel.querySelectorAll('[data-preview-dot]'));
-    const slides = thumbs.map((thumb) => {
-      const image = thumb.querySelector('img');
+    const slideSources = Array.from(carousel.querySelectorAll('[data-preview-thumb] [data-preview-slide], [data-preview-slide][data-preview-src]'));
+    const slides = (slideSources.length ? slideSources : thumbs).map((source) => {
+      const image = source.matches('img') ? source : source.querySelector('img');
       return {
-        src: image?.getAttribute('src') || '',
+        src: image?.getAttribute('src') || source.getAttribute('data-preview-src') || '',
         alt: image?.getAttribute('alt') || '',
         altKey: image?.getAttribute('data-i18n-alt') || ''
       };

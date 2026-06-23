@@ -2866,14 +2866,18 @@ html[data-theme="light"] .dbl-chat-bubble-close {
   position: relative;
   display: grid;
   gap: 18px;
+  width: 100%;
   max-width: 920px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .preview-carousel-stage {
   position: relative;
   display: grid;
   place-items: center;
+  width: 100%;
+  min-width: 0;
   min-height: min(72vh, 720px);
   padding: clamp(14px, 2vw, 22px);
   border: 1px solid rgba(134, 204, 255, 0.2);
@@ -2888,6 +2892,7 @@ html[data-theme="light"] .dbl-chat-bubble-close {
 .preview-main-button {
   display: grid;
   width: min(100%, 620px);
+  max-width: 100%;
   max-height: min(68vh, 680px);
   padding: 0;
   border: 0;
@@ -2898,6 +2903,8 @@ html[data-theme="light"] .dbl-chat-bubble-close {
 
 .preview-main-button img {
   width: 100%;
+  max-width: 100%;
+  height: auto;
   max-height: min(68vh, 680px);
   object-fit: contain;
   border-radius: 8px;
@@ -2976,6 +2983,7 @@ html[dir="rtl"] .preview-next {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 10px;
+  min-width: 0;
 }
 
 .preview-thumbnails button {
@@ -3095,6 +3103,17 @@ html[data-theme="light"] .preview-thumbnails button {
 
   .preview-carousel {
     gap: 14px;
+    max-width: 100%;
+  }
+
+  .preview-carousel-stage {
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  .preview-main-button,
+  .preview-main-button img {
+    max-height: 72vh;
   }
 
   .preview-nav {
@@ -3122,6 +3141,16 @@ html[data-theme="light"] .preview-thumbnails button {
   }
 
   .preview-thumbnails {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: none;
+  }
+
+  .preview-lightbox {
+    padding: 12px;
+  }
+
+  .preview-lightbox img {
+    max-width: 96vw;
+    max-height: 90vh;
+    object-fit: contain;
   }
 }

@@ -65,9 +65,41 @@
       </section>
 
 
-      <section class="page-section product-preview-section">
-        <div class="section-heading reveal in-view"><span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span><h2 data-i18n="preview.title">Preview From Inside The Product</h2></div>
-        <div class="preview-placeholder reveal in-view"><p data-i18n="preview.digitalLaunch">Product preview will be added here soon.</p></div>
+      <section class="page-section product-preview-section digital-launch-preview" aria-labelledby="digital-launch-preview-title">
+        <div class="section-heading reveal in-view">
+          <span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span>
+          <h2 id="digital-launch-preview-title" data-i18n="product.previewTitle">See a real preview from inside the Digital Launch Bundle before buying</h2>
+          <p data-i18n="product.previewBody">Selected pages from inside the product showing the structure, starting steps, digital work systems, and how the bundle is used.</p>
+        </div>
+        <div class="preview-carousel reveal in-view" data-preview-carousel data-preview-interval="5000">
+          <div class="preview-carousel-stage">
+            <button class="preview-nav preview-prev" type="button" data-preview-prev data-i18n-aria-label="product.previewPrevious">‹</button>
+            <button class="preview-main-button" type="button" data-preview-open data-i18n-aria-label="product.previewOpen">
+              <img src="/assets/previews/digital-launch-bundle/digital-launch-preview-01-cover.png" alt="Digital Launch Bundle cover preview" data-preview-main data-i18n-alt="product.previewAlt.0">
+            </button>
+            <button class="preview-nav preview-next" type="button" data-preview-next data-i18n-aria-label="product.previewNext">›</button>
+          </div>
+          <div class="preview-dots" role="tablist" aria-label="Digital Launch Bundle preview slides">
+            <button type="button" class="active" data-preview-dot="0" data-i18n-aria-label="product.previewSlideLabel">1</button>
+            <button type="button" data-preview-dot="1" data-i18n-aria-label="product.previewSlideLabel">2</button>
+            <button type="button" data-preview-dot="2" data-i18n-aria-label="product.previewSlideLabel">3</button>
+            <button type="button" data-preview-dot="3" data-i18n-aria-label="product.previewSlideLabel">4</button>
+            <button type="button" data-preview-dot="4" data-i18n-aria-label="product.previewSlideLabel">5</button>
+            <button type="button" data-preview-dot="5" data-i18n-aria-label="product.previewSlideLabel">6</button>
+          </div>
+          <div class="preview-thumbnails" aria-label="Digital Launch Bundle preview thumbnails">
+            <button type="button" class="active" data-preview-thumb="0"><img src="/assets/previews/digital-launch-bundle/digital-launch-preview-01-cover.png" data-preview-slide alt="Digital Launch Bundle cover preview thumbnail" data-i18n-alt="product.previewAlt.0"></button>
+            <button type="button" data-preview-thumb="1"><img src="/assets/previews/digital-launch-bundle/digital-launch-preview-02-intro-page.png" data-preview-slide alt="Digital Launch Bundle introduction page preview thumbnail" loading="lazy" data-i18n-alt="product.previewAlt.1"></button>
+            <button type="button" data-preview-thumb="2"><img src="/assets/previews/digital-launch-bundle/digital-launch-preview-03-chapter-start.png" data-preview-slide alt="Digital Launch Bundle chapter start preview thumbnail" loading="lazy" data-i18n-alt="product.previewAlt.2"></button>
+            <button type="button" data-preview-thumb="3"><img src="/assets/previews/digital-launch-bundle/digital-launch-preview-04-content-system.png" data-preview-slide alt="Digital Launch Bundle content system preview thumbnail" loading="lazy" data-i18n-alt="product.previewAlt.3"></button>
+            <button type="button" data-preview-thumb="4"><img src="/assets/previews/digital-launch-bundle/digital-launch-preview-05-action-template.png" data-preview-slide alt="Digital Launch Bundle action template preview thumbnail" loading="lazy" data-i18n-alt="product.previewAlt.4"></button>
+            <button type="button" data-preview-thumb="5"><img src="/assets/previews/digital-launch-bundle/digital-launch-preview-06-client-lab.png" data-preview-slide alt="Digital Launch Bundle client lab preview thumbnail" loading="lazy" data-i18n-alt="product.previewAlt.5"></button>
+          </div>
+          <div class="preview-lightbox" data-preview-lightbox hidden>
+            <button type="button" class="preview-lightbox-close" data-preview-close data-i18n-aria-label="product.previewClose">×</button>
+            <img src="/assets/previews/digital-launch-bundle/digital-launch-preview-01-cover.png" alt="Digital Launch Bundle cover preview" data-preview-lightbox-image data-i18n-alt="product.previewAlt.0">
+          </div>
+        </div>
       </section>
 
       <section class="page-section page-grid"><article class="page-panel reveal in-view"><h2 data-i18n="productPage.aboutTitle">About Digital Blueprint Lab</h2><p data-i18n="productPage.aboutBody">Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.</p></article><article class="page-panel reveal in-view"><h2 data-i18n="productPage.finalTitle">Start With A Practical Blueprint</h2><p data-i18n="productPage.finalBody">Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name.</p><div class="button-row"><a class="btn btn-secondary" href="/payment-methods.html" data-i18n="productPage.alternativePayment">Alternative Payment Methods</a></div></article></section>

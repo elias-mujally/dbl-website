@@ -59,7 +59,22 @@
       "Freelancing foundations"
     ],
     "previewBtn": "View Product",
-    "getBtn": "Get The Bundle"
+    "getBtn": "Get The Bundle",
+    "previewTitle": "See a real preview from inside the Digital Launch Bundle before buying",
+    "previewBody": "Selected pages from inside the product showing the structure, starting steps, digital work systems, and how the bundle is used.",
+    "previewOpen": "Open preview image",
+    "previewNext": "Next preview image",
+    "previewPrevious": "Previous preview image",
+    "previewClose": "Close preview",
+    "previewSlideLabel": "Preview slide",
+    "previewAlt": [
+      "Digital Launch Bundle cover preview",
+      "Digital Launch Bundle introduction page preview",
+      "Digital Launch Bundle chapter start preview",
+      "Digital Launch Bundle content system preview",
+      "Digital Launch Bundle action template preview",
+      "Digital Launch Bundle client lab preview"
+    ]
   },
   "clientKit": {
     "eyebrow": "Client System",
