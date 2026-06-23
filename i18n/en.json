@@ -186,7 +186,19 @@
         "a": "Gumroad purchases provide instant access. Alternative payments are delivered after confirmation."
       }
     ],
-    "bundlePriceNote": "Bundle price for all 3 paid products."
+    "bundlePriceNote": "Bundle price for all 3 paid products.",
+    "previewTitle": "See what is inside DBL Business Suite before buying",
+    "previewBody": "A quick look at the core products included in the bundle: Digital Launch Bundle, DBL Client Kit, and DBL Prompt Vault.",
+    "previewOpen": "Open preview image",
+    "previewNext": "Next preview image",
+    "previewPrevious": "Previous preview image",
+    "previewClose": "Close preview",
+    "previewSlideLabel": "Preview slide",
+    "previewAlt": [
+      "Digital Launch Bundle preview inside DBL Business Suite",
+      "DBL Client Kit preview inside DBL Business Suite",
+      "DBL Prompt Vault preview inside DBL Business Suite"
+    ]
   },
   "catalog": {
     "eyebrow": "Product Catalog",

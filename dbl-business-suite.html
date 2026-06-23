@@ -82,9 +82,35 @@
       </section>
 
 
-      <section class="page-section product-preview-section">
-        <div class="section-heading reveal in-view"><span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span><h2 data-i18n="preview.title">Preview From Inside The Product</h2></div>
-        <div class="preview-placeholder reveal in-view"><p data-i18n="preview.businessSuite">Product preview will be added here soon.</p></div>
+      <section class="page-section product-preview-section business-suite-preview" aria-labelledby="business-suite-preview-title">
+        <div class="section-heading reveal in-view">
+          <span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span>
+          <h2 id="business-suite-preview-title" data-i18n="businessSuite.previewTitle">See what is inside DBL Business Suite before buying</h2>
+          <p data-i18n="businessSuite.previewBody">A quick look at the core products included in the bundle: Digital Launch Bundle, DBL Client Kit, and DBL Prompt Vault.</p>
+        </div>
+        <div class="preview-carousel reveal in-view" data-preview-carousel data-preview-interval="5000">
+          <div class="preview-carousel-stage">
+            <button class="preview-nav preview-prev" type="button" data-preview-prev data-i18n-aria-label="businessSuite.previewPrevious">‹</button>
+            <button class="preview-main-button" type="button" data-preview-open data-i18n-aria-label="businessSuite.previewOpen">
+              <img src="/assets/previews/dbl-business-suite/business-suite-preview-01-digital-launch.png" alt="Digital Launch Bundle preview inside DBL Business Suite" data-preview-main data-i18n-alt="businessSuite.previewAlt.0">
+            </button>
+            <button class="preview-nav preview-next" type="button" data-preview-next data-i18n-aria-label="businessSuite.previewNext">›</button>
+          </div>
+          <div class="preview-dots" role="tablist" aria-label="DBL Business Suite preview slides">
+            <button type="button" class="active" data-preview-dot="0" data-i18n-aria-label="businessSuite.previewSlideLabel">1</button>
+            <button type="button" data-preview-dot="1" data-i18n-aria-label="businessSuite.previewSlideLabel">2</button>
+            <button type="button" data-preview-dot="2" data-i18n-aria-label="businessSuite.previewSlideLabel">3</button>
+          </div>
+          <div class="preview-thumbnails" aria-label="DBL Business Suite preview thumbnails">
+            <button type="button" class="active" data-preview-thumb="0"><img src="/assets/previews/dbl-business-suite/business-suite-preview-01-digital-launch.png" data-preview-slide alt="Digital Launch Bundle preview thumbnail inside DBL Business Suite" data-i18n-alt="businessSuite.previewAlt.0"></button>
+            <button type="button" data-preview-thumb="1"><img src="/assets/previews/dbl-business-suite/business-suite-preview-02-client-kit.png" data-preview-slide alt="DBL Client Kit preview thumbnail inside DBL Business Suite" loading="lazy" data-i18n-alt="businessSuite.previewAlt.1"></button>
+            <button type="button" data-preview-thumb="2"><img src="/assets/previews/dbl-business-suite/business-suite-preview-03-prompt-vault.png" data-preview-slide alt="DBL Prompt Vault preview thumbnail inside DBL Business Suite" loading="lazy" data-i18n-alt="businessSuite.previewAlt.2"></button>
+          </div>
+          <div class="preview-lightbox" data-preview-lightbox hidden>
+            <button type="button" class="preview-lightbox-close" data-preview-close data-i18n-aria-label="businessSuite.previewClose">×</button>
+            <img src="/assets/previews/dbl-business-suite/business-suite-preview-01-digital-launch.png" alt="Digital Launch Bundle preview inside DBL Business Suite" data-preview-lightbox-image data-i18n-alt="businessSuite.previewAlt.0">
+          </div>
+        </div>
       </section>
 
       <section class="page-section page-grid product-detail-grid">

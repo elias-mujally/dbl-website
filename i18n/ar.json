@@ -532,7 +532,19 @@
         "a": "مشتريات Gumroad تمنحك وصولاً فورياً. أما طرق الدفع البديلة فيتم تسليمها بعد تأكيد الدفع."
       }
     ],
-    "bundlePriceNote": "حزمة واحدة تضم 3 منتجات مدفوعة + دليل ترحيبي مجاني"
+    "bundlePriceNote": "حزمة واحدة تضم 3 منتجات مدفوعة + دليل ترحيبي مجاني",
+    "previewTitle": "شاهد معاينة من داخل DBL Business Suite قبل الشراء",
+    "previewBody": "نظرة سريعة على المنتجات الأساسية داخل الحزمة: Digital Launch Bundle و DBL Client Kit و DBL Prompt Vault.",
+    "previewOpen": "فتح صورة المعاينة",
+    "previewNext": "الصورة التالية",
+    "previewPrevious": "الصورة السابقة",
+    "previewClose": "إغلاق المعاينة",
+    "previewSlideLabel": "شريحة المعاينة",
+    "previewAlt": [
+      "معاينة Digital Launch Bundle داخل DBL Business Suite",
+      "معاينة DBL Client Kit داخل DBL Business Suite",
+      "معاينة DBL Prompt Vault داخل DBL Business Suite"
+    ]
   },
   "paymentMethods": {
     "eyebrow": "دعم الدفع",
