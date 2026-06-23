@@ -262,15 +262,72 @@
   "pages": {
     "about": {
       "eyebrow": "About DBL",
-      "title": "An independent lab for practical digital growth.",
-      "lead": "Digital Blueprint Lab helps creators, freelancers, and digital builders develop useful systems, AI workflows, digital products, and modern online business skills.",
-      "missionTitle": "Built for execution",
-      "missionBody": "DBL promotes practical execution, clarity, organization, and long-term digital growth instead of hype, shortcuts, or unrealistic promises.",
-      "focusTitle": "What the lab focuses on",
-      "focus1": "Freelancing systems and client communication",
-      "focus2": "AI-assisted workflows and digital operations",
-      "focus3": "Digital products, templates, and repeatable assets",
-      "focus4": "Clear execution habits for sustainable online work"
+      "title": "About Digital Blueprint Lab",
+      "lead": "Digital Blueprint Lab is an independent digital lab built to help creators, freelancers, and digital builders move from scattered ideas to practical execution.",
+      "whyEyebrow": "Why DBL Exists",
+      "whyTitle": "Why we created DBL",
+      "whyBody1": "In a world full of information, the problem is no longer a lack of knowledge. The real challenge is knowing what to learn, where to begin, and what deserves your time.",
+      "whyBody2": "Anyone can find thousands of articles, courses, and videos. But only a small part of that content helps you turn an idea into a real project.",
+      "whyBody3": "That is why Digital Blueprint Lab exists. We create practical digital products that help people move from thinking to execution through clear guides, work systems, ready templates, and usable resources.",
+      "whyBody4": "Our goal is not to add more information to the internet. Our goal is to give you tools that help you execute your ideas with more clarity and professionalism.",
+      "differenceEyebrow": "DBL Products",
+      "differenceTitle": "What makes DBL products different?",
+      "differenceLead": "We do not create digital products just to sell files. Every product is shaped around a practical standard.",
+      "differenceCards": [
+        {
+          "title": "Practical first",
+          "body": "Built to be used in real work, not only read as theory."
+        },
+        {
+          "title": "Simple by design",
+          "body": "Clear enough to start with, without unnecessary complexity."
+        },
+        {
+          "title": "Execution ready",
+          "body": "Designed to help you take action, organize work, and build repeatable systems."
+        },
+        {
+          "title": "Always improving",
+          "body": "Products can evolve with better practices, new tools, and real user needs."
+        }
+      ],
+      "philosophyEyebrow": "Philosophy",
+      "philosophyTitle": "The DBL philosophy",
+      "philosophyBody1": "Successful digital projects are not built on temporary motivation. They are built through clear systems, consistent work, and continuous improvement.",
+      "philosophyBody2": "Technology changes. Platforms change. Tools evolve. But the ability to solve problems and create real value will always matter.",
+      "identityQuote": "We do not sell information. We build systems that help you execute.",
+      "audienceEyebrow": "Who We Serve",
+      "audienceTitle": "Who is DBL designed for?",
+      "audienceLead": "DBL is for people who want to build digital work in a practical, organized, and improvable way.",
+      "audience": [
+        "Freelancers",
+        "Entrepreneurs",
+        "Students",
+        "Content creators",
+        "Digital product builders",
+        "Beginners in online work"
+      ],
+      "evolutionEyebrow": "Continuous Product Growth",
+      "evolutionTitle": "Products that keep evolving",
+      "evolutionBody": "We do not treat any DBL product as final forever. Each product can improve through customer feedback, practical use, new technologies, and better modern practices.",
+      "missionEyebrow": "Mission",
+      "missionTitle": "Our mission",
+      "missionBody": "We aim to make building digital projects clearer, more organized, and easier to apply through practical systems, real tools, and products that help people start with clear steps.",
+      "principlesEyebrow": "Principles",
+      "principlesTitle": "DBL principles",
+      "principles": [
+        "Build before chasing perfection.",
+        "Create solutions for real problems.",
+        "Execution matters more than excessive planning.",
+        "Systems create consistency.",
+        "Learning is a process that never stops.",
+        "Use AI to increase your abilities, not replace your thinking.",
+        "Publish, learn, improve, and repeat."
+      ],
+      "ctaEyebrow": "Start Today",
+      "ctaTitle": "Every successful project starts with one clear step.",
+      "ctaBody": "Welcome to Digital Blueprint Lab. Your first step today may become the beginning of something bigger than you imagine.",
+      "ctaButton": "Explore DBL Products"
     },
     "contact": {
       "eyebrow": "Contact",
