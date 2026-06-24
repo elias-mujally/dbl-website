@@ -714,7 +714,7 @@
     "finalTitle": "Start With A Clearer Idea",
     "finalBody": "Use the guide to compare ideas, avoid unrealistic options, and choose a practical direction for your next business step.",
     "previewTitle": "See a real preview from inside the guide before buying",
-    "previewBody": "Selected pages from inside the product showing the structure, idea index, fit test, and idea explanation style.",
+    "previewBody": "Selected pages from inside the product showing the cover, category index, card reading guide, and sample business idea cards.",
     "previewOpen": "Open preview image",
     "previewNext": "Next preview image",
     "previewPrevious": "Previous preview image",
@@ -722,12 +722,10 @@
     "previewSlideLabel": "Preview slide",
     "previewAlt": [
       "DBL Business Ideas Vault cover preview",
-      "Business idea fit test preview",
-      "Business idea index preview",
-      "Sample business idea start preview",
-      "Sample business idea rating preview",
-      "Mid-book sample preview",
-      "Mid-book sample continued preview"
+      "Business ideas category index preview",
+      "Business idea card reading guide preview",
+      "Remote customer service business idea preview",
+      "Thirty day learning challenge business idea preview"
     ]
   },
   "preview": {
