@@ -1,17 +1,18 @@
 # Digital Blueprint Lab
 
-Premium landing page for Digital Blueprint Lab, a futuristic AI and freelancing systems brand.
+Native Next.js App Router website for Digital Blueprint Lab.
 
 ## Local Preview
 
 ```bash
-npm start
+pnpm install
+pnpm run dev
 ```
 
 ## Production Build
 
 ```bash
-npm run build
+pnpm run build
 ```
 
-Vercel uses `vercel.json` to build the static site into `dist`.
+Vercel builds the Next.js app with `pnpm run build`.

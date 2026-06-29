@@ -1,6 +1,8 @@
 dist/
+.next/
 .vercel/
 node_modules/
+.pnpm-store/
 *.log
 .env
 .env.*

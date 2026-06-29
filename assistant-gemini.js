@@ -54,10 +54,8 @@ function logChat(label, value) {
 
 function readProductKnowledge(rootDir) {
   const candidates = [
-    path.join(rootDir, "assets", "dbl-guide", "products.json"),
-    path.join(rootDir, "dist", "assets", "dbl-guide", "products.json"),
-    path.join(__dirname, "assets", "dbl-guide", "products.json"),
-    path.join(__dirname, "dist", "assets", "dbl-guide", "products.json")
+    path.join(rootDir, "public", "assets", "dbl-guide", "products.json"),
+    path.join(__dirname, "public", "assets", "dbl-guide", "products.json")
   ];
   const filePath = candidates.find((candidate) => fs.existsSync(candidate));
   if (!filePath) {

@@ -1,8 +1,5 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "cleanUrls": true,
-  "trailingSlash": false,
+  "buildCommand": "pnpm run build",
   "headers": [
     {
       "source": "/(.*)",
