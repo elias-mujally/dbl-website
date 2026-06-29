@@ -208,6 +208,149 @@ async function copyTextToClipboard(value) {
   textarea.remove();
 }
 
+async function handleCopyButton(button, translations) {
+  const value = button.getAttribute("data-copy");
+  if (!value) return;
+
+  try {
+    await copyTextToClipboard(value);
+  } catch (error) {}
+
+  const originalText = button.textContent;
+  button.textContent = getTranslation(translations, "productPage.copiedBtn") || "Copied";
+  window.setTimeout(() => {
+    button.textContent = originalText;
+  }, 1500);
+}
+
+function handleDiscountReveal(button) {
+  const targetSelector = button.getAttribute("data-target");
+  const target = targetSelector ? document.querySelector(targetSelector) : button.parentElement?.querySelector(".discount-code-box");
+  if (!target) return;
+
+  target.classList.add("is-visible");
+  const code = target.querySelector("code")?.textContent?.trim();
+  if (code) copyTextToClipboard(code).catch(() => {});
+}
+
+function initPreviewCarousels(getTranslations) {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cleanups = [];
+
+  document.querySelectorAll("[data-preview-carousel]").forEach((carousel) => {
+    if (carousel.dataset.previewReady === "true") return;
+    carousel.dataset.previewReady = "true";
+
+    const mainImage = carousel.querySelector("[data-preview-main]");
+    const lightbox = carousel.querySelector("[data-preview-lightbox]");
+    const lightboxImage = carousel.querySelector("[data-preview-lightbox-image]");
+    const thumbs = Array.from(carousel.querySelectorAll("[data-preview-thumb]"));
+    const dots = Array.from(carousel.querySelectorAll("[data-preview-dot]"));
+    const slideSources = Array.from(
+      carousel.querySelectorAll("[data-preview-thumb] [data-preview-slide], [data-preview-slide][data-preview-src]"),
+    );
+    const slides = (slideSources.length ? slideSources : thumbs)
+      .map((source) => {
+        const image = source.matches("img") ? source : source.querySelector("img");
+        return {
+          src: image?.getAttribute("src") || source.getAttribute("data-preview-src") || "",
+          alt: image?.getAttribute("alt") || "",
+          altKey: image?.getAttribute("data-i18n-alt") || "",
+        };
+      })
+      .filter((slide) => slide.src);
+
+    if (!mainImage || !slides.length) return;
+
+    let index = 0;
+    let timer = null;
+    let pausedUntil = 0;
+    const interval = Number(carousel.dataset.previewInterval || 5000);
+    const carouselCleanups = [];
+
+    const translate = (key) => getTranslation(getTranslations(), key);
+    const stopAuto = () => {
+      if (timer) window.clearInterval(timer);
+      timer = null;
+    };
+    const startAuto = () => {
+      if (reducedMotion || timer || lightbox?.classList.contains("is-open")) return;
+      timer = window.setInterval(() => {
+        if (Date.now() < pausedUntil || carousel.matches(":hover") || lightbox?.classList.contains("is-open")) return;
+        setActive(index + 1);
+      }, interval);
+    };
+    const restartAuto = () => {
+      stopAuto();
+      startAuto();
+    };
+    const setActive = (nextIndex, userAction = false) => {
+      index = (nextIndex + slides.length) % slides.length;
+      const slide = slides[index];
+      const alt = slide.altKey ? translate(slide.altKey) : slide.alt;
+
+      mainImage.src = slide.src;
+      mainImage.alt = alt;
+      if (slide.altKey) mainImage.setAttribute("data-i18n-alt", slide.altKey);
+
+      if (lightboxImage) {
+        lightboxImage.src = slide.src;
+        lightboxImage.alt = alt;
+        if (slide.altKey) lightboxImage.setAttribute("data-i18n-alt", slide.altKey);
+      }
+
+      dots.forEach((dot, dotIndex) => dot.classList.toggle("active", dotIndex === index));
+      thumbs.forEach((thumb, thumbIndex) => thumb.classList.toggle("active", thumbIndex === index));
+
+      if (userAction) {
+        pausedUntil = Date.now() + interval * 2;
+        restartAuto();
+      }
+    };
+    const closeLightbox = () => {
+      if (!lightbox) return;
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("hidden", "");
+      pausedUntil = Date.now() + interval * 2;
+      startAuto();
+    };
+    const addListener = (target, eventName, handler) => {
+      target?.addEventListener(eventName, handler);
+      if (target) carouselCleanups.push(() => target.removeEventListener(eventName, handler));
+    };
+
+    addListener(carousel.querySelector("[data-preview-prev]"), "click", () => setActive(index - 1, true));
+    addListener(carousel.querySelector("[data-preview-next]"), "click", () => setActive(index + 1, true));
+    dots.forEach((dot) => addListener(dot, "click", () => setActive(Number(dot.dataset.previewDot), true)));
+    thumbs.forEach((thumb) => addListener(thumb, "click", () => setActive(Number(thumb.dataset.previewThumb), true)));
+    addListener(carousel, "mouseenter", stopAuto);
+    addListener(carousel, "mouseleave", startAuto);
+    addListener(carousel.querySelector("[data-preview-open]"), "click", () => {
+      stopAuto();
+      lightbox?.removeAttribute("hidden");
+      lightbox?.classList.add("is-open");
+      carousel.querySelector("[data-preview-close]")?.focus({ preventScroll: true });
+    });
+    addListener(carousel.querySelector("[data-preview-close]"), "click", closeLightbox);
+    addListener(lightbox, "click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    addListener(document, "keydown", (event) => {
+      if (event.key === "Escape" && lightbox?.classList.contains("is-open")) closeLightbox();
+    });
+
+    setActive(0);
+    startAuto();
+    cleanups.push(() => {
+      stopAuto();
+      carousel.dataset.previewReady = "false";
+      carouselCleanups.forEach((cleanup) => cleanup());
+    });
+  });
+
+  return () => cleanups.forEach((cleanup) => cleanup());
+}
+
 export default function HomepageBehavior() {
   useEffect(() => {
     let currentLanguage = applyLanguageShell(getSavedValue("language", "ar"));
@@ -273,6 +416,21 @@ export default function HomepageBehavior() {
         return;
       }
 
+      const discountButton = event.target.closest("[data-discount-reveal]");
+      if (discountButton) {
+        event.preventDefault();
+        handleDiscountReveal(discountButton);
+        return;
+      }
+
+      const copyButton = event.target.closest(".copy-btn");
+      if (copyButton) {
+        event.preventDefault();
+        event.stopPropagation();
+        await handleCopyButton(copyButton, translations);
+        return;
+      }
+
       const languageButton = event.target.closest(".lang-btn");
       if (languageButton) {
         event.preventDefault();
@@ -297,6 +455,7 @@ export default function HomepageBehavior() {
 
     const revealCleanup = initRevealAnimations();
     const parallaxCleanup = initHeroParallax();
+    const previewCleanup = initPreviewCarousels(() => translations);
     updateSocialLinks();
     document.addEventListener("click", handleClick);
     document.addEventListener("keydown", handleKeydown);
@@ -316,6 +475,7 @@ export default function HomepageBehavior() {
       document.removeEventListener("keydown", handleKeydown);
       revealCleanup?.();
       parallaxCleanup?.();
+      previewCleanup?.();
     };
   }, []);
 
