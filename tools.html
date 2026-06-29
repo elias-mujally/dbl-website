@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+    <script>
+    (function() {
+      try {
+        var lang = localStorage.getItem('language') || 'ar';
+        lang = lang === 'en' ? 'en' : 'ar';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.classList.toggle('rtl', lang === 'ar');
+        var theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+      }
+    })();
+  </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/dbl-favicon-512.png">
+  <link rel="apple-touch-icon" href="/assets/dbl-favicon-512.png">
+  <title>Tools & Templates | Digital Blueprint Lab</title>
+  <meta name="description" content="Explore practical digital tools, templates, and ready-to-use resources from Digital Blueprint Lab.">
+  <link rel="stylesheet" href="styles.css?v=site-v2-20260623">
+</head>
+<body>
+  <div class="site-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <header class="nav">
+      <a class="brand" href="/" aria-label="Digital Blueprint Lab home"><span class="brand-mark">DBL</span><span class="brand-name" data-i18n="nav.brand">Digital Blueprint Lab</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/books.html" data-i18n="nav.books">Books</a>
+        <a href="/tools.html" data-i18n="nav.tools">Tools</a>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+        <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="nav-controls"><div class="language-switcher"><button type="button" class="lang-btn lang-en active" data-lang="en">EN</button><span class="lang-divider">|</span><button type="button" class="lang-btn lang-ar" data-lang="ar">AR</button></div><a class="nav-cta" href="/#guide" data-i18n="nav.enterLab">View Products</a></div>
+    </header>
+    <main>
+      <section class="page-hero reveal in-view"><span class="eyebrow" data-i18n="catalog.toolsEyebrow">Ready-To-Use Resources</span><h1 data-i18n="catalog.toolsPageTitle">Tools / Templates</h1><p data-i18n="catalog.toolsPageLead">Practical kits and templates designed for cleaner, more professional digital execution.</p></section>
+      <section class="page-section category-product-grid">
+        <article class="page-panel category-product-card business-suite-card reveal in-view">
+          <img src="/assets/dbl-business-suite-cover.png" alt="DBL Business Suite cover" data-i18n-alt="businessSuite.coverAlt">
+          <div><span class="eyebrow business-suite-badge" data-i18n="businessSuite.bestValue">Best Value Bundle</span><h2 data-i18n="businessSuite.title">DBL Business Suite</h2><p data-i18n="businessSuite.shortDescription">Complete bundle including Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide.</p><div class="category-product-price"><strong data-i18n="businessSuite.price">$34.99</strong></div><div class="button-row"><a class="btn btn-primary" href="/dbl-business-suite.html" data-i18n="businessSuite.viewBundle">View Bundle</a></div></div>
+        </article>
+        <article class="page-panel category-product-card reveal in-view">
+          <img src="/assets/dbl-client-kit-cover.jpeg" alt="DBL Client Kit cover" data-i18n-alt="clientKit.coverAlt">
+          <div><span class="eyebrow" data-i18n="clientKit.eyebrow">Client System</span><h2 data-i18n="clientKit.title">DBL Client Kit</h2><p data-i18n="clientKit.description">DBL Client Kit is a practical client management system for freelancers and digital service providers. It includes ready-to-use client messages, DBL rules, client handling tools, checklists, and real-world examples.</p><div class="category-product-price"><strong>$14.99</strong></div><div class="button-row"><a class="btn btn-primary" href="/dbl-client-kit.html" data-i18n="clientKit.previewBtn">View Product</a></div></div>
+        </article>
+        <article class="page-panel category-product-card reveal in-view">
+          <img src="/assets/dbl-prompt-vault-cover.jpeg" alt="DBL Prompt Vault cover" data-i18n-alt="promptVaultPage.coverAlt">
+          <div><span class="eyebrow" data-i18n="promptVaultPage.catalogEyebrow">AI Resource</span><h2 data-i18n="promptVaultPage.title">DBL Prompt Vault</h2><p data-i18n="promptVaultPage.catalogDescription">A premium collection of 100 professional AI prompts with Arabic explanations, practical use cases, real examples, DBL tips, and an Excel prompt tracker.</p><div class="category-product-price"><strong>$19.99</strong><span data-i18n="promptVaultPage.discount">Exclusive discount</span></div><div class="button-row"><a class="btn btn-primary" href="/dbl-prompt-vault.html" data-i18n="promptVaultPage.previewBtn">View Product</a></div></div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer"><a class="brand" href="/" aria-label="Digital Blueprint Lab home"><span class="brand-mark">DBL</span><span class="brand-name" data-i18n="footer.brand">Digital Blueprint Lab</span></a><nav aria-label="Footer navigation"><a href="/books.html" data-i18n="footer.books">Books</a><a href="/tools.html" data-i18n="footer.tools">Tools</a><a href="/about.html" data-i18n="footer.about">About</a><a href="/refund-policy.html" data-i18n="footer.refundPolicy">Refund Policy</a><a href="/contact.html" data-i18n="footer.contact">Contact</a><a href="/terms.html" data-i18n="footer.terms">Terms</a><a href="/privacy-policy.html" data-i18n="footer.privacy">Privacy</a></nav><div class="socials"><a href="https://www.instagram.com/dbl_lap" aria-label="Instagram">IG</a><a href="https://www.facebook.com/share/18NR4xWCvr/" aria-label="Facebook">FB</a><a href="https://www.tiktok.com/@dbl_lap" aria-label="TikTok">TT</a></div></footer>
+  </div>
+  <script src="script.js?v=site-v2-20260623"></script>
+</body>
+</html>

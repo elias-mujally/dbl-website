@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+    <script>
+    (function() {
+      try {
+        var lang = localStorage.getItem('language') || 'ar';
+        lang = lang === 'en' ? 'en' : 'ar';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.classList.toggle('rtl', lang === 'ar');
+        var theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+      }
+    })();
+  </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/dbl-favicon-512.png">
+  <link rel="apple-touch-icon" href="/assets/dbl-favicon-512.png">
+  <title>DBL Client Kit | Digital Blueprint Lab</title>
+  <meta name="description" content="DBL Client Kit is a practical client management system for freelancers and digital service providers.">
+  <link rel="stylesheet" href="styles.css?v=site-v2-20260623">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"DBL Client Kit","description":"Practical client management system for freelancers and digital service providers.","image":"https://www.dblab.site/assets/dbl-client-kit-cover.jpeg","url":"https://www.dblab.site/dbl-client-kit.html","brand":{"@type":"Brand","name":"Digital Blueprint Lab"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"14.99","availability":"https://schema.org/InStock","url":"https://www.dblab.site/dbl-client-kit.html"}}</script>
+</head>
+<body>
+  <div class="site-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <header class="nav">
+      <a class="brand" href="/" aria-label="Digital Blueprint Lab home"><span class="brand-mark">DBL</span><span class="brand-name" data-i18n="nav.brand">Digital Blueprint Lab</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/books.html" data-i18n="nav.books">Books</a>
+        <a href="/tools.html" data-i18n="nav.tools">Tools</a>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+        <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="nav-controls"><div class="language-switcher"><button type="button" class="lang-btn lang-en active" data-lang="en">EN</button><span class="lang-divider">|</span><button type="button" class="lang-btn lang-ar" data-lang="ar">AR</button></div><a class="nav-cta" href="/#guide" data-i18n="nav.enterLab">View Products</a></div>
+    </header>
+
+    <main>
+      <section class="product-page-hero section-grid reveal in-view">
+        <div class="product-cover-showcase product-page-cover"><img src="/assets/dbl-client-kit-cover.jpeg" alt="DBL Client Kit cover" data-i18n-alt="clientKit.coverAlt"></div>
+        <div class="section-copy">
+          <span class="eyebrow" data-i18n="clientKitPage.eyebrow">Official DBL Product</span>
+          <h1 data-i18n="clientKit.title">DBL Client Kit</h1>
+          <p data-i18n="clientKit.description">DBL Client Kit is a practical client management system for freelancers and digital service providers. It includes ready-to-use client messages, DBL rules, client handling tools, checklists, and real-world examples to help users manage communication, pricing, revisions, delivery, and difficult client situations more professionally.</p>
+          <div class="price-badge"><span data-i18n="clientKitPage.priceLabel">Launch Price</span><strong>$14.99 USD</strong></div>
+          <div class="button-row"><a class="btn btn-primary" href="https://dblab.gumroad.com/l/gfrthg" target="_blank" rel="noopener" data-i18n="clientKitPage.buyNow">Get Instant Access</a><a class="btn btn-secondary" href="/payment-methods.html" data-i18n="clientKitPage.alternativePayment">Alternative Payment Methods</a></div>
+        </div>
+      </section>
+
+      <section class="page-section page-grid">
+        <article class="page-panel reveal in-view"><h2 data-i18n="clientKitPage.contentsTitle">What Is Included?</h2><ul class="page-list"><li data-i18n="clientKitPage.contents.0">25 ready-to-use client messages</li><li data-i18n="clientKitPage.contents.1">15 DBL client management rules</li><li data-i18n="clientKitPage.contents.2">10 common client relationship mistakes</li><li data-i18n="clientKitPage.contents.3">10 practical real-world examples</li><li data-i18n="clientKitPage.contents.4">9 DBL tools</li><li data-i18n="clientKitPage.contents.5">3 professional checklists</li><li data-i18n="clientKitPage.contents.6">Communication, pricing, revision, delivery, and follow-up templates</li></ul></article>
+        <article class="page-panel reveal in-view"><h2 data-i18n="clientKitPage.whoTitle">Who Is This For?</h2><ul class="page-list"><li data-i18n="clientKitPage.who.0">Freelancers</li><li data-i18n="clientKitPage.who.1">Designers</li><li data-i18n="clientKitPage.who.2">Marketers</li><li data-i18n="clientKitPage.who.3">Digital service providers</li><li data-i18n="clientKitPage.who.4">Beginners in online work</li><li data-i18n="clientKitPage.who.5">People who want to manage clients more professionally</li></ul></article>
+      </section>
+
+      <section class="page-section page-grid product-detail-grid">
+        <article class="page-panel reveal in-view"><h2 data-i18n="clientKitPage.benefitsTitle">Benefits</h2><ul class="page-list"><li data-i18n="clientKitPage.benefits.0">Communicate with clients more clearly</li><li data-i18n="clientKitPage.benefits.1">Handle pricing and revisions with confidence</li><li data-i18n="clientKitPage.benefits.2">Deliver work with a professional process</li><li data-i18n="clientKitPage.benefits.3">Respond to difficult client situations more effectively</li></ul></article>
+        <article class="page-panel reveal in-view"><h2 data-i18n="clientKitPage.systemTitle">A Practical Client System</h2><p data-i18n="clientKitPage.systemBody">Use the kit as a working reference for everyday freelance conversations, revisions, pricing decisions, delivery steps, follow-ups, and client boundaries.</p></article>
+      </section>
+
+
+      <section class="page-section product-preview-section client-kit-preview" aria-labelledby="client-kit-preview-title">
+        <div class="section-heading reveal in-view">
+          <span class="eyebrow" data-i18n="preview.eyebrow">Product Preview</span>
+          <h2 id="client-kit-preview-title" data-i18n="clientKitPage.previewTitle">See a real preview from inside DBL Client Kit before buying</h2>
+          <p data-i18n="clientKitPage.previewBody">Selected pages from inside the product showing client rules, message templates, delivery workflows, and practical client tools.</p>
+        </div>
+        <div class="preview-carousel reveal in-view" data-preview-carousel data-preview-interval="5000">
+          <div class="preview-carousel-stage">
+            <button class="preview-nav preview-prev" type="button" data-preview-prev data-i18n-aria-label="clientKitPage.previewPrevious">‹</button>
+            <button class="preview-main-button" type="button" data-preview-open data-i18n-aria-label="clientKitPage.previewOpen">
+              <img src="/assets/previews/dbl-client-kit/client-kit-preview-01-cover.png" alt="DBL Client Kit cover preview" data-preview-main data-i18n-alt="clientKitPage.previewAlt.0">
+            </button>
+            <button class="preview-nav preview-next" type="button" data-preview-next data-i18n-aria-label="clientKitPage.previewNext">›</button>
+          </div>
+          <div class="preview-dots" role="tablist" aria-label="DBL Client Kit preview slides">
+            <button type="button" class="active" data-preview-dot="0" data-i18n-aria-label="clientKitPage.previewSlideLabel">1</button>
+            <button type="button" data-preview-dot="1" data-i18n-aria-label="clientKitPage.previewSlideLabel">2</button>
+            <button type="button" data-preview-dot="2" data-i18n-aria-label="clientKitPage.previewSlideLabel">3</button>
+            <button type="button" data-preview-dot="3" data-i18n-aria-label="clientKitPage.previewSlideLabel">4</button>
+            <button type="button" data-preview-dot="4" data-i18n-aria-label="clientKitPage.previewSlideLabel">5</button>
+          </div>
+          <div class="preview-thumbnails" aria-label="DBL Client Kit preview thumbnails">
+            <button type="button" class="active" data-preview-thumb="0"><img src="/assets/previews/dbl-client-kit/client-kit-preview-01-cover.png" data-preview-slide alt="DBL Client Kit cover preview thumbnail" data-i18n-alt="clientKitPage.previewAlt.0"></button>
+            <button type="button" data-preview-thumb="1"><img src="/assets/previews/dbl-client-kit/client-kit-preview-02-rules.png" data-preview-slide alt="DBL Client Kit client rules preview thumbnail" loading="lazy" data-i18n-alt="clientKitPage.previewAlt.1"></button>
+            <button type="button" data-preview-thumb="2"><img src="/assets/previews/dbl-client-kit/client-kit-preview-03-before-agreement.png" data-preview-slide alt="DBL Client Kit before agreement section preview thumbnail" loading="lazy" data-i18n-alt="clientKitPage.previewAlt.2"></button>
+            <button type="button" data-preview-thumb="3"><img src="/assets/previews/dbl-client-kit/client-kit-preview-04-delivery.png" data-preview-slide alt="DBL Client Kit delivery section preview thumbnail" loading="lazy" data-i18n-alt="clientKitPage.previewAlt.3"></button>
+            <button type="button" data-preview-thumb="4"><img src="/assets/previews/dbl-client-kit/client-kit-preview-05-tools.png" data-preview-slide alt="DBL Client Kit tools preview thumbnail" loading="lazy" data-i18n-alt="clientKitPage.previewAlt.4"></button>
+          </div>
+          <div class="preview-lightbox" data-preview-lightbox hidden>
+            <button type="button" class="preview-lightbox-close" data-preview-close data-i18n-aria-label="clientKitPage.previewClose">×</button>
+            <img src="/assets/previews/dbl-client-kit/client-kit-preview-01-cover.png" alt="DBL Client Kit cover preview" data-preview-lightbox-image data-i18n-alt="clientKitPage.previewAlt.0">
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section page-grid"><article class="page-panel reveal in-view"><h2 data-i18n="clientKitPage.aboutTitle">About Digital Blueprint Lab</h2><p data-i18n="clientKitPage.aboutBody">Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.</p></article><article class="page-panel reveal in-view"><h2 data-i18n="clientKitPage.finalTitle">Get Access To DBL Client Kit</h2><p data-i18n="clientKitPage.finalBody">Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name.</p><div class="button-row"><a class="btn btn-secondary" href="/payment-methods.html" data-i18n="clientKitPage.alternativePayment">Alternative Payment Methods</a></div></article></section>
+    </main>
+
+    <footer class="footer"><a class="brand" href="/" aria-label="Digital Blueprint Lab home"><span class="brand-mark">DBL</span><span class="brand-name" data-i18n="footer.brand">Digital Blueprint Lab</span></a><nav aria-label="Footer navigation"><a href="/books.html" data-i18n="footer.books">Books</a><a href="/tools.html" data-i18n="footer.tools">Tools</a><a href="/about.html" data-i18n="footer.about">About</a><a href="/refund-policy.html" data-i18n="footer.refundPolicy">Refund Policy</a><a href="/contact.html" data-i18n="footer.contact">Contact</a><a href="/terms.html" data-i18n="footer.terms">Terms</a><a href="/privacy-policy.html" data-i18n="footer.privacy">Privacy</a></nav><div class="socials"><a href="https://www.instagram.com/dbl_lap" aria-label="Instagram">IG</a><a href="https://www.facebook.com/share/18NR4xWCvr/" aria-label="Facebook">FB</a><a href="https://www.tiktok.com/@dbl_lap" aria-label="TikTok">TT</a></div></footer>
+  </div>
+  <script src="script.js?v=site-v2-20260623"></script>
+</body>
+</html>

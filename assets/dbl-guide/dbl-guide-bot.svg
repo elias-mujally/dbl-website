@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-labelledby="title desc">
+  <title id="title">DBL Guide assistant robot</title>
+  <desc id="desc">A compact blue and black robot with glowing eyes, a smile, and DBL logo.</desc>
+  <defs>
+    <radialGradient id="halo" cx="50%" cy="42%" r="58%">
+      <stop offset="0" stop-color="#12cfff" stop-opacity=".55"/>
+      <stop offset=".55" stop-color="#0d6efd" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#00142c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="blue" x1="24" y1="18" x2="190" y2="202">
+      <stop offset="0" stop-color="#2ee6ff"/>
+      <stop offset=".42" stop-color="#0d6efd"/>
+      <stop offset="1" stop-color="#073675"/>
+    </linearGradient>
+    <linearGradient id="shell" x1="44" y1="36" x2="180" y2="184">
+      <stop offset="0" stop-color="#122a55"/>
+      <stop offset=".5" stop-color="#07152c"/>
+      <stop offset="1" stop-color="#020814"/>
+    </linearGradient>
+    <filter id="glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.05 0 0 0 0 0.55 0 0 0 0 1 0 0 0 .75 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="110" cy="110" r="104" fill="url(#halo)"/>
+  <ellipse cx="110" cy="196" rx="68" ry="12" fill="#001023" opacity=".55"/>
+
+  <path d="M110 34v-15" stroke="#7eeeff" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="110" cy="15" r="9" fill="#2ee6ff" filter="url(#glow)"/>
+
+  <g filter="url(#glow)">
+    <path d="M45 80c0-31 25-48 65-48s65 17 65 48v22c0 35-25 54-65 54s-65-19-65-54V80z" fill="url(#blue)"/>
+    <path d="M57 82c0-24 19-36 53-36s53 12 53 36v15c0 29-19 43-53 43S57 126 57 97V82z" fill="url(#shell)"/>
+    <rect x="70" y="62" width="80" height="60" rx="25" fill="#050b18"/>
+  </g>
+
+  <g class="dbl-guide-eyes" filter="url(#glow)">
+    <ellipse cx="88" cy="91" rx="9" ry="15" fill="#9df6ff"/>
+    <ellipse cx="132" cy="91" rx="9" ry="15" fill="#9df6ff"/>
+  </g>
+  <path d="M96 112c5 8 23 8 28 0" fill="none" stroke="#9df6ff" stroke-width="6" stroke-linecap="round"/>
+
+  <path d="M51 88c-14 1-22 11-22 25 0 12 7 22 20 24" fill="#06142c" stroke="#0d6efd" stroke-width="5"/>
+  <path d="M169 88c14 1 22 11 22 25 0 12-7 22-20 24" fill="#06142c" stroke="#0d6efd" stroke-width="5"/>
+
+  <path d="M78 151h64c13 0 23 11 23 24v6c0 12-10 22-22 22H77c-12 0-22-10-22-22v-6c0-13 10-24 23-24z" fill="#071225" stroke="#0d6efd" stroke-width="5"/>
+  <text x="110" y="186" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="800" fill="#fff">D<tspan fill="#0d6efd">B</tspan>L</text>
+
+  <path d="M61 157c-14 8-23 19-25 33" stroke="#0d6efd" stroke-width="8" stroke-linecap="round"/>
+  <path d="M159 157c17 9 25 22 25 38" stroke="#0d6efd" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="35" cy="194" r="10" fill="#071225" stroke="#2ee6ff" stroke-width="4"/>
+  <circle cx="185" cy="198" r="10" fill="#071225" stroke="#2ee6ff" stroke-width="4"/>
+
+  <style>
+    .dbl-guide-eyes { transform-origin: 110px 91px; animation: dblGuideBlink 5.4s infinite; }
+    @keyframes dblGuideBlink {
+      0%, 92%, 100% { transform: scaleY(1); }
+      94%, 96% { transform: scaleY(.12); }
+    }
+  </style>
+</svg>

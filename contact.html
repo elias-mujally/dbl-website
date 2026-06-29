@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    (function() {
+      try {
+        var lang = localStorage.getItem('language') || 'ar';
+        lang = lang === 'en' ? 'en' : 'ar';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.classList.toggle('rtl', lang === 'ar');
+        var theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+      } catch (error) {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/dbl-favicon-512.png">
+  <link rel="apple-touch-icon" href="/assets/dbl-favicon-512.png">
+  <title>Contact | Digital Blueprint Lab</title>
+  <meta name="description" content="Contact Digital Blueprint Lab by email, Instagram, Facebook, TikTok, or WhatsApp.">
+  <link rel="stylesheet" href="styles.css?v=site-v2-20260623">
+</head>
+<body>
+  <div class="site-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <header class="nav">
+      <a class="brand" href="/" aria-label="Digital Blueprint Lab home">
+        <span class="brand-mark">DBL</span>
+        <span class="brand-name" data-i18n="nav.brand">Digital Blueprint Lab</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/books.html" data-i18n="nav.books">Books</a>
+        <a href="/tools.html" data-i18n="nav.tools">Tools</a>
+        <a href="/about.html" data-i18n="nav.about">About</a>
+        <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="nav-controls">
+        <div class="language-switcher">
+          <button type="button" class="lang-btn lang-en active" data-lang="en">EN</button>
+          <span class="lang-divider">|</span>
+          <button type="button" class="lang-btn lang-ar" data-lang="ar">AR</button>
+        </div>
+        <a class="nav-cta" href="/#cta" data-i18n="nav.enterLab">Enter Lab</a>
+      </div>
+    </header>
+    <main>
+      <section class="page-hero reveal in-view">
+        <span class="eyebrow" data-i18n="pages.contact.eyebrow">Contact</span>
+        <h1 data-i18n="pages.contact.title">Connect with Digital Blueprint Lab.</h1>
+        <p data-i18n="pages.contact.lead">Use the official channels below for questions, support, collaborations, or product inquiries.</p>
+      </section>
+      <section class="page-section contact-grid">
+        <a class="contact-card reveal in-view" href="mailto:dblueprintlab@gmail.com">
+          <span data-i18n="pages.contact.email">Email</span>
+          <strong>dblueprintlab@gmail.com</strong>
+        </a>
+        <a class="contact-card reveal in-view" href="https://www.instagram.com/dbl_lap">
+          <span data-i18n="pages.contact.instagram">Instagram</span>
+          <strong>@dbl_lap</strong>
+        </a>
+        <a class="contact-card reveal in-view" href="https://www.facebook.com/share/18NR4xWCvr/">
+          <span data-i18n="pages.contact.facebook">Facebook</span>
+          <strong>Digital Blueprint Lab</strong>
+        </a>
+        <a class="contact-card reveal in-view" href="https://www.tiktok.com/@dbl_lap">
+          <span data-i18n="pages.contact.tiktok">TikTok</span>
+          <strong>@dbl_lap</strong>
+        </a>
+        <a class="contact-card reveal in-view" href="https://wa.me/967736747842">
+          <span data-i18n="pages.contact.whatsapp">WhatsApp</span>
+          <strong>+967736747842</strong>
+        </a>
+      </section>
+    </main>
+    <footer class="footer">
+      <a class="brand" href="/" aria-label="Digital Blueprint Lab home"><span class="brand-mark">DBL</span><span class="brand-name" data-i18n="footer.brand">Digital Blueprint Lab</span></a>
+      <nav aria-label="Footer navigation">
+        <a href="/books.html" data-i18n="footer.books">Books</a>
+        <a href="/tools.html" data-i18n="footer.tools">Tools</a>
+        <a href="/about.html" data-i18n="footer.about">About</a>
+        <a href="/refund-policy.html" data-i18n="footer.refundPolicy">Refund Policy</a>
+        <a href="/contact.html" data-i18n="footer.contact">Contact</a>
+        <a href="/terms.html" data-i18n="footer.terms">Terms</a>
+        <a href="/privacy-policy.html" data-i18n="footer.privacy">Privacy</a>
+      </nav>
+      <div class="socials"><a href="https://www.instagram.com/dbl_lap" aria-label="Instagram">IG</a><a href="https://www.facebook.com/share/18NR4xWCvr/" aria-label="Facebook">FB</a><a href="https://www.tiktok.com/@dbl_lap" aria-label="TikTok">TT</a></div>
+    </footer>
+  </div>
+  <script src="script.js?v=site-v2-20260623"></script>
+</body>
+</html>
