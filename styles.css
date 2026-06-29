@@ -2166,6 +2166,104 @@ html[data-theme="light"] .site-shell {
   background: transparent;
 }
 
+.hero-visual,
+.lab-console,
+.float-card,
+.blueprint-panel,
+.blueprint-card,
+.catalog-card,
+.comparison-card,
+.system-card {
+  transform-style: preserve-3d;
+}
+
+.lab-console,
+.float-card,
+.blueprint-panel,
+.blueprint-card,
+.catalog-card,
+.comparison-card,
+.system-card {
+  background-blend-mode: screen, normal;
+  backdrop-filter: blur(20px) saturate(1.22);
+  -webkit-backdrop-filter: blur(20px) saturate(1.22);
+}
+
+html[data-theme="dark"] .lab-console,
+html[data-theme="dark"] .float-card,
+html[data-theme="dark"] .blueprint-panel,
+html[data-theme="dark"] .blueprint-card,
+html[data-theme="dark"] .catalog-card,
+html[data-theme="dark"] .comparison-card,
+html[data-theme="dark"] .system-card {
+  border-color: rgba(132, 214, 255, 0.18);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018) 42%, rgba(54, 183, 255, 0.035)),
+    rgba(7, 19, 35, 0.62);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.2),
+    0 16px 44px rgba(54, 183, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 -1px 0 rgba(117, 245, 255, 0.045);
+}
+
+html[data-theme="dark"] .hero-visual {
+  background:
+    radial-gradient(circle at 42% 26%, rgba(117, 245, 255, 0.11), transparent 20rem),
+    radial-gradient(circle at 68% 72%, rgba(54, 183, 255, 0.08), transparent 18rem);
+  box-shadow: none;
+}
+
+html[data-theme="light"] .hero-visual {
+  background:
+    radial-gradient(circle at 42% 26%, rgba(0, 151, 210, 0.11), transparent 20rem),
+    radial-gradient(circle at 68% 72%, rgba(0, 112, 224, 0.08), transparent 18rem);
+  box-shadow: none;
+}
+
+html[data-theme="light"] .lab-console,
+html[data-theme="light"] .float-card,
+html[data-theme="light"] .blueprint-panel,
+html[data-theme="light"] .blueprint-card,
+html[data-theme="light"] .catalog-card,
+html[data-theme="light"] .comparison-card,
+html[data-theme="light"] .system-card {
+  border-color: rgba(0, 112, 224, 0.13);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.42) 45%, rgba(221, 240, 255, 0.32)),
+    rgba(246, 250, 255, 0.44);
+  box-shadow:
+    0 22px 54px rgba(19, 46, 86, 0.08),
+    0 10px 30px rgba(0, 112, 224, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86),
+    inset 0 -1px 0 rgba(0, 112, 224, 0.055);
+}
+
+html[data-theme="light"] .blueprint-card,
+html[data-theme="light"] .float-card {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.66), rgba(238, 247, 255, 0.38)),
+    rgba(255, 255, 255, 0.34);
+}
+
+html[data-theme="dark"] .blueprint-panel::before {
+  opacity: 0.72;
+}
+
+html[data-theme="light"] .blueprint-panel::before {
+  opacity: 0.48;
+  background-image:
+    linear-gradient(rgba(0, 112, 224, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 112, 224, 0.055) 1px, transparent 1px);
+}
+
+html[data-theme="light"] .orbital-ring {
+  border-color: rgba(0, 145, 205, 0.18);
+  box-shadow:
+    inset 0 0 54px rgba(0, 145, 205, 0.075),
+    0 0 42px rgba(0, 112, 224, 0.07);
+}
+
 html[data-theme="light"] .brand-name,
 html[data-theme="light"] .nav-links a,
 html[data-theme="light"] .page-list li,
@@ -3070,11 +3168,22 @@ html[dir="rtl"] .preview-lightbox-close {
 
 html[data-theme="light"] .mobile-nav-panel,
 html[data-theme="light"] .trust-item,
-html[data-theme="light"] .comparison-card,
 html[data-theme="light"] .preview-placeholder,
 html[data-theme="light"] .preview-carousel-stage,
 html[data-theme="light"] .preview-thumbnails button {
   background: rgba(255, 255, 255, 0.94);
+}
+
+html[data-theme="light"] .comparison-card {
+  border-color: rgba(0, 112, 224, 0.13);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.42) 45%, rgba(221, 240, 255, 0.32)),
+    rgba(246, 250, 255, 0.44);
+  box-shadow:
+    0 22px 54px rgba(19, 46, 86, 0.08),
+    0 10px 30px rgba(0, 112, 224, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86),
+    inset 0 -1px 0 rgba(0, 112, 224, 0.055);
 }
 
 .about-hero {
