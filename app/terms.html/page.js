@@ -1,9 +1,11 @@
+import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/terms.html",
   title: "Terms of Use | Digital Blueprint Lab",
   description: "Digital Blueprint Lab terms of use for products, files, templates, and digital resources.",
-};
+});
 
 export default function TermsPage() {
   return (

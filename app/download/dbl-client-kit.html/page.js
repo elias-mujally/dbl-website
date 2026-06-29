@@ -1,13 +1,12 @@
+import { createPageMetadata } from "../../metadata";
 import DownloadPageShell from "../../../components/DownloadPageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/download/dbl-client-kit.html",
   title: "Download DBL Client Kit | Digital Blueprint Lab",
   description: "Private DBL Client Kit download page for DBL customers.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+  robots: {"index":false,"follow":false},
+});
 
 export default function DownloadClientKitPage() {
   return (

@@ -1,9 +1,11 @@
+import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/refund-policy.html",
   title: "Refund Policy | Digital Blueprint Lab",
   description: "Digital Blueprint Lab refund policy for digital products and subscription-based services.",
-};
+});
 
 export default function RefundPolicyPage() {
   return (

@@ -1,23 +1,13 @@
+import { createPageMetadata } from "../metadata";
 ﻿import SitePageShell from "../../components/SitePageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/dbl-business-suite.html",
   title: "DBL Business Suite | Premium Business Bundle",
-  description:
-    "DBL Business Suite is a premium business bundle for freelancers, creators, and digital entrepreneurs with Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide.",
-  openGraph: {
-    title: "DBL Business Suite | Premium Business Bundle",
-    description:
-      "Get the complete DBL business system in one premium bundle: AI prompts, client systems, launch frameworks, templates, and a Welcome Guide.",
-    url: "/dbl-business-suite.html",
-    images: ["/assets/dbl-business-suite-cover.png"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "DBL Business Suite | Premium Business Bundle",
-    description: "A complete business bundle for freelancers, creators, and digital entrepreneurs.",
-    images: ["/assets/dbl-business-suite-cover.png"],
-  },
-};
+  description: "DBL Business Suite is a premium business bundle for freelancers, creators, and digital entrepreneurs with Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide.",
+  image: "/assets/dbl-business-suite-cover.png",
+  openGraphDescription: "Get the complete DBL business system in one premium bundle: AI prompts, client systems, launch frameworks, templates, and a Welcome Guide.",
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

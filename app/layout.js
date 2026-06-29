@@ -86,7 +86,7 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        {/* Future Google AdSense script location. Do not add ad units here. */}
+        <div id="google-adsense-placeholder" hidden data-purpose="Future Google AdSense integration placeholder" />
         {children}
       </body>
     </html>

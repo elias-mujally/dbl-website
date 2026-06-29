@@ -1,28 +1,15 @@
+import { createPageMetadata } from "../metadata";
 import { Footer, Header } from "../../components";
 import SiteBehavior from "../../components/SiteBehavior";
 
 const description =
   "Learn why Digital Blueprint Lab creates practical digital products, AI-powered resources, templates, and systems that help creators, freelancers, and digital builders move from ideas to execution.";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/about.html",
   title: "About Digital Blueprint Lab | Practical Digital Systems for Builders",
-  description,
-  alternates: {
-    canonical: "/about.html",
-  },
-  openGraph: {
-    title: "About Digital Blueprint Lab | Practical Digital Systems for Builders",
-    description,
-    url: "/about.html",
-    images: ["/assets/dbl-favicon-512.png"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Digital Blueprint Lab | Practical Digital Systems for Builders",
-    description,
-    images: ["/assets/dbl-favicon-512.png"],
-  },
-};
+  description: "Learn why Digital Blueprint Lab creates practical digital products, AI-powered resources, templates, and systems that help creators, freelancers, and digital builders move from ideas to execution.",
+});
 
 export default function AboutPage() {
   return (

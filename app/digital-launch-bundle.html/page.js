@@ -1,10 +1,12 @@
+import { createPageMetadata } from "../metadata";
 ﻿import SitePageShell from "../../components/SitePageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/digital-launch-bundle.html",
   title: "Digital Launch Bundle | Digital Blueprint Lab",
-  description:
-    "Digital Launch Bundle by Digital Blueprint Lab: a practical starter bundle for online work, digital products, client communication, freelancing systems, and digital execution.",
-};
+  description: "Digital Launch Bundle by Digital Blueprint Lab: a practical starter bundle for online work, digital products, client communication, freelancing systems, and digital execution.",
+  image: "/assets/digital-launch-bundle-cover.png",
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

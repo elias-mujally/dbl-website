@@ -1,13 +1,12 @@
+import { createPageMetadata } from "../../metadata";
 import DownloadPageShell from "../../../components/DownloadPageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/download/digital-launch-bundle.html",
   title: "Download Digital Launch Bundle | Digital Blueprint Lab",
   description: "Private Digital Launch Bundle download page for DBL customers.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+  robots: {"index":false,"follow":false},
+});
 
 export default function DownloadDigitalLaunchBundlePage() {
   return (

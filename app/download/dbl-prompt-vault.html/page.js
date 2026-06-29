@@ -1,13 +1,12 @@
+import { createPageMetadata } from "../../metadata";
 import DownloadPageShell from "../../../components/DownloadPageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/download/dbl-prompt-vault.html",
   title: "Download DBL Prompt Vault | Digital Blueprint Lab",
   description: "Private DBL Prompt Vault download page for DBL customers.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+  robots: {"index":false,"follow":false},
+});
 
 export default function DownloadPromptVaultPage() {
   return (

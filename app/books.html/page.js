@@ -1,10 +1,12 @@
+import { createPageMetadata } from "../metadata";
 import { Footer, Header, ProductCard } from "../../components";
 import SiteBehavior from "../../components/SiteBehavior";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/books.html",
   title: "Books | Digital Blueprint Lab",
   description: "Explore practical digital books and guides from Digital Blueprint Lab.",
-};
+});
 
 export default function BooksPage() {
   return (

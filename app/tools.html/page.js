@@ -1,10 +1,12 @@
+import { createPageMetadata } from "../metadata";
 import { Footer, Header, ProductCard } from "../../components";
 import SiteBehavior from "../../components/SiteBehavior";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/tools.html",
   title: "Tools & Templates | Digital Blueprint Lab",
   description: "Explore practical digital tools, templates, and ready-to-use resources from Digital Blueprint Lab.",
-};
+});
 
 export default function ToolsPage() {
   return (

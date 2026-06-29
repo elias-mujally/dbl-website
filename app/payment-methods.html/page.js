@@ -1,10 +1,11 @@
+import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/payment-methods.html",
   title: "Alternative Payment Methods | Digital Blueprint Lab",
-  description:
-    "Alternative payment methods for DBL customers who cannot pay by card through Gumroad. Use Binance Pay or USDT BEP20 and send payment confirmation to DBL.",
-};
+  description: "Alternative payment methods for DBL customers who cannot pay by card through Gumroad. Use Binance Pay or USDT BEP20 and send payment confirmation to DBL.",
+});
 
 export default function PaymentMethodsPage() {
   return (

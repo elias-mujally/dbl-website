@@ -1,10 +1,12 @@
+import { createPageMetadata } from "../metadata";
 import { Footer, Header } from "../../components";
 import SiteBehavior from "../../components/SiteBehavior";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/contact.html",
   title: "Contact | Digital Blueprint Lab",
   description: "Contact Digital Blueprint Lab by email, Instagram, Facebook, TikTok, or WhatsApp.",
-};
+});
 
 const contactCards = [
   { href: "mailto:dblueprintlab@gmail.com", key: "pages.contact.email", label: "Email", value: "dblueprintlab@gmail.com" },

@@ -1,10 +1,12 @@
+import { createPageMetadata } from "../metadata";
 ﻿import SitePageShell from "../../components/SitePageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/dbl-prompt-vault.html",
   title: "DBL Prompt Vault | 100 Professional AI Prompts",
-  description:
-    "Get DBL Prompt Vault: 100 professional AI prompts with Arabic explanations, practical use cases, real examples, DBL tips, and a Prompt Tracker Excel template.",
-};
+  description: "Get DBL Prompt Vault: 100 professional AI prompts with Arabic explanations, practical use cases, real examples, DBL tips, and a Prompt Tracker Excel template.",
+  image: "/assets/dbl-prompt-vault-cover.jpeg",
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

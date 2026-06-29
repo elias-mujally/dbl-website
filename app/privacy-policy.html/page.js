@@ -1,10 +1,11 @@
+import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/privacy-policy.html",
   title: "Privacy Policy | Digital Blueprint Lab",
-  description:
-    "Digital Blueprint Lab privacy policy covering analytics, website usage, contact information, cookies, and data protection.",
-};
+  description: "Digital Blueprint Lab privacy policy covering analytics, website usage, contact information, cookies, and data protection.",
+});
 
 export default function PrivacyPolicyPage() {
   return (

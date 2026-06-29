@@ -1,9 +1,12 @@
+import { createPageMetadata } from "../metadata";
 ﻿import SitePageShell from "../../components/SitePageShell";
 
-export const metadata = {
+export const metadata = createPageMetadata({
+  path: "/dbl-client-kit.html",
   title: "DBL Client Kit | Digital Blueprint Lab",
   description: "DBL Client Kit is a practical client management system for freelancers and digital service providers.",
-};
+  image: "/assets/dbl-client-kit-cover.jpeg",
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
