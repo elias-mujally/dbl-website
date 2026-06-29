@@ -1,5 +1,5 @@
 import { Footer, Header, ProductCard } from "../components";
-import HomepageBehavior from "../components/HomepageBehavior";
+import SiteBehavior from "../components/SiteBehavior";
 
 export default function Home() {
   return (
@@ -408,7 +408,7 @@ export default function Home() {
 
         <Footer />
       </div>
-      <HomepageBehavior />
+      <SiteBehavior />
     </>
   );
 }

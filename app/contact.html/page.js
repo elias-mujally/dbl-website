@@ -1,5 +1,5 @@
 import { Footer, Header } from "../../components";
-import HomepageBehavior from "../../components/HomepageBehavior";
+import SiteBehavior from "../../components/SiteBehavior";
 
 export const metadata = {
   title: "Contact | Digital Blueprint Lab",
@@ -42,7 +42,7 @@ export default function ContactPage() {
         </main>
         <Footer />
       </div>
-      <HomepageBehavior />
+      <SiteBehavior />
     </>
   );
 }

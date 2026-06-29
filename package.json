@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "start:legacy": "node server.js"
+    "start": "next start"
   },
   "dependencies": {
     "dotenv": "^17.4.2",

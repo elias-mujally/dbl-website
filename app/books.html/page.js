@@ -1,5 +1,5 @@
 import { Footer, Header, ProductCard } from "../../components";
-import HomepageBehavior from "../../components/HomepageBehavior";
+import SiteBehavior from "../../components/SiteBehavior";
 
 export const metadata = {
   title: "Books | Digital Blueprint Lab",
@@ -77,7 +77,7 @@ export default function BooksPage() {
         </main>
         <Footer />
       </div>
-      <HomepageBehavior />
+      <SiteBehavior />
     </>
   );
 }

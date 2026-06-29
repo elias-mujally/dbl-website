@@ -1,5 +1,5 @@
 import { Footer, Header, ProductCard } from "../../components";
-import HomepageBehavior from "../../components/HomepageBehavior";
+import SiteBehavior from "../../components/SiteBehavior";
 
 export const metadata = {
   title: "Tools & Templates | Digital Blueprint Lab",
@@ -86,7 +86,7 @@ export default function ToolsPage() {
         </main>
         <Footer />
       </div>
-      <HomepageBehavior />
+      <SiteBehavior />
     </>
   );
 }

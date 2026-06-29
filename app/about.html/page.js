@@ -1,5 +1,5 @@
 import { Footer, Header } from "../../components";
-import HomepageBehavior from "../../components/HomepageBehavior";
+import SiteBehavior from "../../components/SiteBehavior";
 
 const description =
   "Learn why Digital Blueprint Lab creates practical digital products, AI-powered resources, templates, and systems that help creators, freelancers, and digital builders move from ideas to execution.";
@@ -216,7 +216,7 @@ export default function AboutPage() {
         </main>
         <Footer />
       </div>
-      <HomepageBehavior />
+      <SiteBehavior />
     </>
   );
 }
