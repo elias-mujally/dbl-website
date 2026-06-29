@@ -1,5 +1,6 @@
-import { createPageMetadata } from "../metadata";
-﻿import SitePageShell from "../../components/SitePageShell";
+﻿import { createPageMetadata } from "../metadata";
+import SitePageShell from "../../components/SitePageShell";
+import PreviewArrowIcon from "../../components/PreviewArrowIcon";
 
 export const metadata = createPageMetadata({
   path: "/digital-launch-bundle.html",
@@ -59,11 +60,11 @@ export default function DigitalLaunchBundlePage() {
               </div>
               <div className="preview-carousel reveal in-view" data-preview-carousel="" data-preview-interval="5000">
                 <div className="preview-carousel-stage">
-                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="product.previewPrevious">â€¹</button>
+                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="product.previewPrevious"><PreviewArrowIcon direction="previous" /></button>
                   <button className="preview-main-button" type="button" data-preview-open="" data-i18n-aria-label="product.previewOpen">
                     <img src="/assets/previews/digital-launch-bundle/digital-launch-preview-01-cover.png" alt="Digital Launch Bundle cover preview" data-preview-main="" data-i18n-alt="product.previewAlt.0" />
                   </button>
-                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="product.previewNext">â€؛</button>
+                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="product.previewNext"><PreviewArrowIcon direction="next" /></button>
                 </div>
                 <div className="preview-dots" role="tablist" aria-label="Digital Launch Bundle preview slides">
                   <button type="button" className="active" data-preview-dot="0" data-i18n-aria-label="product.previewSlideLabel">1</button>
@@ -82,7 +83,7 @@ export default function DigitalLaunchBundlePage() {
                   <button type="button" data-preview-thumb="5"><img src="/assets/previews/digital-launch-bundle/digital-launch-preview-06-client-lab.png" data-preview-slide="" alt="Digital Launch Bundle client lab preview thumbnail" loading="lazy" data-i18n-alt="product.previewAlt.5" /></button>
                 </div>
                 <div className="preview-lightbox" data-preview-lightbox="" hidden>
-                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="product.previewClose">×</button>
+                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="product.previewClose">&times;</button>
                   <img src="/assets/previews/digital-launch-bundle/digital-launch-preview-01-cover.png" alt="Digital Launch Bundle cover preview" data-preview-lightbox-image="" data-i18n-alt="product.previewAlt.0" />
                 </div>
               </div>

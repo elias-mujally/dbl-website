@@ -1,5 +1,6 @@
-import { createPageMetadata } from "../metadata";
-﻿import SitePageShell from "../../components/SitePageShell";
+﻿import { createPageMetadata } from "../metadata";
+import SitePageShell from "../../components/SitePageShell";
+import PreviewArrowIcon from "../../components/PreviewArrowIcon";
 
 export const metadata = createPageMetadata({
   path: "/dbl-business-suite.html",
@@ -69,11 +70,11 @@ export default function BusinessSuitePage() {
               </div>
               <div className="preview-carousel reveal in-view" data-preview-carousel="" data-preview-interval="5000">
                 <div className="preview-carousel-stage">
-                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="businessSuite.previewPrevious">â€¹</button>
+                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="businessSuite.previewPrevious"><PreviewArrowIcon direction="previous" /></button>
                   <button className="preview-main-button" type="button" data-preview-open="" data-i18n-aria-label="businessSuite.previewOpen">
                     <img src="/assets/previews/dbl-business-suite/business-suite-preview-01-digital-launch.png" alt="Digital Launch Bundle preview inside DBL Business Suite" data-preview-main="" data-i18n-alt="businessSuite.previewAlt.0" />
                   </button>
-                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="businessSuite.previewNext">â€؛</button>
+                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="businessSuite.previewNext"><PreviewArrowIcon direction="next" /></button>
                 </div>
                 <div className="preview-dots" role="tablist" aria-label="DBL Business Suite preview slides">
                   <button type="button" className="active" data-preview-dot="0" data-i18n-aria-label="businessSuite.previewSlideLabel">1</button>
@@ -86,7 +87,7 @@ export default function BusinessSuitePage() {
                   <button type="button" data-preview-thumb="2"><img src="/assets/previews/dbl-business-suite/business-suite-preview-03-prompt-vault.png" data-preview-slide="" alt="DBL Prompt Vault preview thumbnail inside DBL Business Suite" loading="lazy" data-i18n-alt="businessSuite.previewAlt.2" /></button>
                 </div>
                 <div className="preview-lightbox" data-preview-lightbox="" hidden>
-                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="businessSuite.previewClose">×</button>
+                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="businessSuite.previewClose">&times;</button>
                   <img src="/assets/previews/dbl-business-suite/business-suite-preview-01-digital-launch.png" alt="Digital Launch Bundle preview inside DBL Business Suite" data-preview-lightbox-image="" data-i18n-alt="businessSuite.previewAlt.0" />
                 </div>
               </div>

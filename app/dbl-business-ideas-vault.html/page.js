@@ -1,5 +1,6 @@
-import { createPageMetadata } from "../metadata";
-﻿import SitePageShell from "../../components/SitePageShell";
+﻿import { createPageMetadata } from "../metadata";
+import SitePageShell from "../../components/SitePageShell";
+import PreviewArrowIcon from "../../components/PreviewArrowIcon";
 
 export const metadata = createPageMetadata({
   path: "/dbl-business-ideas-vault.html",
@@ -66,11 +67,11 @@ export default function BusinessIdeasVaultPage() {
               </div>
               <div className="preview-carousel reveal in-view" data-preview-carousel="" data-preview-interval="5000">
                 <div className="preview-carousel-stage">
-                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="businessIdeasVault.previewPrevious">â€¹</button>
+                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="businessIdeasVault.previewPrevious"><PreviewArrowIcon direction="previous" /></button>
                   <button className="preview-main-button" type="button" data-preview-open="" data-i18n-aria-label="businessIdeasVault.previewOpen">
                     <img src="/assets/previews/business-ideas-vault/business-ideas-preview-01-cover.png" alt="DBL Business Ideas Vault cover preview" data-preview-main="" data-i18n-alt="businessIdeasVault.previewAlt.0" />
                   </button>
-                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="businessIdeasVault.previewNext">â€؛</button>
+                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="businessIdeasVault.previewNext"><PreviewArrowIcon direction="next" /></button>
                 </div>
                 <div className="preview-dots" role="tablist" aria-label="Business Ideas Vault preview slides">
                   <button type="button" className="active" data-preview-dot="0" data-i18n-aria-label="businessIdeasVault.previewSlideLabel">1</button>
@@ -87,7 +88,7 @@ export default function BusinessIdeasVaultPage() {
                   <button type="button" data-preview-thumb="4"><img src="/assets/previews/business-ideas-vault/business-ideas-preview-05-sample-idea-learning-challenge.png" data-preview-slide="" alt="Thirty day learning challenge business idea preview thumbnail" loading="lazy" data-i18n-alt="businessIdeasVault.previewAlt.4" /></button>
                 </div>
                 <div className="preview-lightbox" data-preview-lightbox="" hidden>
-                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="businessIdeasVault.previewClose">×</button>
+                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="businessIdeasVault.previewClose">&times;</button>
                   <img src="/assets/previews/business-ideas-vault/business-ideas-preview-01-cover.png" alt="DBL Business Ideas Vault cover preview" data-preview-lightbox-image="" data-i18n-alt="businessIdeasVault.previewAlt.0" />
                 </div>
               </div>

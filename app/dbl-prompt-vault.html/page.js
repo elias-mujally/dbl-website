@@ -1,5 +1,6 @@
-import { createPageMetadata } from "../metadata";
-﻿import SitePageShell from "../../components/SitePageShell";
+﻿import { createPageMetadata } from "../metadata";
+import SitePageShell from "../../components/SitePageShell";
+import PreviewArrowIcon from "../../components/PreviewArrowIcon";
 
 export const metadata = createPageMetadata({
   path: "/dbl-prompt-vault.html",
@@ -63,11 +64,11 @@ export default function PromptVaultPage() {
               </div>
               <div className="preview-carousel reveal in-view" data-preview-carousel="" data-preview-interval="5000">
                 <div className="preview-carousel-stage">
-                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="promptVaultPage.previewPrevious">â€¹</button>
+                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="promptVaultPage.previewPrevious"><PreviewArrowIcon direction="previous" /></button>
                   <button className="preview-main-button" type="button" data-preview-open="" data-i18n-aria-label="promptVaultPage.previewOpen">
                     <img src="/assets/previews/dbl-prompt-vault/prompt-vault-preview-01-cover.png" alt="DBL Prompt Vault cover preview" data-preview-main="" data-i18n-alt="promptVaultPage.previewAlt.0" />
                   </button>
-                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="promptVaultPage.previewNext">â€؛</button>
+                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="promptVaultPage.previewNext"><PreviewArrowIcon direction="next" /></button>
                 </div>
                 <div className="preview-dots" role="tablist" aria-label="DBL Prompt Vault preview slides">
                   <button type="button" className="active" data-preview-dot="0" data-i18n-aria-label="promptVaultPage.previewSlideLabel">1</button>
@@ -86,7 +87,7 @@ export default function PromptVaultPage() {
                   <button type="button" data-preview-thumb="5"><img src="/assets/previews/dbl-prompt-vault/prompt-vault-preview-06-marketing-system.png" data-preview-slide="" alt="DBL Prompt Vault marketing system prompt preview thumbnail" loading="lazy" data-i18n-alt="promptVaultPage.previewAlt.5" /></button>
                 </div>
                 <div className="preview-lightbox" data-preview-lightbox="" hidden>
-                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="promptVaultPage.previewClose">×</button>
+                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="promptVaultPage.previewClose">&times;</button>
                   <img src="/assets/previews/dbl-prompt-vault/prompt-vault-preview-01-cover.png" alt="DBL Prompt Vault cover preview" data-preview-lightbox-image="" data-i18n-alt="promptVaultPage.previewAlt.0" />
                 </div>
               </div>

@@ -1,5 +1,6 @@
-import { createPageMetadata } from "../metadata";
-﻿import SitePageShell from "../../components/SitePageShell";
+﻿import { createPageMetadata } from "../metadata";
+import SitePageShell from "../../components/SitePageShell";
+import PreviewArrowIcon from "../../components/PreviewArrowIcon";
 
 export const metadata = createPageMetadata({
   path: "/dbl-client-kit.html",
@@ -59,11 +60,11 @@ export default function ClientKitPage() {
               </div>
               <div className="preview-carousel reveal in-view" data-preview-carousel="" data-preview-interval="5000">
                 <div className="preview-carousel-stage">
-                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="clientKitPage.previewPrevious">â€¹</button>
+                  <button className="preview-nav preview-prev" type="button" data-preview-prev="" data-i18n-aria-label="clientKitPage.previewPrevious"><PreviewArrowIcon direction="previous" /></button>
                   <button className="preview-main-button" type="button" data-preview-open="" data-i18n-aria-label="clientKitPage.previewOpen">
                     <img src="/assets/previews/dbl-client-kit/client-kit-preview-01-cover.png" alt="DBL Client Kit cover preview" data-preview-main="" data-i18n-alt="clientKitPage.previewAlt.0" />
                   </button>
-                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="clientKitPage.previewNext">â€؛</button>
+                  <button className="preview-nav preview-next" type="button" data-preview-next="" data-i18n-aria-label="clientKitPage.previewNext"><PreviewArrowIcon direction="next" /></button>
                 </div>
                 <div className="preview-dots" role="tablist" aria-label="DBL Client Kit preview slides">
                   <button type="button" className="active" data-preview-dot="0" data-i18n-aria-label="clientKitPage.previewSlideLabel">1</button>
@@ -80,7 +81,7 @@ export default function ClientKitPage() {
                   <button type="button" data-preview-thumb="4"><img src="/assets/previews/dbl-client-kit/client-kit-preview-05-tools.png" data-preview-slide="" alt="DBL Client Kit tools preview thumbnail" loading="lazy" data-i18n-alt="clientKitPage.previewAlt.4" /></button>
                 </div>
                 <div className="preview-lightbox" data-preview-lightbox="" hidden>
-                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="clientKitPage.previewClose">×</button>
+                  <button type="button" className="preview-lightbox-close" data-preview-close="" data-i18n-aria-label="clientKitPage.previewClose">&times;</button>
                   <img src="/assets/previews/dbl-client-kit/client-kit-preview-01-cover.png" alt="DBL Client Kit cover preview" data-preview-lightbox-image="" data-i18n-alt="clientKitPage.previewAlt.0" />
                 </div>
               </div>
