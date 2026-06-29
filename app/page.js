@@ -1,5 +1,5 @@
-import Script from "next/script";
 import { Footer, Header, ProductCard } from "../components";
+import HomepageBehavior from "../components/HomepageBehavior";
 
 export default function Home() {
   return (
@@ -408,7 +408,7 @@ export default function Home() {
 
         <Footer />
       </div>
-      <Script src="/script.js?v=site-v2-20260623" strategy="afterInteractive" />
+      <HomepageBehavior />
     </>
   );
 }
