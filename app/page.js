@@ -1,4 +1,12 @@
 import { Footer, Header, ProductCard } from "../components";
+import {
+  FloatingCube3D,
+  GlassPanel3D,
+  GlowLine,
+  LayeredSheets3D,
+  Orb3D,
+  Ring3D,
+} from "../components/Decorative3D";
 import SiteBehavior from "../components/SiteBehavior";
 
 export default function Home() {
@@ -32,6 +40,18 @@ export default function Home() {
             </div>
 
             <div className="hero-visual reveal in-view" aria-label="Digital workflow visual">
+              <div className="hero-visual-decor" aria-hidden="true">
+                <GlassPanel3D className="hero-decor-panel" />
+                <Orb3D className="hero-orb-primary" />
+                <Orb3D className="hero-orb-secondary" />
+                <Ring3D className="hero-ring-primary" />
+                <Ring3D className="hero-ring-secondary" />
+                <LayeredSheets3D className="hero-layered-sheets" />
+                <FloatingCube3D className="hero-cube-primary" />
+                <FloatingCube3D className="hero-cube-secondary" />
+                <GlowLine className="hero-glow-line-a" />
+                <GlowLine className="hero-glow-line-b" />
+              </div>
               <div className="orbital-ring"></div>
               <div className="lab-console">
                 <div className="console-top">
