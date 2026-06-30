@@ -3,6 +3,9 @@ import SitePageShell from "../../../components/SitePageShell";
 
 export const metadata = {
   title: "Review Moderation | Digital Blueprint Lab",
+  alternates: {
+    canonical: "https://www.dblab.site/admin/reviews",
+  },
   robots: {
     index: false,
     follow: false,
