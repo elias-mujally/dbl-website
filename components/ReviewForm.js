@@ -170,7 +170,7 @@ export default function ReviewForm({ product }) {
       </div>
 
       <label>
-        <span>{t("reviews.form.reason", "Why did you get this product?")}</span>
+        <span>{t("reviews.form.reason", "What made you buy this product?")}</span>
         <textarea name="reason" rows="3" />
       </label>
       <label>
