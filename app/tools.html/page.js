@@ -77,8 +77,6 @@ export default function ToolsPage() {
               description="A premium collection of 100 professional AI prompts with Arabic explanations, practical use cases, real examples, DBL tips, and an Excel prompt tracker."
               descriptionI18nKey="promptVaultPage.catalogDescription"
               price="$19.99"
-              priceNote="Exclusive discount"
-              priceNoteI18nKey="promptVaultPage.discount"
               href="/dbl-prompt-vault.html"
               buttonLabel="View Product"
               buttonI18nKey="promptVaultPage.previewBtn"
