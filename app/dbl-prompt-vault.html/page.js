@@ -1,4 +1,4 @@
-﻿import { createPageMetadata } from "../metadata";
+import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 import PreviewArrowIcon from "../../components/PreviewArrowIcon";
 
@@ -37,8 +37,9 @@ export default function PromptVaultPage() {
                 <h1 data-i18n="promptVaultPage.title">DBL Prompt Vault</h1>
                 <p data-i18n="promptVaultPage.tagline">100 Professional AI Prompts for Freelancers, Marketers, Content Creators &amp; Digital Product Builders.</p>
                 <p data-i18n="promptVaultPage.description">DBL Prompt Vault is a premium collection of 100 professional AI prompts designed to help freelancers, marketers, content creators, and digital entrepreneurs achieve better results faster.</p>
-                <div className="price-badge prompt-vault-price"><span>Official Price</span><div className="prompt-vault-price-row"><strong>$19.99</strong></div><small>Discount available with code</small></div>
+                <div className="price-badge prompt-vault-price"><span>Official Price</span><div className="prompt-vault-price-row"><strong>$19.99</strong></div><small>Instant access via Gumroad</small></div>
                 <div className="button-row"><a className="btn btn-primary" href="https://dblab.gumroad.com/l/oigexi" target="_blank" rel="noopener" data-i18n="promptVaultPage.cta">Get Instant Access</a><a className="btn btn-secondary" href="/payment-methods.html" data-i18n="promptVaultPage.alternativePayment">Alternative Payment Methods</a>
+                </div>
               </div>
             </section>
 
