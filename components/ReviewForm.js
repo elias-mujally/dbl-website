@@ -105,6 +105,10 @@ export default function ReviewForm({ product }) {
       off: t("reviews.reward.off", "OFF"),
       code: t("reviews.reward.codeLabel", "Code:"),
       viewProduct: t("reviews.reward.viewProduct", "View Product"),
+      openReward: t("reviews.reward.openReward", "Open Your Reward"),
+      unlockedTitle: t("reviews.reward.unlockedTitle", "DBL Reward Unlocked"),
+      copyCode: t("reviews.reward.copyCode", "Copy Code"),
+      copied: t("reviews.reward.copied", "Copied!"),
       manualTitle: t("reviews.reward.manualTitle", "Thank you for your review."),
       manualBody: t("reviews.reward.manualBody", "Your DBL Reward will be sent manually."),
     };
@@ -113,11 +117,11 @@ export default function ReviewForm({ product }) {
       <section className="review-success" aria-live="polite">
         <div className="section-heading">
           <span className="eyebrow">{t("reviews.reward.eyebrow", "DBL Reward")}</span>
-          <h1>{t("reviews.reward.title", "DBL Reward Unlocked")}</h1>
+          <h1>{t("reviews.reward.thankTitle", "Thank you for helping us improve DBL.")}</h1>
           <p>
             {t(
-              "reviews.reward.subtitle",
-              "Thank you for helping us improve DBL products. Your feedback builds better products, and this reward is our way of saying thank you.",
+              "reviews.reward.thankSubtitle",
+              "Your review helps us build better products. As a thank-you, we prepared a DBL Reward for you.",
             )}
           </p>
         </div>

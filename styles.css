@@ -2019,6 +2019,16 @@ html[dir="rtl"] .page-list li::before {
     flex-direction: column;
   }
 
+  .reward-experience,
+  .reward-gift,
+  .reward-reveal-wrap {
+    width: 100%;
+  }
+
+  .reward-gift {
+    min-height: 280px;
+  }
+
   .prompt-vault-highlights {
     grid-template-columns: 1fr;
   }
@@ -2096,8 +2106,32 @@ html[dir="rtl"] .page-list li::before {
   .button-row,
   .btn,
   .review-empty-state .btn,
-  .reward-card .btn {
+  .reward-card .btn,
+  .reward-open-button {
     width: 100%;
+  }
+
+  .reward-gift {
+    min-height: 250px;
+    padding: 24px 18px;
+  }
+
+  .reward-experience.is-open .reward-gift {
+    min-height: 210px;
+  }
+
+  .reward-gift-box {
+    width: 136px;
+    height: 122px;
+  }
+
+  .reward-gift-lid {
+    top: -34px;
+    height: 40px;
+  }
+
+  .reward-actions {
+    flex-direction: column;
   }
 
   .copy-row {
@@ -3507,11 +3541,190 @@ html[data-theme="light"] .dbl-chat-bubble-close {
   gap: 26px;
 }
 
+.reward-experience {
+  display: grid;
+  gap: 24px;
+  justify-items: start;
+}
+
+.reward-gift {
+  position: relative;
+  display: grid;
+  width: min(100%, 520px);
+  min-height: 320px;
+  place-items: center;
+  padding: clamp(26px, 5vw, 42px);
+  border: 1px solid rgba(117, 245, 255, 0.24);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(117, 245, 255, 0.18), transparent 30%),
+    linear-gradient(145deg, rgba(10, 31, 58, 0.9), rgba(4, 10, 22, 0.92));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.reward-gift::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(117, 245, 255, 0.16);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.reward-gift-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: rgba(117, 245, 255, 0.16);
+  filter: blur(34px);
+  animation: rewardPulse 4s ease-in-out infinite;
+}
+
+.reward-gift-box {
+  position: relative;
+  width: 170px;
+  height: 150px;
+  border: 1px solid rgba(117, 245, 255, 0.32);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 12px), rgba(117, 245, 255, 0.38) calc(50% - 12px), rgba(117, 245, 255, 0.38) calc(50% + 12px), transparent calc(50% + 12px)),
+    linear-gradient(145deg, rgba(20, 59, 98, 0.96), rgba(6, 20, 43, 0.98));
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.3), 0 0 32px rgba(117, 245, 255, 0.16);
+  transform: translateY(10px);
+  transition: transform 420ms ease, filter 420ms ease;
+}
+
+.reward-gift:hover .reward-gift-box {
+  filter: brightness(1.08);
+  transform: translateY(4px);
+}
+
+.reward-gift-lid {
+  position: absolute;
+  left: -14px;
+  right: -14px;
+  top: -38px;
+  height: 46px;
+  border: 1px solid rgba(117, 245, 255, 0.36);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 12px), rgba(255, 255, 255, 0.42) calc(50% - 12px), rgba(255, 255, 255, 0.42) calc(50% + 12px), transparent calc(50% + 12px)),
+    linear-gradient(145deg, rgba(31, 91, 139, 0.98), rgba(10, 31, 62, 0.98));
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22), 0 0 22px rgba(117, 245, 255, 0.12);
+  transform-origin: center bottom;
+  transition: transform 520ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 420ms ease;
+}
+
+.reward-gift-ribbon {
+  position: absolute;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(117, 245, 255, 0.55));
+  box-shadow: 0 0 20px rgba(117, 245, 255, 0.28);
+}
+
+.reward-gift-ribbon-vertical {
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 10px);
+  width: 20px;
+}
+
+.reward-gift-ribbon-horizontal {
+  top: 50px;
+  left: 0;
+  right: 0;
+  height: 18px;
+}
+
+.reward-gift-spark {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  opacity: 0;
+  background: var(--cyan);
+  box-shadow: 0 0 18px rgba(117, 245, 255, 0.85);
+}
+
+.reward-gift-spark-one {
+  left: 16px;
+  top: -52px;
+}
+
+.reward-gift-spark-two {
+  right: 20px;
+  top: -18px;
+}
+
+.reward-gift-spark-three {
+  left: 50%;
+  bottom: 20px;
+}
+
+.reward-open-button {
+  position: relative;
+  z-index: 2;
+  margin-top: 24px;
+  pointer-events: none;
+}
+
+.reward-experience.is-open .reward-gift {
+  min-height: 250px;
+}
+
+.reward-experience.is-open .reward-gift-lid {
+  opacity: 0;
+  transform: translateY(-58px) rotateX(62deg) rotateZ(-4deg);
+}
+
+.reward-experience.is-open .reward-gift-box {
+  transform: translateY(20px) scale(0.92);
+  filter: brightness(1.12);
+}
+
+.reward-experience.is-open .reward-gift-spark {
+  animation: rewardSpark 700ms ease-out forwards;
+}
+
+.reward-experience.is-open .reward-gift-spark-two {
+  animation-delay: 90ms;
+}
+
+.reward-experience.is-open .reward-gift-spark-three {
+  animation-delay: 160ms;
+}
+
+.reward-reveal-wrap {
+  width: min(100%, 560px);
+  animation: rewardReveal 520ms ease-out both;
+}
+
 .reward-card {
   display: grid;
   gap: 12px;
-  max-width: 520px;
+  max-width: 560px;
   padding: clamp(24px, 4vw, 36px);
+}
+
+.reward-revealed-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(117, 245, 255, 0.16), transparent 28%),
+    linear-gradient(145deg, rgba(12, 30, 55, 0.86), rgba(5, 12, 25, 0.82));
+  box-shadow: 0 26px 72px rgba(0, 0, 0, 0.26), 0 0 42px rgba(117, 245, 255, 0.08);
+}
+
+.reward-revealed-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  pointer-events: none;
 }
 
 .reward-card h2,
@@ -3519,10 +3732,17 @@ html[data-theme="light"] .dbl-chat-bubble-close {
   margin: 0;
 }
 
+.reward-product-name-large {
+  color: var(--text);
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-weight: 900;
+}
+
 .reward-discount {
   color: var(--cyan);
   font-size: clamp(2.2rem, 6vw, 4rem);
   line-height: 1;
+  text-shadow: 0 0 24px rgba(117, 245, 255, 0.18);
 }
 
 .reward-code {
@@ -3538,12 +3758,84 @@ html[data-theme="light"] .dbl-chat-bubble-close {
   background: rgba(255, 255, 255, 0.06);
 }
 
+.reward-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+@keyframes rewardPulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes rewardSpark {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-52px) scale(1.2);
+  }
+}
+
+@keyframes rewardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 html[data-theme="light"] .review-card,
 html[data-theme="light"] .review-empty-state,
 html[data-theme="light"] .reward-card {
   border-color: var(--line);
   background: rgba(255, 255, 255, 0.88);
   box-shadow: var(--shadow);
+}
+
+html[data-theme="light"] .reward-gift {
+  border-color: rgba(20, 124, 188, 0.22);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(0, 184, 230, 0.15), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(225, 238, 248, 0.86));
+  box-shadow: 0 24px 60px rgba(20, 60, 100, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+html[data-theme="light"] .reward-gift::before {
+  border-color: rgba(20, 124, 188, 0.14);
+}
+
+html[data-theme="light"] .reward-gift-box {
+  background:
+    linear-gradient(90deg, transparent calc(50% - 12px), rgba(255, 255, 255, 0.7) calc(50% - 12px), rgba(255, 255, 255, 0.7) calc(50% + 12px), transparent calc(50% + 12px)),
+    linear-gradient(145deg, rgba(34, 128, 190, 0.94), rgba(10, 47, 91, 0.96));
+}
+
+html[data-theme="light"] .reward-revealed-card {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(0, 184, 230, 0.14), transparent 28%),
+    rgba(255, 255, 255, 0.92);
 }
 
 html[data-theme="light"] .review-form input,
