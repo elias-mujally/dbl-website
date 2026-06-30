@@ -1,4 +1,4 @@
-import { getReviewSummary } from "../lib/reviews";
+import ProductRatingRow from "./ProductRatingRow";
 
 export default function ProductCard({
   as: Component = "article",
@@ -29,7 +29,6 @@ export default function ProductCard({
 }) {
   const classes = [className, reveal ? "reveal in-view" : ""].filter(Boolean).join(" ");
   const shouldWrapContent = contentWrapper ?? Boolean(image);
-  const reviewSummary = productId ? getReviewSummary(productId) : { average: 0, count: 0 };
   const content = (
     <>
       {eyebrow ? (
@@ -46,12 +45,7 @@ export default function ProductCard({
           {priceNote ? <span data-i18n={priceNoteI18nKey}>{priceNote}</span> : null}
         </div>
       ) : null}
-      {reviewSummary.count > 0 ? (
-        <p className="product-rating-row">
-          <span aria-hidden="true">★</span> {reviewSummary.average.toFixed(1)} • {reviewSummary.count}{" "}
-          <span data-i18n="reviews.reviewCountLabel">reviews</span>
-        </p>
-      ) : null}
+      {productId ? <ProductRatingRow productId={productId} /> : null}
       {href ? (
         <div className="button-row">
           <a className="btn btn-primary" href={href} data-i18n={buttonI18nKey}>

@@ -1,16 +1,74 @@
-import { getApprovedReviews, getReviewProduct, getReviewSummary } from "../lib/reviews";
+"use client";
+
+import { useEffect, useState } from "react";
+import { getReviewProduct } from "../lib/reviews";
 import StarRating from "./StarRating";
 
 function reviewerMeta(review) {
-  return [review.country, review.role].filter(Boolean).join(" • ");
+  return [review.country, review.profession].filter(Boolean).join(" • ");
+}
+
+function useCurrentLanguage() {
+  const [language, setLanguage] = useState("ar");
+
+  useEffect(() => {
+    const updateLanguage = () => setLanguage(document.documentElement.lang === "en" ? "en" : "ar");
+    updateLanguage();
+
+    const observer = new MutationObserver(updateLanguage);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return language;
+}
+
+function badgeLabel(source, language) {
+  if (source === "purchased_from_gumroad") {
+    return language === "ar" ? "مشتري موثّق" : "Verified Buyer";
+  }
+
+  return language === "ar" ? "مراجع مبكر" : "Early Reviewer";
 }
 
 export default function ReviewSection({ productId }) {
   const product = getReviewProduct(productId);
-  if (!product) return null;
+  const language = useCurrentLanguage();
+  const [reviews, setReviews] = useState([]);
+  const [summary, setSummary] = useState({ average: 0, count: 0 });
+  const [isLoading, setIsLoading] = useState(true);
 
-  const reviews = getApprovedReviews(productId);
-  const summary = getReviewSummary(productId);
+  useEffect(() => {
+    let active = true;
+
+    const loadReviews = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/reviews?productId=${productId}`, { cache: "no-store" });
+        const result = await response.json();
+        if (active && response.ok) {
+          setReviews(result.reviews || []);
+          setSummary(result.summary || { average: 0, count: 0 });
+        }
+      } catch (error) {
+        if (active) {
+          setReviews([]);
+          setSummary({ average: 0, count: 0 });
+        }
+      } finally {
+        if (active) setIsLoading(false);
+      }
+    };
+
+    if (product) loadReviews();
+
+    return () => {
+      active = false;
+    };
+  }, [product, productId]);
+
+  if (!product) return null;
 
   return (
     <section className="page-section review-section reveal in-view" aria-labelledby={`${productId}-reviews-title`}>
@@ -39,9 +97,7 @@ export default function ReviewSection({ productId }) {
             <article className="review-card" key={review.id}>
               <div className="review-card-top">
                 <StarRating rating={review.rating} />
-                <span className="review-badge" data-i18n={`reviews.badges.${review.source === "purchased" ? "verified" : "early"}`}>
-                  {review.source === "purchased" ? "Verified Buyer" : "Early Reviewer"}
-                </span>
+                <span className="review-badge">{badgeLabel(review.source, language)}</span>
               </div>
               <blockquote>{review.publicReview}</blockquote>
               <footer>
@@ -51,14 +107,14 @@ export default function ReviewSection({ productId }) {
             </article>
           ))}
         </div>
-      ) : (
+      ) : !isLoading ? (
         <article className="review-empty-state">
           <p data-i18n="reviews.emptyState">This product is currently collecting its first reviews.</p>
           <a className="btn btn-secondary" href={`/review/${productId}`} data-i18n="reviews.writeReview">
             Write a Review
           </a>
         </article>
-      )}
+      ) : null}
     </section>
   );
 }

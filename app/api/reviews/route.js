@@ -1,4 +1,5 @@
-import { createPendingReviewSubmission, getReviewProduct, selectRewardForProduct } from "../../../lib/reviews";
+import { getReviewProduct, selectRewardForProduct } from "../../../lib/reviews";
+import { createReview, getApprovedReviews, getFeaturedApprovedReviews, getPublicReviewPayload } from "../../../lib/reviewStorage";
 
 const requiredStringFields = ["name", "email", "publicReview"];
 
@@ -36,21 +37,21 @@ export async function POST(request) {
     return Response.json({ error: validationError }, { status: 400 });
   }
 
-  const submission = createPendingReviewSubmission({
+  const submission = await createReview({
     productId: payload.productId,
     name: payload.name.trim(),
     email: payload.email.trim(),
     country: payload.country?.trim() || "",
-    role: payload.role?.trim() || "",
+    profession: payload.role?.trim() || "",
     source: payload.source === "early" ? "early" : "purchased",
     rating: payload.rating,
-    reason: payload.reason?.trim() || "",
+    purchaseReason: payload.reason?.trim() || "",
     likedMost: payload.likedMost?.trim() || "",
-    improvement: payload.improvement?.trim() || "",
-    worthPrice: payload.worthPrice || "",
+    needsImprovement: payload.improvement?.trim() || "",
+    priceValue: payload.worthPrice || "",
     publicReview: payload.publicReview.trim(),
-    publishPermission: true,
-    futurePrograms: payload.futurePrograms === true,
+    allowPublish: true,
+    futureReviewProgram: payload.futurePrograms === true,
   });
   const reward = selectRewardForProduct(payload.productId);
 
@@ -59,4 +60,17 @@ export async function POST(request) {
     submissionId: submission.id,
     reward,
   });
+}
+
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const productId = searchParams.get("productId");
+  const featured = searchParams.get("featured") === "1";
+
+  if (productId && !getReviewProduct(productId)) {
+    return Response.json({ error: "Unknown product." }, { status: 404 });
+  }
+
+  const reviews = featured ? await getFeaturedApprovedReviews(3) : await getApprovedReviews(productId || undefined);
+  return Response.json(getPublicReviewPayload(reviews));
 }
