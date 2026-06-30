@@ -1,4 +1,4 @@
-import { Footer, Header, ProductCard } from "../components";
+import { BrandReviewSection, Footer, Header, ProductCard } from "../components";
 import {
   FloatingCube3D,
   GlassPanel3D,
@@ -153,6 +153,7 @@ export default function Home() {
                 eyebrowI18nKey="businessSuite.bestValue"
                 title="DBL Business Suite"
                 titleI18nKey="businessSuite.title"
+                productId="business-suite"
                 description="Complete bundle including Prompt Vault, Client Kit, Digital Launch Bundle, and Welcome Guide."
                 descriptionI18nKey="businessSuite.shortDescription"
                 price="$34.99"
@@ -181,6 +182,7 @@ export default function Home() {
                 eyebrowI18nKey="businessIdeasVault.homeEyebrow"
                 title="DBL Business Ideas Vault"
                 titleI18nKey="businessIdeasVault.title"
+                productId="business-ideas-vault"
                 description="A practical DBL guide that helps beginners choose, evaluate, and start the right business idea through 107 business ideas, clear analysis, realistic examples, AI tools, and a 7-day action plan."
                 descriptionI18nKey="businessIdeasVault.shortDescription"
                 price="$17.99"
@@ -409,6 +411,8 @@ export default function Home() {
               </article>
             </div>
           </section>
+
+          <BrandReviewSection />
 
           <section id="cta" className="final-cta reveal">
             <span className="eyebrow" data-i18n="cta.eyebrow">

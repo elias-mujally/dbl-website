@@ -768,6 +768,59 @@
       }
     ]
   },
+  "reviews": {
+    "pageEyebrow": "DBL Review",
+    "pageTitle": "Share your product review",
+    "moderationNote": "Reviews are submitted as pending and only approved reviews appear publicly.",
+    "sectionEyebrow": "Customer feedback",
+    "productSectionTitle": "What Early Reviewers Say",
+    "brandEyebrow": "DBL users",
+    "brandSectionTitle": "What DBL Users Say",
+    "reviewCountLabel": "reviews",
+    "emptyState": "This product is currently collecting its first reviews.",
+    "writeReview": "Write a Review",
+    "badges": {
+      "early": "Early Reviewer",
+      "verified": "Verified Buyer"
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "country": "Country",
+      "role": "Profession / role",
+      "source": "How did you get this product?",
+      "sources": {
+        "purchased": "Purchased from Gumroad",
+        "early": "Early review copy"
+      },
+      "rating": "Rating from 1 to 5 stars",
+      "reason": "Why did you get this product?",
+      "likedMost": "What did you like the most?",
+      "improvement": "What needs improvement?",
+      "worthPrice": "Do you think the product is worth its price?",
+      "worthOptions": {
+        "worthMore": "Yes, worth more than the price",
+        "fair": "Yes, price is fair",
+        "depends": "Maybe, depends on the user",
+        "high": "No, price feels high"
+      },
+      "publicReview": "Public review text",
+      "publishPermission": "I allow DBL to publish my review on the website.",
+      "futurePrograms": "I want to be considered for future DBL early review programs.",
+      "submit": "Submit Review",
+      "submitting": "Submitting..."
+    },
+    "reward": {
+      "eyebrow": "DBL Reward",
+      "title": "DBL Reward Unlocked",
+      "subtitle": "Thank you for helping us improve DBL products. Your feedback builds better products, and this reward is our way of saying thank you.",
+      "off": "OFF",
+      "codeLabel": "Code:",
+      "viewProduct": "View Product",
+      "manualTitle": "Thank you for your review.",
+      "manualBody": "Your DBL Reward will be sent manually."
+    }
+  },
   "comparison": {
     "eyebrow": "Product Comparison",
     "title": "Choose The Right DBL Product",

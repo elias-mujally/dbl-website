@@ -1,6 +1,7 @@
 import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 import PreviewArrowIcon from "../../components/PreviewArrowIcon";
+import ReviewSection from "../../components/ReviewSection";
 
 export const metadata = createPageMetadata({
   path: "/dbl-prompt-vault.html",
@@ -92,6 +93,8 @@ export default function PromptVaultPage() {
                 </div>
               </div>
             </section>
+
+            <ReviewSection productId="prompt-vault" />
 
             <section className="page-section page-grid"><article className="page-panel reveal in-view"><h2 data-i18n="promptVaultPage.manualTitle">Payment Support</h2><p data-i18n="promptVaultPage.manualBody">Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name.</p><div className="button-row"><a className="btn btn-secondary" href="/payment-methods.html" data-i18n="promptVaultPage.alternativePayment">Alternative Payment Methods</a></div></article></section>
           </main>

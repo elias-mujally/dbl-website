@@ -1,6 +1,7 @@
 ﻿import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 import PreviewArrowIcon from "../../components/PreviewArrowIcon";
+import ReviewSection from "../../components/ReviewSection";
 
 export const metadata = createPageMetadata({
   path: "/digital-launch-bundle.html",
@@ -88,6 +89,8 @@ export default function DigitalLaunchBundlePage() {
                 </div>
               </div>
             </section>
+
+            <ReviewSection productId="digital-launch-bundle" />
 
             <section className="page-section page-grid"><article className="page-panel reveal in-view"><h2 data-i18n="productPage.aboutTitle">About Digital Blueprint Lab</h2><p data-i18n="productPage.aboutBody">Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.</p></article><article className="page-panel reveal in-view"><h2 data-i18n="productPage.finalTitle">Start With A Practical Blueprint</h2><p data-i18n="productPage.finalBody">Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name.</p><div className="button-row"><a className="btn btn-secondary" href="/payment-methods.html" data-i18n="productPage.alternativePayment">Alternative Payment Methods</a></div></article></section>
           </main>

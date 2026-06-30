@@ -1,6 +1,7 @@
 ﻿import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 import PreviewArrowIcon from "../../components/PreviewArrowIcon";
+import ReviewSection from "../../components/ReviewSection";
 
 export const metadata = createPageMetadata({
   path: "/dbl-business-ideas-vault.html",
@@ -98,6 +99,8 @@ export default function BusinessIdeasVaultPage() {
               <article className="page-panel reveal in-view"><h2 data-i18n="businessIdeasVault.benefitsTitle">Main Benefits</h2><ul className="page-list"><li data-i18n="businessIdeasVault.benefits.0">107 practical business ideas</li><li data-i18n="businessIdeasVault.benefits.1">8 business categories</li><li data-i18n="businessIdeasVault.benefits.2">Clear evaluation for each idea</li><li data-i18n="businessIdeasVault.benefits.3">Author opinion for every idea</li><li data-i18n="businessIdeasVault.benefits.4">Realistic examples and warnings</li><li data-i18n="businessIdeasVault.benefits.5">AI tools and startup toolkit</li><li data-i18n="businessIdeasVault.benefits.6">7-day action plan</li></ul></article>
               <article className="page-panel reveal in-view"><h2 data-i18n="businessIdeasVault.faqTitle">FAQ</h2><ul className="page-list"><li><strong data-i18n="businessIdeasVault.faq.0.q">Is this a physical book?</strong><br /><span data-i18n="businessIdeasVault.faq.0.a">No. It is a premium digital PDF guide.</span></li><li><strong data-i18n="businessIdeasVault.faq.1.q">Do I get instant access?</strong><br /><span data-i18n="businessIdeasVault.faq.1.a">Gumroad checkout provides instant access after payment.</span></li><li><strong data-i18n="businessIdeasVault.faq.2.q">Is it beginner-friendly?</strong><br /><span data-i18n="businessIdeasVault.faq.2.a">Yes. It is built to help beginners choose and evaluate ideas more clearly.</span></li><li><strong data-i18n="businessIdeasVault.faq.3.q">Can I pay without a card?</strong><br /><span data-i18n="businessIdeasVault.faq.3.a">Yes. Use the Alternative Payment Methods page and include the product name and price.</span></li></ul></article>
             </section>
+
+            <ReviewSection productId="business-ideas-vault" />
 
             <section className="page-section page-grid"><article className="page-panel reveal in-view"><h2 data-i18n="businessIdeasVault.finalTitle">Start With A Clearer Idea</h2><p data-i18n="businessIdeasVault.finalBody">Use the guide to compare ideas, avoid unrealistic options, and choose a practical direction for your next business step.</p><div className="button-row"><a className="btn btn-primary" href="https://dblab.gumroad.com/l/ziuffm" target="_blank" rel="noopener" data-i18n="businessIdeasVault.buyNow">Buy Now</a><a className="btn btn-secondary" href="/payment-methods.html" data-i18n="businessIdeasVault.alternativePayment">Alternative Payment Methods</a></div></article></section>
           </main>

@@ -1,6 +1,7 @@
 ﻿import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 import PreviewArrowIcon from "../../components/PreviewArrowIcon";
+import ReviewSection from "../../components/ReviewSection";
 
 export const metadata = createPageMetadata({
   path: "/dbl-client-kit.html",
@@ -86,6 +87,8 @@ export default function ClientKitPage() {
                 </div>
               </div>
             </section>
+
+            <ReviewSection productId="client-kit" />
 
             <section className="page-section page-grid"><article className="page-panel reveal in-view"><h2 data-i18n="clientKitPage.aboutTitle">About Digital Blueprint Lab</h2><p data-i18n="clientKitPage.aboutBody">Digital Blueprint Lab is an independent digital lab focused on practical systems, AI workflows, digital products, freelancing foundations, and clean execution for long-term digital growth.</p></article><article className="page-panel reveal in-view"><h2 data-i18n="clientKitPage.finalTitle">Get Access To DBL Client Kit</h2><p data-i18n="clientKitPage.finalBody">Use Gumroad for instant card checkout. If you cannot pay by card, use the Alternative Payment Methods page and send your confirmation with the product name.</p><div className="button-row"><a className="btn btn-secondary" href="/payment-methods.html" data-i18n="clientKitPage.alternativePayment">Alternative Payment Methods</a></div></article></section>
           </main>

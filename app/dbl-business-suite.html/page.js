@@ -1,6 +1,7 @@
 ﻿import { createPageMetadata } from "../metadata";
 import SitePageShell from "../../components/SitePageShell";
 import PreviewArrowIcon from "../../components/PreviewArrowIcon";
+import ReviewSection from "../../components/ReviewSection";
 
 export const metadata = createPageMetadata({
   path: "/dbl-business-suite.html",
@@ -97,6 +98,7 @@ export default function BusinessSuitePage() {
               <article className="page-panel reveal in-view"><h2 data-i18n="businessSuite.audienceTitle">Who Is This For?</h2><ul className="page-list"><li data-i18n="businessSuite.audience.0">Freelancers</li><li data-i18n="businessSuite.audience.1">Digital Product Creators</li><li data-i18n="businessSuite.audience.2">Service Providers</li><li data-i18n="businessSuite.audience.3">Content Creators</li><li data-i18n="businessSuite.audience.4">Online Entrepreneurs</li></ul></article>
               <article className="page-panel reveal in-view"><h2 data-i18n="businessSuite.resultsTitle">What Will You Gain?</h2><ul className="page-list"><li data-i18n="businessSuite.gains.0">A clearer system for building and launching digital products</li><li data-i18n="businessSuite.gains.1">Better AI outputs through structured prompts</li><li data-i18n="businessSuite.gains.2">More professional client communication</li><li data-i18n="businessSuite.gains.3">Reusable templates for practical execution</li></ul></article>
             </section>
+            <ReviewSection productId="business-suite" />
 
             <section className="page-section">
               <div className="section-heading reveal in-view"><span className="eyebrow" data-i18n="businessSuite.faqEyebrow">Quick Answers</span><h2 data-i18n="businessSuite.faqTitle">Business Suite FAQ</h2></div>
