@@ -4,6 +4,8 @@ import SitePageShell from "../../../components/SitePageShell";
 import { createPageMetadata } from "../../metadata";
 import { getReviewProduct, reviewProducts } from "../../../lib/reviews";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return Object.keys(reviewProducts).map((productId) => ({ productId }));
 }
