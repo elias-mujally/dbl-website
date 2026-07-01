@@ -2242,6 +2242,20 @@ html[dir="rtl"] .page-list li::before {
     flex-direction: column;
   }
 
+  .review-card {
+    padding: 18px;
+  }
+
+  .review-card-top,
+  .review-card footer {
+    width: 100%;
+  }
+
+  .review-badge,
+  .review-product-name {
+    align-self: flex-start;
+  }
+
   .node::after,
   .float-card {
     display: none;
@@ -3351,6 +3365,7 @@ html[data-theme="light"] .dbl-chat-bubble-close {
 .product-rating-row {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   color: var(--muted);
   font-weight: 700;
@@ -3367,6 +3382,7 @@ html[data-theme="light"] .dbl-chat-bubble-close {
 
 .star-rating {
   display: inline-flex;
+  flex-shrink: 0;
   gap: 2px;
   color: rgba(156, 170, 189, 0.42);
   letter-spacing: 0;
@@ -3381,6 +3397,7 @@ html[data-theme="light"] .dbl-chat-bubble-close {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+  width: 100%;
 }
 
 .review-card,
@@ -3400,6 +3417,8 @@ html[data-theme="light"] .dbl-chat-bubble-close {
 .review-card {
   display: grid;
   gap: 16px;
+  min-width: 0;
+  width: 100%;
 }
 
 .review-card-top {
@@ -3407,12 +3426,14 @@ html[data-theme="light"] .dbl-chat-bubble-close {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  min-width: 0;
 }
 
 .review-badge,
 .review-product-name {
   display: inline-flex;
   align-items: center;
+  max-width: 100%;
   min-height: 28px;
   padding: 5px 9px;
   border: 1px solid var(--line);
@@ -3420,12 +3441,16 @@ html[data-theme="light"] .dbl-chat-bubble-close {
   color: var(--cyan);
   font-size: 0.78rem;
   font-weight: 800;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .review-card blockquote {
   margin: 0;
   color: var(--text);
   line-height: 1.72;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .review-card footer {
@@ -3433,10 +3458,16 @@ html[data-theme="light"] .dbl-chat-bubble-close {
   gap: 4px;
   color: var(--muted);
   font-size: 0.9rem;
+  min-width: 0;
 }
 
 .review-card footer strong {
   color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.review-card footer span {
+  overflow-wrap: anywhere;
 }
 
 .review-empty-state {

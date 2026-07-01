@@ -32,6 +32,12 @@ function badgeLabel(source, language) {
   return language === "ar" ? "مراجع مبكر" : "Early Reviewer";
 }
 
+function emptyStateLabel(language) {
+  return language === "ar"
+    ? "هذا المنتج يجمع مراجعاته الأولى حاليًا."
+    : "This product is currently collecting its first reviews.";
+}
+
 export default function ReviewSection({ productId }) {
   const product = getReviewProduct(productId);
   const language = useCurrentLanguage();
@@ -109,10 +115,7 @@ export default function ReviewSection({ productId }) {
         </div>
       ) : !isLoading ? (
         <article className="review-empty-state">
-          <p data-i18n="reviews.emptyState">This product is currently collecting its first reviews.</p>
-          <a className="btn btn-secondary" href={`/review/${productId}`} data-i18n="reviews.writeReview">
-            Write a Review
-          </a>
+          <p data-i18n="reviews.emptyState">{emptyStateLabel(language)}</p>
         </article>
       ) : null}
     </section>
