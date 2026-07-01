@@ -19,8 +19,9 @@ Vercel builds the Next.js app with `pnpm run build`.
 
 ## Review Moderation Storage
 
-Review submissions are written through `lib/reviewStorage.js`. In local development, the default storage is `data/reviews.json`.
+Review submissions are written through `lib/reviewStorage.js` using Supabase.
 
 Set `ADMIN_REVIEW_KEY` to protect `/admin/reviews` and the admin review APIs.
+Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` so review submissions can be stored durably.
 
-File-based writes are useful for local development, but they are not reliable durable production storage on Vercel serverless deployments. For production, replace the storage implementation behind `createReview`, `getReviews`, `updateReviewStatus`, and `getApprovedReviews` with Supabase, Firebase, Vercel KV, Neon, or another durable database.
+The storage module keeps the public interface behind `createReview`, `getReviews`, `updateReviewStatus`, and `getApprovedReviews`, so the backing database can still be changed later without changing the UI.

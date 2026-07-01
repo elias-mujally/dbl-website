@@ -1,5 +1,11 @@
 import { getReviewProduct, selectRewardForProduct } from "../../../lib/reviews";
-import { createReview, getApprovedReviews, getFeaturedApprovedReviews, getPublicReviewPayload } from "../../../lib/reviewStorage";
+import {
+  createReview,
+  getApprovedReviews,
+  getFeaturedApprovedReviews,
+  getPublicReviewPayload,
+  isSupabaseReviewStorageConfiguredError,
+} from "../../../lib/reviewStorage";
 
 const requiredStringFields = ["name", "email", "publicReview"];
 
@@ -64,6 +70,10 @@ export async function POST(request) {
       reward,
     });
   } catch (error) {
+    if (isSupabaseReviewStorageConfiguredError(error)) {
+      return Response.json({ ok: false, error: "Supabase review storage is not configured." }, { status: 500 });
+    }
+
     console.error("Failed to save review", {
       productId: payload.productId,
       error: error instanceof Error ? error.message : String(error),
@@ -87,6 +97,13 @@ export async function GET(request) {
     const reviews = featured ? await getFeaturedApprovedReviews(3) : await getApprovedReviews(productId || undefined);
     return Response.json({ ok: true, ...getPublicReviewPayload(reviews) });
   } catch (error) {
+    if (isSupabaseReviewStorageConfiguredError(error)) {
+      return Response.json(
+        { ok: false, error: "Supabase review storage is not configured.", reviews: [], summary: { average: 0, count: 0 } },
+        { status: 500 },
+      );
+    }
+
     console.error("Failed to load public reviews", {
       productId,
       featured,
