@@ -29,37 +29,49 @@ export async function POST(request) {
   try {
     payload = await request.json();
   } catch (error) {
-    return Response.json({ error: "Invalid JSON body." }, { status: 400 });
+    return Response.json({ ok: false, error: "Invalid JSON body." }, { status: 400 });
   }
 
   const validationError = validateReviewPayload(payload);
   if (validationError) {
-    return Response.json({ error: validationError }, { status: 400 });
+    return Response.json({ ok: false, error: validationError }, { status: 400 });
   }
 
-  const submission = await createReview({
-    productId: payload.productId,
-    name: payload.name.trim(),
-    email: payload.email.trim(),
-    country: payload.country?.trim() || "",
-    profession: payload.role?.trim() || "",
-    source: payload.source === "early" ? "early" : "purchased",
-    rating: payload.rating,
-    purchaseReason: payload.reason?.trim() || "",
-    likedMost: payload.likedMost?.trim() || "",
-    needsImprovement: payload.improvement?.trim() || "",
-    priceValue: payload.worthPrice || "",
-    publicReview: payload.publicReview.trim(),
-    allowPublish: true,
-    futureReviewProgram: payload.futurePrograms === true,
-  });
-  const reward = selectRewardForProduct(payload.productId);
+  try {
+    const submission = await createReview({
+      productId: payload.productId,
+      name: payload.name.trim(),
+      email: payload.email.trim(),
+      country: payload.country?.trim() || "",
+      profession: payload.role?.trim() || "",
+      source: payload.source === "early" ? "early" : "purchased",
+      rating: payload.rating,
+      purchaseReason: payload.reason?.trim() || "",
+      likedMost: payload.likedMost?.trim() || "",
+      needsImprovement: payload.improvement?.trim() || "",
+      priceValue: payload.worthPrice || "",
+      publicReview: payload.publicReview.trim(),
+      allowPublish: true,
+      futureReviewProgram: payload.futurePrograms === true,
+    });
+    const reward = selectRewardForProduct(payload.productId);
 
-  return Response.json({
-    status: submission.status,
-    submissionId: submission.id,
-    reward,
-  });
+    return Response.json({
+      ok: true,
+      status: submission.status,
+      reviewId: submission.id,
+      submissionId: submission.id,
+      reward,
+    });
+  } catch (error) {
+    console.error("Failed to save review", {
+      productId: payload.productId,
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+
+    return Response.json({ ok: false, error: "Failed to save review" }, { status: 500 });
+  }
 }
 
 export async function GET(request) {
@@ -71,6 +83,17 @@ export async function GET(request) {
     return Response.json({ error: "Unknown product." }, { status: 404 });
   }
 
-  const reviews = featured ? await getFeaturedApprovedReviews(3) : await getApprovedReviews(productId || undefined);
-  return Response.json(getPublicReviewPayload(reviews));
+  try {
+    const reviews = featured ? await getFeaturedApprovedReviews(3) : await getApprovedReviews(productId || undefined);
+    return Response.json({ ok: true, ...getPublicReviewPayload(reviews) });
+  } catch (error) {
+    console.error("Failed to load public reviews", {
+      productId,
+      featured,
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+
+    return Response.json({ ok: false, error: "Failed to load reviews", reviews: [], summary: { average: 0, count: 0 } }, { status: 500 });
+  }
 }

@@ -8,6 +8,20 @@ function getNestedTranslation(translations, key, fallback) {
   return typeof value === "string" ? value : fallback;
 }
 
+async function readApiResponse(response) {
+  const text = await response.text();
+  if (!text) return {};
+
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    return {
+      ok: false,
+      error: response.ok ? "Unexpected response from server." : "Unable to submit review. Please try again.",
+    };
+  }
+}
+
 export default function ReviewForm({ product }) {
   const [translations, setTranslations] = useState({});
   const [status, setStatus] = useState("idle");
@@ -78,10 +92,10 @@ export default function ReviewForm({ product }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = await response.json();
+      const result = await readApiResponse(response);
 
-      if (!response.ok) {
-        throw new Error(result?.error || "Unable to submit review.");
+      if (!response.ok || result?.ok === false) {
+        throw new Error(result?.error || "Unable to submit review. Please try again.");
       }
 
       setReward(result.reward || null);
